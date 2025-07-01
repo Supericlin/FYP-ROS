@@ -1,0 +1,105 @@
+[0.000000] (-) TimerEvent: {}
+[0.001784] (home_label_package) JobQueued: {'identifier': 'home_label_package', 'dependencies': OrderedDict()}
+[0.002570] (home_label_package) JobStarted: {'identifier': 'home_label_package'}
+[0.098679] (-) TimerEvent: {}
+[0.199470] (-) TimerEvent: {}
+[0.300210] (-) TimerEvent: {}
+[0.400973] (-) TimerEvent: {}
+[0.501706] (-) TimerEvent: {}
+[0.602441] (-) TimerEvent: {}
+[0.703184] (-) TimerEvent: {}
+[0.803931] (-) TimerEvent: {}
+[0.904680] (-) TimerEvent: {}
+[1.005432] (-) TimerEvent: {}
+[1.106134] (-) TimerEvent: {}
+[1.206826] (-) TimerEvent: {}
+[1.307582] (-) TimerEvent: {}
+[1.408349] (-) TimerEvent: {}
+[1.509111] (-) TimerEvent: {}
+[1.609837] (-) TimerEvent: {}
+[1.710694] (-) TimerEvent: {}
+[1.811487] (-) TimerEvent: {}
+[1.919185] (-) TimerEvent: {}
+[2.019926] (-) TimerEvent: {}
+[2.120638] (-) TimerEvent: {}
+[2.221357] (-) TimerEvent: {}
+[2.322095] (-) TimerEvent: {}
+[2.422856] (-) TimerEvent: {}
+[2.523602] (-) TimerEvent: {}
+[2.624346] (-) TimerEvent: {}
+[2.725095] (-) TimerEvent: {}
+[2.825840] (-) TimerEvent: {}
+[2.926570] (-) TimerEvent: {}
+[3.027292] (-) TimerEvent: {}
+[3.128033] (-) TimerEvent: {}
+[3.228784] (-) TimerEvent: {}
+[3.329589] (-) TimerEvent: {}
+[3.430290] (-) TimerEvent: {}
+[3.531026] (-) TimerEvent: {}
+[3.631823] (-) TimerEvent: {}
+[3.732567] (-) TimerEvent: {}
+[3.833299] (-) TimerEvent: {}
+[3.934003] (-) TimerEvent: {}
+[4.034774] (-) TimerEvent: {}
+[4.135631] (-) TimerEvent: {}
+[4.236473] (-) TimerEvent: {}
+[4.306734] (home_label_package) Command: {'cmd': ['/usr/bin/python3', '-W', 'ignore:setup.py install is deprecated', '-W', 'ignore:easy_install command is deprecated', 'setup.py', 'egg_info', '--egg-base', '../../build/home_label_package', 'build', '--build-base', '/root/home_label/build/home_label_package/build', 'install', '--record', '/root/home_label/build/home_label_package/install.log', '--single-version-externally-managed', 'install_data'], 'cwd': '/root/home_label/src/home_label_package', 'env': {'LANGUAGE': 'en_US.UTF-8', 'USER': 'root', 'SSH_CLIENT': '192.168.0.138 53859 22', 'XDG_SESSION_TYPE': 'tty', 'SHLVL': '1', 'LD_LIBRARY_PATH': '/userdata/dev_ws/install/serial/lib:/userdata/dev_ws/install/originbot_msgs/lib:/root/uros_ws/install/micro_ros_agent/lib:/root/uros_ws/install/micro_ros_msgs/lib:/opt/tros/humble/lib/aarch64-linux-gnu:/opt/tros/humble/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib:/usr/hobot/lib:/app/lib:/app/pub/lib:/middleware/lib:/middleware/pub/lib:/usr/hobot/lib/sensor:/system/lib:/system/usr/lib:/lib:', 'MOTD_SHOWN': 'pam', 'HOME': '/root', 'OLDPWD': '/root/home_label/src', 'SSH_TTY': '/dev/pts/0', 'ROS_PYTHON_VERSION': '3', 'DBUS_SESSION_BUS_ADDRESS': 'unix:path=/run/user/0/bus', 'DEBUGINFOD_URLS': '', 'TROS_DISTRO': 'humble', 'COLCON_PREFIX_PATH': '/root/uros_ws/install:/userdata/dev_ws/install', 'ROS_DISTRO': 'humble', 'LOGNAME': 'root', '_': '/usr/bin/colcon', 'ROS_VERSION': '2', 'XDG_SESSION_CLASS': 'user', 'TERM': 'xterm', 'XDG_SESSION_ID': '2', 'ROS_LOCALHOST_ONLY': '0', 'PATH': '/opt/tros/humble/bin:/opt/ros/humble/bin:/usr/hobot/bin/:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin', 'CAM_TYPE': 'usb', 'XDG_RUNTIME_DIR': '/run/user/0', 'DISPLAY': 'localhost:10.0', 'LANG': 'en_US.UTF-8', 'LS_COLORS': 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:', 'AMENT_PREFIX_PATH': '/userdata/dev_ws/install/vp100_ros2:/userdata/dev_ws/install/originbot_base:/userdata/dev_ws/install/serial:/userdata/dev_ws/install/originbot_teleop:/userdata/dev_ws/install/originbot_send_goal:/userdata/dev_ws/install/originbot_qrcode_detect:/userdata/dev_ws/install/originbot_navigation:/userdata/dev_ws/install/originbot_linefollower:/userdata/dev_ws/install/originbot_demo:/userdata/dev_ws/install/originbot_msgs:/userdata/dev_ws/install/originbot_bringup:/userdata/dev_ws/install/line_follower_perception:/userdata/dev_ws/install/gesture_control:/userdata/dev_ws/install/body_tracking:/root/uros_ws/install/micro_ros_setup:/root/uros_ws/install/micro_ros_agent:/root/uros_ws/install/micro_ros_msgs:/opt/tros/humble:/opt/ros/humble', 'ROS_DOMAIN_ID': '67', 'SHELL': '/bin/bash', 'PWD': '/root/home_label/build/home_label_package', 'SSH_CONNECTION': '192.168.0.138 53859 192.168.0.251 22', 'XDG_DATA_DIRS': '/usr/local/share:/usr/share:/var/lib/snapd/desktop', 'PYTHONPATH': '/root/home_label/build/home_label_package/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/root/home_label/install/home_label_package/lib/python3.10/site-packages:/userdata/dev_ws/install/originbot_linefollower/lib/python3.10/site-packages:/userdata/dev_ws/install/originbot_demo/lib/python3.10/site-packages:/userdata/dev_ws/install/originbot_msgs/local/lib/python3.10/dist-packages:/root/uros_ws/install/micro_ros_msgs/local/lib/python3.10/dist-packages:/opt/tros/humble/lib/python3.10/site-packages:/opt/tros/humble/local/lib/python3.10/dist-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages', 'COLCON': '1', 'CMAKE_PREFIX_PATH': '/userdata/dev_ws/install/vp100_ros2:/userdata/dev_ws/install/originbot_base:/userdata/dev_ws/install/serial:/userdata/dev_ws/install/originbot_teleop:/userdata/dev_ws/install/originbot_send_goal:/userdata/dev_ws/install/originbot_qrcode_detect:/userdata/dev_ws/install/originbot_navigation:/userdata/dev_ws/install/originbot_msgs:/userdata/dev_ws/install/originbot_bringup:/userdata/dev_ws/install/line_follower_perception:/userdata/dev_ws/install/gesture_control:/userdata/dev_ws/install/body_tracking:/root/uros_ws/install/micro_ros_setup:/root/uros_ws/install/micro_ros_agent:/root/uros_ws/install/micro_ros_msgs'}, 'shell': False}
+[4.337371] (-) TimerEvent: {}
+[4.441539] (-) TimerEvent: {}
+[4.542308] (-) TimerEvent: {}
+[4.643075] (-) TimerEvent: {}
+[4.743842] (-) TimerEvent: {}
+[4.844605] (-) TimerEvent: {}
+[4.945382] (-) TimerEvent: {}
+[5.046135] (-) TimerEvent: {}
+[5.146893] (-) TimerEvent: {}
+[5.247665] (-) TimerEvent: {}
+[5.348443] (-) TimerEvent: {}
+[5.449237] (-) TimerEvent: {}
+[5.550012] (-) TimerEvent: {}
+[5.650788] (-) TimerEvent: {}
+[5.751557] (-) TimerEvent: {}
+[5.852327] (-) TimerEvent: {}
+[5.905539] (home_label_package) StdoutLine: {'line': b'running egg_info\n'}
+[5.910073] (home_label_package) StdoutLine: {'line': b'creating ../../build/home_label_package/home_label_package.egg-info\n'}
+[5.911159] (home_label_package) StdoutLine: {'line': b'writing ../../build/home_label_package/home_label_package.egg-info/PKG-INFO\n'}
+[5.912179] (home_label_package) StdoutLine: {'line': b'writing dependency_links to ../../build/home_label_package/home_label_package.egg-info/dependency_links.txt\n'}
+[5.912852] (home_label_package) StdoutLine: {'line': b'writing entry points to ../../build/home_label_package/home_label_package.egg-info/entry_points.txt\n'}
+[5.913495] (home_label_package) StdoutLine: {'line': b'writing requirements to ../../build/home_label_package/home_label_package.egg-info/requires.txt\n'}
+[5.913979] (home_label_package) StdoutLine: {'line': b'writing top-level names to ../../build/home_label_package/home_label_package.egg-info/top_level.txt\n'}
+[5.914573] (home_label_package) StdoutLine: {'line': b"writing manifest file '../../build/home_label_package/home_label_package.egg-info/SOURCES.txt'\n"}
+[5.923145] (home_label_package) StdoutLine: {'line': b"reading manifest file '../../build/home_label_package/home_label_package.egg-info/SOURCES.txt'\n"}
+[5.927081] (home_label_package) StdoutLine: {'line': b"writing manifest file '../../build/home_label_package/home_label_package.egg-info/SOURCES.txt'\n"}
+[5.927795] (home_label_package) StdoutLine: {'line': b'running build\n'}
+[5.928337] (home_label_package) StdoutLine: {'line': b'running build_py\n'}
+[5.929083] (home_label_package) StdoutLine: {'line': b'creating /root/home_label/build/home_label_package/build\n'}
+[5.929674] (home_label_package) StdoutLine: {'line': b'creating /root/home_label/build/home_label_package/build/lib\n'}
+[5.930227] (home_label_package) StdoutLine: {'line': b'creating /root/home_label/build/home_label_package/build/lib/home_label_package\n'}
+[5.930706] (home_label_package) StdoutLine: {'line': b'copying home_label_package/home_label_publisher.py -> /root/home_label/build/home_label_package/build/lib/home_label_package\n'}
+[5.931239] (home_label_package) StdoutLine: {'line': b'copying home_label_package/__init__.py -> /root/home_label/build/home_label_package/build/lib/home_label_package\n'}
+[5.931693] (home_label_package) StdoutLine: {'line': b'running install\n'}
+[5.932573] (home_label_package) StdoutLine: {'line': b'running install_lib\n'}
+[5.936156] (home_label_package) StdoutLine: {'line': b'creating /root/home_label/install/home_label_package/lib/python3.10/site-packages/home_label_package\n'}
+[5.936831] (home_label_package) StdoutLine: {'line': b'copying /root/home_label/build/home_label_package/build/lib/home_label_package/home_label_publisher.py -> /root/home_label/install/home_label_package/lib/python3.10/site-packages/home_label_package\n'}
+[5.937437] (home_label_package) StdoutLine: {'line': b'copying /root/home_label/build/home_label_package/build/lib/home_label_package/__init__.py -> /root/home_label/install/home_label_package/lib/python3.10/site-packages/home_label_package\n'}
+[5.939965] (home_label_package) StdoutLine: {'line': b'byte-compiling /root/home_label/install/home_label_package/lib/python3.10/site-packages/home_label_package/home_label_publisher.py to home_label_publisher.cpython-310.pyc\n'}
+[5.943452] (home_label_package) StdoutLine: {'line': b'byte-compiling /root/home_label/install/home_label_package/lib/python3.10/site-packages/home_label_package/__init__.py to __init__.cpython-310.pyc\n'}
+[5.944225] (home_label_package) StdoutLine: {'line': b'running install_data\n'}
+[5.944897] (home_label_package) StdoutLine: {'line': b'creating /root/home_label/install/home_label_package/share/ament_index\n'}
+[5.945547] (home_label_package) StdoutLine: {'line': b'creating /root/home_label/install/home_label_package/share/ament_index/resource_index\n'}
+[5.946120] (home_label_package) StdoutLine: {'line': b'creating /root/home_label/install/home_label_package/share/ament_index/resource_index/packages\n'}
+[5.946659] (home_label_package) StdoutLine: {'line': b'copying resource/home_label_package -> /root/home_label/install/home_label_package/share/ament_index/resource_index/packages\n'}
+[5.947123] (home_label_package) StdoutLine: {'line': b'copying package.xml -> /root/home_label/install/home_label_package/share/home_label_package\n'}
+[5.947574] (home_label_package) StdoutLine: {'line': b'running install_egg_info\n'}
+[5.952459] (-) TimerEvent: {}
+[5.956145] (home_label_package) StdoutLine: {'line': b'Copying ../../build/home_label_package/home_label_package.egg-info to /root/home_label/install/home_label_package/lib/python3.10/site-packages/home_label_package-0.0.0-py3.10.egg-info\n'}
+[5.960272] (home_label_package) StdoutLine: {'line': b'running install_scripts\n'}
+[6.052612] (-) TimerEvent: {}
+[6.079449] (home_label_package) StdoutLine: {'line': b'Installing home_label_node script to /root/home_label/install/home_label_package/lib/home_label_package\n'}
+[6.080983] (home_label_package) StdoutLine: {'line': b"writing list of installed files to '/root/home_label/build/home_label_package/install.log'\n"}
+[6.152824] (-) TimerEvent: {}
+[6.253796] (-) TimerEvent: {}
+[6.282335] (home_label_package) CommandEnded: {'returncode': 0}
+[6.355401] (-) TimerEvent: {}
+[6.389955] (home_label_package) JobEnded: {'identifier': 'home_label_package', 'rc': 0}
+[6.392884] (-) EventReactorShutdown: {}

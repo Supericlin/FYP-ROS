@@ -1,0 +1,3 @@
+[console_scripts]
+us100_sensor_node = us100_sensor_pkg.us100_sensor_node:main
+

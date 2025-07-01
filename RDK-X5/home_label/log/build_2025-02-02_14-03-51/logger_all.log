@@ -1,0 +1,161 @@
+[1.777s] DEBUG:colcon:Command line arguments: ['/usr/bin/colcon', 'build']
+[1.785s] DEBUG:colcon:Parsed command line arguments: Namespace(log_base=None, log_level=None, verb_name='build', build_base='build', install_base='install', merge_install=False, symlink_install=False, test_result_base=None, continue_on_error=False, executor='parallel', parallel_workers=8, event_handlers=None, ignore_user_meta=False, metas=['./colcon.meta'], base_paths=['.'], packages_ignore=None, packages_ignore_regex=None, paths=None, packages_up_to=None, packages_up_to_regex=None, packages_above=None, packages_above_and_dependencies=None, packages_above_depth=None, packages_select_by_dep=None, packages_skip_by_dep=None, packages_skip_up_to=None, packages_select_build_failed=False, packages_skip_build_finished=False, packages_select_test_failures=False, packages_skip_test_passed=False, packages_select=None, packages_skip=None, packages_select_regex=None, packages_skip_regex=None, packages_start=None, packages_end=None, allow_overriding=[], bazel_args=None, bazel_task=None, cmake_args=None, cmake_target=None, cmake_target_skip_unavailable=False, cmake_clean_cache=False, cmake_clean_first=False, cmake_force_configure=False, meson_args=[], ament_cmake_args=None, catkin_cmake_args=None, catkin_skip_building_tests=False, mixin_files=None, mixin=None, verb_parser=<colcon_alias.argument_parser.alias.AliasArgumentDecorator object at 0xffff90140ca0>, verb_extension=<colcon_core.verb.build.BuildVerb object at 0xffff905df550>, main=<bound method BuildVerb.main of <colcon_core.verb.build.BuildVerb object at 0xffff905df550>>, mixin_verb=('build',))
+[3.031s] Level 1:colcon.colcon_core.package_discovery:discover_packages(colcon_meta) check parameters
+[3.032s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) check parameters
+[3.032s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) check parameters
+[3.032s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) check parameters
+[3.032s] Level 1:colcon.colcon_core.package_discovery:discover_packages(colcon_meta) discover
+[3.033s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) discover
+[3.033s] INFO:colcon.colcon_core.package_discovery:Crawling recursively for packages in '/root/home_label'
+[3.033s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['ignore', 'ignore_ament_install']
+[3.034s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ignore'
+[3.034s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ignore_ament_install'
+[3.035s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['colcon_pkg']
+[3.035s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'colcon_pkg'
+[3.035s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['colcon_meta']
+[3.035s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'colcon_meta'
+[3.036s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['ros']
+[3.036s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ros'
+[3.051s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['bazel', 'cmake', 'meson', 'python']
+[3.052s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'bazel'
+[3.052s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'cmake'
+[3.052s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'meson'
+[3.053s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'python'
+[3.053s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['python_setup_py']
+[3.053s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'python_setup_py'
+[3.054s] Level 1:colcon.colcon_core.package_identification:_identify(build) by extensions ['ignore', 'ignore_ament_install']
+[3.055s] Level 1:colcon.colcon_core.package_identification:_identify(build) by extension 'ignore'
+[3.055s] Level 1:colcon.colcon_core.package_identification:_identify(build) ignored
+[3.056s] Level 1:colcon.colcon_core.package_identification:_identify(install) by extensions ['ignore', 'ignore_ament_install']
+[3.056s] Level 1:colcon.colcon_core.package_identification:_identify(install) by extension 'ignore'
+[3.057s] Level 1:colcon.colcon_core.package_identification:_identify(install) ignored
+[3.057s] Level 1:colcon.colcon_core.package_identification:_identify(log) by extensions ['ignore', 'ignore_ament_install']
+[3.058s] Level 1:colcon.colcon_core.package_identification:_identify(log) by extension 'ignore'
+[3.058s] Level 1:colcon.colcon_core.package_identification:_identify(log) ignored
+[3.058s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['ignore', 'ignore_ament_install']
+[3.059s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'ignore'
+[3.059s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'ignore_ament_install'
+[3.059s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['colcon_pkg']
+[3.059s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'colcon_pkg'
+[3.060s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['colcon_meta']
+[3.060s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'colcon_meta'
+[3.060s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['ros']
+[3.060s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'ros'
+[3.061s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['bazel', 'cmake', 'meson', 'python']
+[3.061s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'bazel'
+[3.061s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'cmake'
+[3.062s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'meson'
+[3.062s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'python'
+[3.062s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['python_setup_py']
+[3.062s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'python_setup_py'
+[3.063s] Level 1:colcon.colcon_core.package_identification:_identify(src/home_label_package) by extensions ['ignore', 'ignore_ament_install']
+[3.064s] Level 1:colcon.colcon_core.package_identification:_identify(src/home_label_package) by extension 'ignore'
+[3.064s] Level 1:colcon.colcon_core.package_identification:_identify(src/home_label_package) by extension 'ignore_ament_install'
+[3.065s] Level 1:colcon.colcon_core.package_identification:_identify(src/home_label_package) by extensions ['colcon_pkg']
+[3.065s] Level 1:colcon.colcon_core.package_identification:_identify(src/home_label_package) by extension 'colcon_pkg'
+[3.065s] Level 1:colcon.colcon_core.package_identification:_identify(src/home_label_package) by extensions ['colcon_meta']
+[3.065s] Level 1:colcon.colcon_core.package_identification:_identify(src/home_label_package) by extension 'colcon_meta'
+[3.066s] Level 1:colcon.colcon_core.package_identification:_identify(src/home_label_package) by extensions ['ros']
+[3.066s] Level 1:colcon.colcon_core.package_identification:_identify(src/home_label_package) by extension 'ros'
+[3.079s] DEBUG:colcon.colcon_core.package_identification:Package 'src/home_label_package' with type 'ros.ament_python' and name 'home_label_package'
+[3.080s] Level 1:colcon.colcon_core.package_identification:_identify(src/home_label_publisher) by extensions ['ignore', 'ignore_ament_install']
+[3.081s] Level 1:colcon.colcon_core.package_identification:_identify(src/home_label_publisher) by extension 'ignore'
+[3.081s] Level 1:colcon.colcon_core.package_identification:_identify(src/home_label_publisher) by extension 'ignore_ament_install'
+[3.081s] Level 1:colcon.colcon_core.package_identification:_identify(src/home_label_publisher) by extensions ['colcon_pkg']
+[3.082s] Level 1:colcon.colcon_core.package_identification:_identify(src/home_label_publisher) by extension 'colcon_pkg'
+[3.082s] Level 1:colcon.colcon_core.package_identification:_identify(src/home_label_publisher) by extensions ['colcon_meta']
+[3.083s] Level 1:colcon.colcon_core.package_identification:_identify(src/home_label_publisher) by extension 'colcon_meta'
+[3.083s] Level 1:colcon.colcon_core.package_identification:_identify(src/home_label_publisher) by extensions ['ros']
+[3.083s] Level 1:colcon.colcon_core.package_identification:_identify(src/home_label_publisher) by extension 'ros'
+[3.084s] Level 1:colcon.colcon_core.package_identification:_identify(src/home_label_publisher) by extensions ['bazel', 'cmake', 'meson', 'python']
+[3.084s] Level 1:colcon.colcon_core.package_identification:_identify(src/home_label_publisher) by extension 'bazel'
+[3.084s] Level 1:colcon.colcon_core.package_identification:_identify(src/home_label_publisher) by extension 'cmake'
+[3.085s] Level 1:colcon.colcon_core.package_identification:_identify(src/home_label_publisher) by extension 'meson'
+[3.085s] Level 1:colcon.colcon_core.package_identification:_identify(src/home_label_publisher) by extension 'python'
+[3.085s] Level 1:colcon.colcon_core.package_identification:_identify(src/home_label_publisher) by extensions ['python_setup_py']
+[3.085s] Level 1:colcon.colcon_core.package_identification:_identify(src/home_label_publisher) by extension 'python_setup_py'
+[3.086s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) using defaults
+[3.086s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) discover
+[3.086s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) using defaults
+[3.086s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) discover
+[3.086s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) using defaults
+[3.187s] Level 1:colcon.colcon_core.package_discovery:discover_packages(prefix_path) check parameters
+[3.188s] Level 1:colcon.colcon_core.package_discovery:discover_packages(prefix_path) discover
+[3.202s] DEBUG:colcon.colcon_installed_package_information.package_discovery:Found 1 installed packages in /root/home_label/install
+[3.206s] DEBUG:colcon.colcon_installed_package_information.package_discovery:Found 3 installed packages in /root/uros_ws/install
+[3.211s] DEBUG:colcon.colcon_installed_package_information.package_discovery:Found 15 installed packages in /userdata/dev_ws/install
+[3.215s] DEBUG:colcon.colcon_installed_package_information.package_discovery:Found 55 installed packages in /opt/tros/humble
+[3.225s] DEBUG:colcon.colcon_installed_package_information.package_discovery:Found 264 installed packages in /opt/ros/humble
+[3.236s] Level 1:colcon.colcon_core.package_discovery:discover_packages(prefix_path) using defaults
+[3.600s] Level 5:colcon.colcon_core.verb:set package 'home_label_package' build argument 'bazel_args' from command line to 'None'
+[3.600s] Level 5:colcon.colcon_core.verb:set package 'home_label_package' build argument 'bazel_task' from command line to 'None'
+[3.601s] Level 5:colcon.colcon_core.verb:set package 'home_label_package' build argument 'cmake_args' from command line to 'None'
+[3.601s] Level 5:colcon.colcon_core.verb:set package 'home_label_package' build argument 'cmake_target' from command line to 'None'
+[3.601s] Level 5:colcon.colcon_core.verb:set package 'home_label_package' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[3.601s] Level 5:colcon.colcon_core.verb:set package 'home_label_package' build argument 'cmake_clean_cache' from command line to 'False'
+[3.601s] Level 5:colcon.colcon_core.verb:set package 'home_label_package' build argument 'cmake_clean_first' from command line to 'False'
+[3.601s] Level 5:colcon.colcon_core.verb:set package 'home_label_package' build argument 'cmake_force_configure' from command line to 'False'
+[3.602s] Level 5:colcon.colcon_core.verb:set package 'home_label_package' build argument 'meson_args' from command line to '[]'
+[3.602s] Level 5:colcon.colcon_core.verb:set package 'home_label_package' build argument 'ament_cmake_args' from command line to 'None'
+[3.602s] Level 5:colcon.colcon_core.verb:set package 'home_label_package' build argument 'catkin_cmake_args' from command line to 'None'
+[3.602s] Level 5:colcon.colcon_core.verb:set package 'home_label_package' build argument 'catkin_skip_building_tests' from command line to 'False'
+[3.602s] DEBUG:colcon.colcon_core.verb:Building package 'home_label_package' with the following arguments: {'ament_cmake_args': None, 'bazel_args': None, 'bazel_task': None, 'build_base': '/root/home_label/build/home_label_package', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/root/home_label/install/home_label_package', 'merge_install': False, 'meson_args': [], 'path': '/root/home_label/src/home_label_package', 'symlink_install': False, 'test_result_base': None}
+[3.604s] INFO:colcon.colcon_core.executor:Executing jobs using 'parallel' executor
+[3.609s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:run_until_complete
+[3.610s] INFO:colcon.colcon_ros.task.ament_python.build:Building ROS package in '/root/home_label/src/home_label_package' with build type 'ament_python'
+[3.611s] Level 1:colcon.colcon_core.shell:create_environment_hook('home_label_package', 'ament_prefix_path')
+[3.625s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_core.shell.bat': Not used on non-Windows systems
+[3.627s] INFO:colcon.colcon_core.shell:Creating environment hook '/root/home_label/install/home_label_package/share/home_label_package/hook/ament_prefix_path.ps1'
+[3.631s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/root/home_label/install/home_label_package/share/home_label_package/hook/ament_prefix_path.dsv'
+[3.633s] INFO:colcon.colcon_core.shell:Creating environment hook '/root/home_label/install/home_label_package/share/home_label_package/hook/ament_prefix_path.sh'
+[3.639s] DEBUG:colcon.colcon_ros_domain_id_coordinator.shell.ros_domain_id:Allocated ROS_DOMAIN_ID=231 for '/root/home_label/build/home_label_package'
+[3.639s] INFO:colcon.colcon_core.shell:Skip shell extension 'ros_domain_id' for command environment: 
+[3.639s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[3.640s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[5.470s] INFO:colcon.colcon_core.task.python.build:Building Python package in '/root/home_label/src/home_label_package'
+[5.472s] DEBUG:colcon.colcon_ros_domain_id_coordinator.shell.ros_domain_id:Allocated ROS_DOMAIN_ID=231 for '/root/home_label/build/home_label_package'
+[5.472s] INFO:colcon.colcon_core.shell:Skip shell extension 'ros_domain_id' for command environment: 
+[5.472s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[5.473s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[7.911s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/root/home_label/src/home_label_package': PYTHONPATH=/root/home_label/build/home_label_package/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/root/home_label/install/home_label_package/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/home_label_package build --build-base /root/home_label/build/home_label_package/build install --record /root/home_label/build/home_label_package/install.log --single-version-externally-managed install_data
+[9.949s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/root/home_label/src/home_label_package' returned '0': PYTHONPATH=/root/home_label/build/home_label_package/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/root/home_label/install/home_label_package/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/home_label_package build --build-base /root/home_label/build/home_label_package/build install --record /root/home_label/build/home_label_package/install.log --single-version-externally-managed install_data
+[9.972s] Level 1:colcon.colcon_core.environment:checking '/root/home_label/install/home_label_package' for CMake module files
+[9.978s] Level 1:colcon.colcon_core.environment:checking '/root/home_label/install/home_label_package' for CMake config files
+[9.984s] Level 1:colcon.colcon_core.environment:checking '/root/home_label/install/home_label_package/lib'
+[9.986s] Level 1:colcon.colcon_core.environment:checking '/root/home_label/install/home_label_package/bin'
+[9.986s] Level 1:colcon.colcon_core.environment:checking '/root/home_label/install/home_label_package/lib/pkgconfig/home_label_package.pc'
+[9.987s] Level 1:colcon.colcon_core.environment:checking '/root/home_label/install/home_label_package/lib/python3.10/site-packages'
+[9.988s] Level 1:colcon.colcon_core.shell:create_environment_hook('home_label_package', 'pythonpath')
+[9.989s] INFO:colcon.colcon_core.shell:Creating environment hook '/root/home_label/install/home_label_package/share/home_label_package/hook/pythonpath.ps1'
+[9.992s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/root/home_label/install/home_label_package/share/home_label_package/hook/pythonpath.dsv'
+[9.995s] INFO:colcon.colcon_core.shell:Creating environment hook '/root/home_label/install/home_label_package/share/home_label_package/hook/pythonpath.sh'
+[9.999s] Level 1:colcon.colcon_core.environment:checking '/root/home_label/install/home_label_package/bin'
+[9.999s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(home_label_package)
+[10.002s] INFO:colcon.colcon_core.shell:Creating package script '/root/home_label/install/home_label_package/share/home_label_package/package.ps1'
+[10.010s] INFO:colcon.colcon_core.shell:Creating package descriptor '/root/home_label/install/home_label_package/share/home_label_package/package.dsv'
+[10.014s] INFO:colcon.colcon_core.shell:Creating package script '/root/home_label/install/home_label_package/share/home_label_package/package.sh'
+[10.020s] INFO:colcon.colcon_core.shell:Creating package script '/root/home_label/install/home_label_package/share/home_label_package/package.bash'
+[10.026s] INFO:colcon.colcon_core.shell:Creating package script '/root/home_label/install/home_label_package/share/home_label_package/package.zsh'
+[10.030s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/root/home_label/install/home_label_package/share/colcon-core/packages/home_label_package)
+[10.032s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:closing loop
+[10.032s] DEBUG:colcon.colcon_ros_domain_id_coordinator.shell.ros_domain_id:Released ROS_DOMAIN_ID=231 for '/root/home_label/build/home_label_package'
+[10.033s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:loop closed
+[10.034s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:run_until_complete finished with '0'
+[10.035s] DEBUG:colcon.colcon_core.event_reactor:joining thread
+[10.064s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_notification.desktop_notification.notify_send': Could not find 'notify-send'
+[10.065s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_notification.desktop_notification.terminal_notifier': Not used on non-Darwin systems
+[10.066s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_notification.desktop_notification.win32': Not used on non-Windows systems
+[10.066s] INFO:colcon.colcon_notification.desktop_notification:Sending desktop notification using 'notify2'
+[25.252s] DEBUG:colcon.colcon_notification.desktop_notification.notify2:Failed to initialize notify2: org.freedesktop.DBus.Error.TimedOut: Failed to activate service 'org.freedesktop.Notifications': timed out (service_start_timeout=120000ms)
+[25.253s] DEBUG:colcon.colcon_core.event_reactor:joined thread
+[25.256s] INFO:colcon.colcon_core.shell:Creating prefix script '/root/home_label/install/local_setup.ps1'
+[25.264s] INFO:colcon.colcon_core.shell:Creating prefix util module '/root/home_label/install/_local_setup_util_ps1.py'
+[25.275s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/root/home_label/install/setup.ps1'
+[25.289s] INFO:colcon.colcon_core.shell:Creating prefix script '/root/home_label/install/local_setup.sh'
+[25.294s] INFO:colcon.colcon_core.shell:Creating prefix util module '/root/home_label/install/_local_setup_util_sh.py'
+[25.299s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/root/home_label/install/setup.sh'
+[25.313s] INFO:colcon.colcon_core.shell:Creating prefix script '/root/home_label/install/local_setup.bash'
+[25.316s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/root/home_label/install/setup.bash'
+[25.327s] INFO:colcon.colcon_core.shell:Creating prefix script '/root/home_label/install/local_setup.zsh'
+[25.330s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/root/home_label/install/setup.zsh'
+[25.341s] INFO:colcon.colcon_core.shell:Creating '/root/home_label/install/spawn_shell.bash'

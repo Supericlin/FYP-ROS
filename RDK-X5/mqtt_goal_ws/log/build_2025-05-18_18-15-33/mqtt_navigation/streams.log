@@ -1,0 +1,25 @@
+[4.632s] Invoking command in '/root/mqtt_goal_ws/src/mqtt_navigation': PYTHONPATH=/root/mqtt_goal_ws/build/mqtt_navigation/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/root/mqtt_goal_ws/install/mqtt_navigation/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/mqtt_navigation build --build-base /root/mqtt_goal_ws/build/mqtt_navigation/build install --record /root/mqtt_goal_ws/build/mqtt_navigation/install.log --single-version-externally-managed install_data
+[6.603s] running egg_info
+[6.607s] writing ../../build/mqtt_navigation/mqtt_navigation.egg-info/PKG-INFO
+[6.608s] writing dependency_links to ../../build/mqtt_navigation/mqtt_navigation.egg-info/dependency_links.txt
+[6.609s] writing entry points to ../../build/mqtt_navigation/mqtt_navigation.egg-info/entry_points.txt
+[6.610s] writing requirements to ../../build/mqtt_navigation/mqtt_navigation.egg-info/requires.txt
+[6.610s] writing top-level names to ../../build/mqtt_navigation/mqtt_navigation.egg-info/top_level.txt
+[6.624s] reading manifest file '../../build/mqtt_navigation/mqtt_navigation.egg-info/SOURCES.txt'
+[6.630s] writing manifest file '../../build/mqtt_navigation/mqtt_navigation.egg-info/SOURCES.txt'
+[6.630s] running build
+[6.631s] running build_py
+[6.631s] copying mqtt_navigation/mqtt_navigation_node.py -> /root/mqtt_goal_ws/build/mqtt_navigation/build/lib/mqtt_navigation
+[6.633s] running install
+[6.636s] running install_lib
+[6.640s] copying /root/mqtt_goal_ws/build/mqtt_navigation/build/lib/mqtt_navigation/mqtt_navigation_node.py -> /root/mqtt_goal_ws/install/mqtt_navigation/lib/python3.10/site-packages/mqtt_navigation
+[6.645s] byte-compiling /root/mqtt_goal_ws/install/mqtt_navigation/lib/python3.10/site-packages/mqtt_navigation/mqtt_navigation_node.py to mqtt_navigation_node.cpython-310.pyc
+[6.655s] Sorry: IndentationError: expected an indented block after function definition on line 129 (mqtt_navigation_node.py, line 130)
+[6.656s] running install_data
+[6.657s] running install_egg_info
+[6.679s] removing '/root/mqtt_goal_ws/install/mqtt_navigation/lib/python3.10/site-packages/mqtt_navigation-0.0.1-py3.10.egg-info' (and everything under it)
+[6.681s] Copying ../../build/mqtt_navigation/mqtt_navigation.egg-info to /root/mqtt_goal_ws/install/mqtt_navigation/lib/python3.10/site-packages/mqtt_navigation-0.0.1-py3.10.egg-info
+[6.686s] running install_scripts
+[6.821s] Installing mqtt_navigation_node script to /root/mqtt_goal_ws/install/mqtt_navigation/lib/mqtt_navigation
+[6.823s] writing list of installed files to '/root/mqtt_goal_ws/build/mqtt_navigation/install.log'
+[7.052s] Invoked command in '/root/mqtt_goal_ws/src/mqtt_navigation' returned '0': PYTHONPATH=/root/mqtt_goal_ws/build/mqtt_navigation/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/root/mqtt_goal_ws/install/mqtt_navigation/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/mqtt_navigation build --build-base /root/mqtt_goal_ws/build/mqtt_navigation/build install --record /root/mqtt_goal_ws/build/mqtt_navigation/install.log --single-version-externally-managed install_data

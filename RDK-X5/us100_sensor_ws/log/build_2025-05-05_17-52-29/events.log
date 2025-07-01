@@ -1,0 +1,119 @@
+[0.000000] (-) TimerEvent: {}
+[0.001545] (us100_sensor_pkg) JobQueued: {'identifier': 'us100_sensor_pkg', 'dependencies': OrderedDict()}
+[0.002734] (us100_sensor_pkg) JobStarted: {'identifier': 'us100_sensor_pkg'}
+[0.098416] (-) TimerEvent: {}
+[0.199342] (-) TimerEvent: {}
+[0.300327] (-) TimerEvent: {}
+[0.401268] (-) TimerEvent: {}
+[0.502088] (-) TimerEvent: {}
+[0.602943] (-) TimerEvent: {}
+[0.704005] (-) TimerEvent: {}
+[0.805122] (-) TimerEvent: {}
+[0.905999] (-) TimerEvent: {}
+[1.007336] (-) TimerEvent: {}
+[1.108423] (-) TimerEvent: {}
+[1.209573] (-) TimerEvent: {}
+[1.310496] (-) TimerEvent: {}
+[1.411495] (-) TimerEvent: {}
+[1.512388] (-) TimerEvent: {}
+[1.613295] (-) TimerEvent: {}
+[1.714131] (-) TimerEvent: {}
+[1.815080] (-) TimerEvent: {}
+[1.916122] (-) TimerEvent: {}
+[2.017171] (-) TimerEvent: {}
+[2.118152] (-) TimerEvent: {}
+[2.219236] (-) TimerEvent: {}
+[2.320324] (-) TimerEvent: {}
+[2.421339] (-) TimerEvent: {}
+[2.522167] (-) TimerEvent: {}
+[2.623117] (-) TimerEvent: {}
+[2.724024] (-) TimerEvent: {}
+[2.824995] (-) TimerEvent: {}
+[2.925996] (-) TimerEvent: {}
+[3.026993] (-) TimerEvent: {}
+[3.127953] (-) TimerEvent: {}
+[3.228868] (-) TimerEvent: {}
+[3.329831] (-) TimerEvent: {}
+[3.430721] (-) TimerEvent: {}
+[3.531561] (-) TimerEvent: {}
+[3.632397] (-) TimerEvent: {}
+[3.733297] (-) TimerEvent: {}
+[3.834133] (-) TimerEvent: {}
+[3.935042] (-) TimerEvent: {}
+[4.035993] (-) TimerEvent: {}
+[4.137097] (-) TimerEvent: {}
+[4.238040] (-) TimerEvent: {}
+[4.338961] (-) TimerEvent: {}
+[4.439836] (-) TimerEvent: {}
+[4.541320] (-) TimerEvent: {}
+[4.642249] (-) TimerEvent: {}
+[4.743246] (-) TimerEvent: {}
+[4.845067] (-) TimerEvent: {}
+[4.946132] (-) TimerEvent: {}
+[5.047115] (-) TimerEvent: {}
+[5.148133] (-) TimerEvent: {}
+[5.235297] (us100_sensor_pkg) Command: {'cmd': ['/usr/bin/python3', '-W', 'ignore:setup.py install is deprecated', '-W', 'ignore:easy_install command is deprecated', 'setup.py', 'egg_info', '--egg-base', '../../build/us100_sensor_pkg', 'build', '--build-base', '/root/us100_sensor_ws/build/us100_sensor_pkg/build', 'install', '--record', '/root/us100_sensor_ws/build/us100_sensor_pkg/install.log', '--single-version-externally-managed', 'install_data'], 'cwd': '/root/us100_sensor_ws/src/us100_sensor_pkg', 'env': {'LANGUAGE': 'en_US.UTF-8', 'USER': 'root', 'SSH_CLIENT': '192.168.0.138 62944 22', 'XDG_SESSION_TYPE': 'tty', 'SHLVL': '1', 'LD_LIBRARY_PATH': '/userdata/dev_ws/install/serial/lib:/userdata/dev_ws/install/originbot_msgs/lib:/root/ros2_ws/install/orbbec_camera/lib:/root/ros2_ws/install/orbbec_camera_msgs/lib:/root/ros2_ws/install/libuvc/lib:/root/ros2_ws/install/astra_camera/lib:/root/ros2_ws/install/astra_camera_msgs/lib:/root/uros_ws/install/micro_ros_agent/lib:/root/uros_ws/install/micro_ros_msgs/lib:/opt/tros/humble/lib/aarch64-linux-gnu:/opt/tros/humble/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib:/usr/hobot/lib:/app/lib:/app/pub/lib:/middleware/lib:/middleware/pub/lib:/usr/hobot/lib/sensor:/system/lib:/system/usr/lib:/lib:', 'MOTD_SHOWN': 'pam', 'HOME': '/root', 'OLDPWD': '/root', 'SSH_TTY': '/dev/pts/0', 'ROS_PYTHON_VERSION': '3', 'DBUS_SESSION_BUS_ADDRESS': 'unix:path=/run/user/0/bus', 'DEBUGINFOD_URLS': '', 'TROS_DISTRO': 'humble', 'COLCON_PREFIX_PATH': '/root/us100_sensor_ws/install:/root/ros2_ws/install:/root/label_goal/install:/root/home_label/install:/root/uros_ws/install:/userdata/dev_ws/install', 'ROS_DISTRO': 'humble', 'LOGNAME': 'root', '_': '/usr/bin/colcon', 'ROS_VERSION': '2', 'PKG_CONFIG_PATH': '/root/ros2_ws/install/magic_enum/lib/aarch64-linux-gnu/pkgconfig:/root/ros2_ws/install/magic_enum/lib/pkgconfig:/root/ros2_ws/install/libuvc/lib/pkgconfig', 'XDG_SESSION_CLASS': 'user', 'TERM': 'xterm', 'XDG_SESSION_ID': '2', 'ROS_LOCALHOST_ONLY': '0', 'PATH': '/opt/tros/humble/bin:/opt/ros/humble/bin:/usr/hobot/bin/:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin', 'CAM_TYPE': 'usb', 'XDG_RUNTIME_DIR': '/run/user/0', 'DISPLAY': 'localhost:10.0', 'LANG': 'en_US.UTF-8', 'LS_COLORS': 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:', 'AMENT_PREFIX_PATH': '/userdata/dev_ws/install/vp100_ros2:/userdata/dev_ws/install/originbot_base:/userdata/dev_ws/install/serial:/userdata/dev_ws/install/originbot_teleop:/userdata/dev_ws/install/originbot_send_goal:/userdata/dev_ws/install/originbot_qrcode_detect:/userdata/dev_ws/install/originbot_navigation:/userdata/dev_ws/install/originbot_linefollower:/userdata/dev_ws/install/originbot_demo:/userdata/dev_ws/install/originbot_msgs:/userdata/dev_ws/install/originbot_bringup:/userdata/dev_ws/install/line_follower_perception:/userdata/dev_ws/install/gesture_control:/userdata/dev_ws/install/body_tracking:/root/us100_sensor_ws/install/us100_sensor_pkg:/root/ros2_ws/install/orbbec_description:/root/ros2_ws/install/orbbec_camera:/root/ros2_ws/install/orbbec_camera_msgs:/root/ros2_ws/install/astra_camera:/root/ros2_ws/install/astra_camera_msgs:/root/label_goal/install/label_goal_package:/root/home_label/install/home_label_package:/root/uros_ws/install/micro_ros_setup:/root/uros_ws/install/micro_ros_agent:/root/uros_ws/install/micro_ros_msgs:/opt/tros/humble:/opt/ros/humble', 'ROS_DOMAIN_ID': '217', 'SHELL': '/bin/bash', 'CMAKE_MODULE_PATH': '/root/ros2_ws/install/libuvc/lib/cmake/libuvc', 'PWD': '/root/us100_sensor_ws/build/us100_sensor_pkg', 'SSH_CONNECTION': '192.168.0.138 62944 192.168.0.207 22', 'XDG_DATA_DIRS': '/usr/local/share:/usr/share:/var/lib/snapd/desktop', 'PYTHONPATH': '/root/us100_sensor_ws/build/us100_sensor_pkg/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/root/us100_sensor_ws/install/us100_sensor_pkg/lib/python3.10/site-packages:/userdata/dev_ws/install/originbot_linefollower/lib/python3.10/site-packages:/userdata/dev_ws/install/originbot_demo/lib/python3.10/site-packages:/userdata/dev_ws/install/originbot_msgs/local/lib/python3.10/dist-packages:/root/us100_sensor_ws/install/us100_sensor_pkg/lib/python3.10/site-packages:/root/ros2_ws/install/orbbec_camera_msgs/local/lib/python3.10/dist-packages:/root/ros2_ws/install/astra_camera_msgs/local/lib/python3.10/dist-packages:/root/label_goal/install/label_goal_package/lib/python3.10/site-packages:/root/home_label/install/home_label_package/lib/python3.10/site-packages:/root/uros_ws/install/micro_ros_msgs/local/lib/python3.10/dist-packages:/opt/tros/humble/lib/python3.10/site-packages:/opt/tros/humble/local/lib/python3.10/dist-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages', 'COLCON': '1', 'CMAKE_PREFIX_PATH': '/userdata/dev_ws/install/vp100_ros2:/userdata/dev_ws/install/originbot_base:/userdata/dev_ws/install/serial:/userdata/dev_ws/install/originbot_teleop:/userdata/dev_ws/install/originbot_send_goal:/userdata/dev_ws/install/originbot_qrcode_detect:/userdata/dev_ws/install/originbot_navigation:/userdata/dev_ws/install/originbot_msgs:/userdata/dev_ws/install/originbot_bringup:/userdata/dev_ws/install/line_follower_perception:/userdata/dev_ws/install/gesture_control:/userdata/dev_ws/install/body_tracking:/root/ros2_ws/install/orbbec_description:/root/ros2_ws/install/orbbec_camera:/root/ros2_ws/install/orbbec_camera_msgs:/root/ros2_ws/install/magic_enum:/root/ros2_ws/install/libuvc:/root/ros2_ws/install/astra_camera:/root/ros2_ws/install/astra_camera_msgs:/root/uros_ws/install/micro_ros_setup:/root/uros_ws/install/micro_ros_agent:/root/uros_ws/install/micro_ros_msgs'}, 'shell': False}
+[5.249954] (-) TimerEvent: {}
+[5.354506] (-) TimerEvent: {}
+[5.455481] (-) TimerEvent: {}
+[5.556336] (-) TimerEvent: {}
+[5.657252] (-) TimerEvent: {}
+[5.758115] (-) TimerEvent: {}
+[5.859021] (-) TimerEvent: {}
+[5.960020] (-) TimerEvent: {}
+[6.061126] (-) TimerEvent: {}
+[6.162047] (-) TimerEvent: {}
+[6.263040] (-) TimerEvent: {}
+[6.363966] (-) TimerEvent: {}
+[6.465055] (-) TimerEvent: {}
+[6.566079] (-) TimerEvent: {}
+[6.667123] (-) TimerEvent: {}
+[6.768085] (-) TimerEvent: {}
+[6.869192] (-) TimerEvent: {}
+[6.970146] (-) TimerEvent: {}
+[7.071124] (-) TimerEvent: {}
+[7.172117] (-) TimerEvent: {}
+[7.251415] (us100_sensor_pkg) StdoutLine: {'line': b'running egg_info\n'}
+[7.255194] (us100_sensor_pkg) StdoutLine: {'line': b'creating ../../build/us100_sensor_pkg/us100_sensor_pkg.egg-info\n'}
+[7.256254] (us100_sensor_pkg) StdoutLine: {'line': b'writing ../../build/us100_sensor_pkg/us100_sensor_pkg.egg-info/PKG-INFO\n'}
+[7.257382] (us100_sensor_pkg) StdoutLine: {'line': b'writing dependency_links to ../../build/us100_sensor_pkg/us100_sensor_pkg.egg-info/dependency_links.txt\n'}
+[7.258077] (us100_sensor_pkg) StdoutLine: {'line': b'writing entry points to ../../build/us100_sensor_pkg/us100_sensor_pkg.egg-info/entry_points.txt\n'}
+[7.258680] (us100_sensor_pkg) StdoutLine: {'line': b'writing requirements to ../../build/us100_sensor_pkg/us100_sensor_pkg.egg-info/requires.txt\n'}
+[7.259282] (us100_sensor_pkg) StdoutLine: {'line': b'writing top-level names to ../../build/us100_sensor_pkg/us100_sensor_pkg.egg-info/top_level.txt\n'}
+[7.260093] (us100_sensor_pkg) StdoutLine: {'line': b"writing manifest file '../../build/us100_sensor_pkg/us100_sensor_pkg.egg-info/SOURCES.txt'\n"}
+[7.270625] (us100_sensor_pkg) StdoutLine: {'line': b"reading manifest file '../../build/us100_sensor_pkg/us100_sensor_pkg.egg-info/SOURCES.txt'\n"}
+[7.272190] (-) TimerEvent: {}
+[7.275234] (us100_sensor_pkg) StdoutLine: {'line': b"writing manifest file '../../build/us100_sensor_pkg/us100_sensor_pkg.egg-info/SOURCES.txt'\n"}
+[7.276112] (us100_sensor_pkg) StdoutLine: {'line': b'running build\n'}
+[7.276763] (us100_sensor_pkg) StdoutLine: {'line': b'running build_py\n'}
+[7.277408] (us100_sensor_pkg) StdoutLine: {'line': b'creating /root/us100_sensor_ws/build/us100_sensor_pkg/build\n'}
+[7.277967] (us100_sensor_pkg) StdoutLine: {'line': b'creating /root/us100_sensor_ws/build/us100_sensor_pkg/build/lib\n'}
+[7.278515] (us100_sensor_pkg) StdoutLine: {'line': b'creating /root/us100_sensor_ws/build/us100_sensor_pkg/build/lib/us100_sensor_pkg\n'}
+[7.279036] (us100_sensor_pkg) StdoutLine: {'line': b'copying us100_sensor_pkg/us100_sensor_node.py -> /root/us100_sensor_ws/build/us100_sensor_pkg/build/lib/us100_sensor_pkg\n'}
+[7.279582] (us100_sensor_pkg) StdoutLine: {'line': b'copying us100_sensor_pkg/__init__.py -> /root/us100_sensor_ws/build/us100_sensor_pkg/build/lib/us100_sensor_pkg\n'}
+[7.280022] (us100_sensor_pkg) StdoutLine: {'line': b'running install\n'}
+[7.281030] (us100_sensor_pkg) StdoutLine: {'line': b'running install_lib\n'}
+[7.286418] (us100_sensor_pkg) StdoutLine: {'line': b'creating /root/us100_sensor_ws/install/us100_sensor_pkg/lib/python3.10/site-packages/us100_sensor_pkg\n'}
+[7.287343] (us100_sensor_pkg) StdoutLine: {'line': b'copying /root/us100_sensor_ws/build/us100_sensor_pkg/build/lib/us100_sensor_pkg/us100_sensor_node.py -> /root/us100_sensor_ws/install/us100_sensor_pkg/lib/python3.10/site-packages/us100_sensor_pkg\n'}
+[7.288050] (us100_sensor_pkg) StdoutLine: {'line': b'copying /root/us100_sensor_ws/build/us100_sensor_pkg/build/lib/us100_sensor_pkg/__init__.py -> /root/us100_sensor_ws/install/us100_sensor_pkg/lib/python3.10/site-packages/us100_sensor_pkg\n'}
+[7.291674] (us100_sensor_pkg) StdoutLine: {'line': b'byte-compiling /root/us100_sensor_ws/install/us100_sensor_pkg/lib/python3.10/site-packages/us100_sensor_pkg/us100_sensor_node.py to us100_sensor_node.cpython-310.pyc\n'}
+[7.297476] (us100_sensor_pkg) StdoutLine: {'line': b'byte-compiling /root/us100_sensor_ws/install/us100_sensor_pkg/lib/python3.10/site-packages/us100_sensor_pkg/__init__.py to __init__.cpython-310.pyc\n'}
+[7.298967] (us100_sensor_pkg) StdoutLine: {'line': b'running install_data\n'}
+[7.300023] (us100_sensor_pkg) StdoutLine: {'line': b'creating /root/us100_sensor_ws/install/us100_sensor_pkg/share/ament_index\n'}
+[7.300838] (us100_sensor_pkg) StdoutLine: {'line': b'creating /root/us100_sensor_ws/install/us100_sensor_pkg/share/ament_index/resource_index\n'}
+[7.301655] (us100_sensor_pkg) StdoutLine: {'line': b'creating /root/us100_sensor_ws/install/us100_sensor_pkg/share/ament_index/resource_index/packages\n'}
+[7.302309] (us100_sensor_pkg) StdoutLine: {'line': b'copying resource/us100_sensor_pkg -> /root/us100_sensor_ws/install/us100_sensor_pkg/share/ament_index/resource_index/packages\n'}
+[7.302953] (us100_sensor_pkg) StdoutLine: {'line': b'copying package.xml -> /root/us100_sensor_ws/install/us100_sensor_pkg/share/us100_sensor_pkg\n'}
+[7.303962] (us100_sensor_pkg) StdoutLine: {'line': b'running install_egg_info\n'}
+[7.323447] (us100_sensor_pkg) StdoutLine: {'line': b'Copying ../../build/us100_sensor_pkg/us100_sensor_pkg.egg-info to /root/us100_sensor_ws/install/us100_sensor_pkg/lib/python3.10/site-packages/us100_sensor_pkg-0.0.0-py3.10.egg-info\n'}
+[7.327638] (us100_sensor_pkg) StdoutLine: {'line': b'running install_scripts\n'}
+[7.372477] (-) TimerEvent: {}
+[7.460802] (us100_sensor_pkg) StdoutLine: {'line': b'Installing us100_sensor_node script to /root/us100_sensor_ws/install/us100_sensor_pkg/lib/us100_sensor_pkg\n'}
+[7.462668] (us100_sensor_pkg) StdoutLine: {'line': b"writing list of installed files to '/root/us100_sensor_ws/build/us100_sensor_pkg/install.log'\n"}
+[7.472736] (-) TimerEvent: {}
+[7.573790] (-) TimerEvent: {}
+[7.674879] (-) TimerEvent: {}
+[7.696854] (us100_sensor_pkg) CommandEnded: {'returncode': 0}
+[7.774919] (us100_sensor_pkg) JobEnded: {'identifier': 'us100_sensor_pkg', 'rc': 0}
+[7.778723] (-) TimerEvent: {}
+[7.779260] (-) EventReactorShutdown: {}

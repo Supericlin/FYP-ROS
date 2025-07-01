@@ -1,0 +1,24 @@
+[4.338s] Invoking command in '/root/us100_sensor_ws/src/us100_sensor_pkg': PYTHONPATH=/root/us100_sensor_ws/build/us100_sensor_pkg/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/root/us100_sensor_ws/install/us100_sensor_pkg/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/us100_sensor_pkg build --build-base /root/us100_sensor_ws/build/us100_sensor_pkg/build install --record /root/us100_sensor_ws/build/us100_sensor_pkg/install.log --single-version-externally-managed install_data
+[6.029s] running egg_info
+[6.033s] writing ../../build/us100_sensor_pkg/us100_sensor_pkg.egg-info/PKG-INFO
+[6.034s] writing dependency_links to ../../build/us100_sensor_pkg/us100_sensor_pkg.egg-info/dependency_links.txt
+[6.035s] writing entry points to ../../build/us100_sensor_pkg/us100_sensor_pkg.egg-info/entry_points.txt
+[6.036s] writing requirements to ../../build/us100_sensor_pkg/us100_sensor_pkg.egg-info/requires.txt
+[6.036s] writing top-level names to ../../build/us100_sensor_pkg/us100_sensor_pkg.egg-info/top_level.txt
+[6.047s] reading manifest file '../../build/us100_sensor_pkg/us100_sensor_pkg.egg-info/SOURCES.txt'
+[6.051s] writing manifest file '../../build/us100_sensor_pkg/us100_sensor_pkg.egg-info/SOURCES.txt'
+[6.052s] running build
+[6.053s] running build_py
+[6.053s] copying us100_sensor_pkg/us100_sensor_node.py -> /root/us100_sensor_ws/build/us100_sensor_pkg/build/lib/us100_sensor_pkg
+[6.054s] running install
+[6.056s] running install_lib
+[6.061s] copying /root/us100_sensor_ws/build/us100_sensor_pkg/build/lib/us100_sensor_pkg/us100_sensor_node.py -> /root/us100_sensor_ws/install/us100_sensor_pkg/lib/python3.10/site-packages/us100_sensor_pkg
+[6.065s] byte-compiling /root/us100_sensor_ws/install/us100_sensor_pkg/lib/python3.10/site-packages/us100_sensor_pkg/us100_sensor_node.py to us100_sensor_node.cpython-310.pyc
+[6.071s] running install_data
+[6.072s] running install_egg_info
+[6.090s] removing '/root/us100_sensor_ws/install/us100_sensor_pkg/lib/python3.10/site-packages/us100_sensor_pkg-0.0.0-py3.10.egg-info' (and everything under it)
+[6.091s] Copying ../../build/us100_sensor_pkg/us100_sensor_pkg.egg-info to /root/us100_sensor_ws/install/us100_sensor_pkg/lib/python3.10/site-packages/us100_sensor_pkg-0.0.0-py3.10.egg-info
+[6.096s] running install_scripts
+[6.214s] Installing us100_sensor_node script to /root/us100_sensor_ws/install/us100_sensor_pkg/lib/us100_sensor_pkg
+[6.216s] writing list of installed files to '/root/us100_sensor_ws/build/us100_sensor_pkg/install.log'
+[6.430s] Invoked command in '/root/us100_sensor_ws/src/us100_sensor_pkg' returned '0': PYTHONPATH=/root/us100_sensor_ws/build/us100_sensor_pkg/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/root/us100_sensor_ws/install/us100_sensor_pkg/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/us100_sensor_pkg build --build-base /root/us100_sensor_ws/build/us100_sensor_pkg/build install --record /root/us100_sensor_ws/build/us100_sensor_pkg/install.log --single-version-externally-managed install_data

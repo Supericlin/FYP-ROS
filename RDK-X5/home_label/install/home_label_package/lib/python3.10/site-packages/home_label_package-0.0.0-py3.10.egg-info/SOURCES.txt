@@ -1,0 +1,16 @@
+package.xml
+setup.cfg
+setup.py
+../../build/home_label_package/home_label_package.egg-info/PKG-INFO
+../../build/home_label_package/home_label_package.egg-info/SOURCES.txt
+../../build/home_label_package/home_label_package.egg-info/dependency_links.txt
+../../build/home_label_package/home_label_package.egg-info/entry_points.txt
+../../build/home_label_package/home_label_package.egg-info/requires.txt
+../../build/home_label_package/home_label_package.egg-info/top_level.txt
+../../build/home_label_package/home_label_package.egg-info/zip-safe
+home_label_package/__init__.py
+home_label_package/home_label_publisher.py
+resource/home_label_package
+test/test_copyright.py
+test/test_flake8.py
+test/test_pep257.py

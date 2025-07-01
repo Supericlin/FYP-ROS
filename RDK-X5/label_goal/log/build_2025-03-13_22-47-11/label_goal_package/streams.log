@@ -1,0 +1,24 @@
+[6.252s] Invoking command in '/root/label_goal/src/label_goal_package': PYTHONPATH=/root/label_goal/build/label_goal_package/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/root/label_goal/install/label_goal_package/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/label_goal_package build --build-base /root/label_goal/build/label_goal_package/build install --record /root/label_goal/build/label_goal_package/install.log --single-version-externally-managed install_data
+[8.058s] running egg_info
+[8.062s] writing ../../build/label_goal_package/label_goal_package.egg-info/PKG-INFO
+[8.064s] writing dependency_links to ../../build/label_goal_package/label_goal_package.egg-info/dependency_links.txt
+[8.065s] writing entry points to ../../build/label_goal_package/label_goal_package.egg-info/entry_points.txt
+[8.065s] writing requirements to ../../build/label_goal_package/label_goal_package.egg-info/requires.txt
+[8.066s] writing top-level names to ../../build/label_goal_package/label_goal_package.egg-info/top_level.txt
+[8.077s] reading manifest file '../../build/label_goal_package/label_goal_package.egg-info/SOURCES.txt'
+[8.083s] writing manifest file '../../build/label_goal_package/label_goal_package.egg-info/SOURCES.txt'
+[8.084s] running build
+[8.085s] running build_py
+[8.086s] copying label_goal_package/navigation_label_node.py -> /root/label_goal/build/label_goal_package/build/lib/label_goal_package
+[8.087s] running install
+[8.090s] running install_lib
+[8.095s] copying /root/label_goal/build/label_goal_package/build/lib/label_goal_package/navigation_label_node.py -> /root/label_goal/install/label_goal_package/lib/python3.10/site-packages/label_goal_package
+[8.099s] byte-compiling /root/label_goal/install/label_goal_package/lib/python3.10/site-packages/label_goal_package/navigation_label_node.py to navigation_label_node.cpython-310.pyc
+[8.103s] running install_data
+[8.104s] running install_egg_info
+[8.116s] removing '/root/label_goal/install/label_goal_package/lib/python3.10/site-packages/label_goal_package-0.0.0-py3.10.egg-info' (and everything under it)
+[8.117s] Copying ../../build/label_goal_package/label_goal_package.egg-info to /root/label_goal/install/label_goal_package/lib/python3.10/site-packages/label_goal_package-0.0.0-py3.10.egg-info
+[8.122s] running install_scripts
+[8.257s] Installing label_goal_node script to /root/label_goal/install/label_goal_package/lib/label_goal_package
+[8.258s] writing list of installed files to '/root/label_goal/build/label_goal_package/install.log'
+[8.482s] Invoked command in '/root/label_goal/src/label_goal_package' returned '0': PYTHONPATH=/root/label_goal/build/label_goal_package/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/root/label_goal/install/label_goal_package/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/label_goal_package build --build-base /root/label_goal/build/label_goal_package/build install --record /root/label_goal/build/label_goal_package/install.log --single-version-externally-managed install_data

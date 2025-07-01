@@ -1,0 +1,149 @@
+[2.111s] DEBUG:colcon:Command line arguments: ['/usr/bin/colcon', 'build', '--packages-select', 'us100_sensor_pkg']
+[2.112s] DEBUG:colcon:Parsed command line arguments: Namespace(log_base=None, log_level=None, verb_name='build', build_base='build', install_base='install', merge_install=False, symlink_install=False, test_result_base=None, continue_on_error=False, executor='parallel', parallel_workers=8, event_handlers=None, ignore_user_meta=False, metas=['./colcon.meta'], base_paths=['.'], packages_ignore=None, packages_ignore_regex=None, paths=None, packages_up_to=None, packages_up_to_regex=None, packages_above=None, packages_above_and_dependencies=None, packages_above_depth=None, packages_select_by_dep=None, packages_skip_by_dep=None, packages_skip_up_to=None, packages_select_build_failed=False, packages_skip_build_finished=False, packages_select_test_failures=False, packages_skip_test_passed=False, packages_select=['us100_sensor_pkg'], packages_skip=None, packages_select_regex=None, packages_skip_regex=None, packages_start=None, packages_end=None, allow_overriding=[], bazel_args=None, bazel_task=None, cmake_args=None, cmake_target=None, cmake_target_skip_unavailable=False, cmake_clean_cache=False, cmake_clean_first=False, cmake_force_configure=False, meson_args=[], ament_cmake_args=None, catkin_cmake_args=None, catkin_skip_building_tests=False, mixin_files=None, mixin=None, verb_parser=<colcon_alias.argument_parser.alias.AliasArgumentDecorator object at 0xffffa1a724d0>, verb_extension=<colcon_core.verb.build.BuildVerb object at 0xffffa1a716f0>, main=<bound method BuildVerb.main of <colcon_core.verb.build.BuildVerb object at 0xffffa1a716f0>>, mixin_verb=('build',))
+[3.659s] Level 1:colcon.colcon_core.package_discovery:discover_packages(colcon_meta) check parameters
+[3.660s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) check parameters
+[3.660s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) check parameters
+[3.661s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) check parameters
+[3.661s] Level 1:colcon.colcon_core.package_discovery:discover_packages(colcon_meta) discover
+[3.661s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) discover
+[3.662s] INFO:colcon.colcon_core.package_discovery:Crawling recursively for packages in '/root/us100_sensor_ws'
+[3.662s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['ignore', 'ignore_ament_install']
+[3.663s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ignore'
+[3.664s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ignore_ament_install'
+[3.664s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['colcon_pkg']
+[3.664s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'colcon_pkg'
+[3.664s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['colcon_meta']
+[3.665s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'colcon_meta'
+[3.665s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['ros']
+[3.665s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ros'
+[3.680s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['bazel', 'cmake', 'meson', 'python']
+[3.681s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'bazel'
+[3.681s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'cmake'
+[3.681s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'meson'
+[3.682s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'python'
+[3.682s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['python_setup_py']
+[3.682s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'python_setup_py'
+[3.683s] Level 1:colcon.colcon_core.package_identification:_identify(build) by extensions ['ignore', 'ignore_ament_install']
+[3.684s] Level 1:colcon.colcon_core.package_identification:_identify(build) by extension 'ignore'
+[3.685s] Level 1:colcon.colcon_core.package_identification:_identify(build) ignored
+[3.685s] Level 1:colcon.colcon_core.package_identification:_identify(install) by extensions ['ignore', 'ignore_ament_install']
+[3.686s] Level 1:colcon.colcon_core.package_identification:_identify(install) by extension 'ignore'
+[3.686s] Level 1:colcon.colcon_core.package_identification:_identify(install) ignored
+[3.687s] Level 1:colcon.colcon_core.package_identification:_identify(log) by extensions ['ignore', 'ignore_ament_install']
+[3.687s] Level 1:colcon.colcon_core.package_identification:_identify(log) by extension 'ignore'
+[3.688s] Level 1:colcon.colcon_core.package_identification:_identify(log) ignored
+[3.688s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['ignore', 'ignore_ament_install']
+[3.689s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'ignore'
+[3.689s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'ignore_ament_install'
+[3.690s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['colcon_pkg']
+[3.690s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'colcon_pkg'
+[3.690s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['colcon_meta']
+[3.690s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'colcon_meta'
+[3.691s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['ros']
+[3.691s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'ros'
+[3.691s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['bazel', 'cmake', 'meson', 'python']
+[3.692s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'bazel'
+[3.692s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'cmake'
+[3.692s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'meson'
+[3.693s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'python'
+[3.693s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['python_setup_py']
+[3.693s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'python_setup_py'
+[3.694s] Level 1:colcon.colcon_core.package_identification:_identify(src/us100_sensor_pkg) by extensions ['ignore', 'ignore_ament_install']
+[3.694s] Level 1:colcon.colcon_core.package_identification:_identify(src/us100_sensor_pkg) by extension 'ignore'
+[3.695s] Level 1:colcon.colcon_core.package_identification:_identify(src/us100_sensor_pkg) by extension 'ignore_ament_install'
+[3.695s] Level 1:colcon.colcon_core.package_identification:_identify(src/us100_sensor_pkg) by extensions ['colcon_pkg']
+[3.695s] Level 1:colcon.colcon_core.package_identification:_identify(src/us100_sensor_pkg) by extension 'colcon_pkg'
+[3.696s] Level 1:colcon.colcon_core.package_identification:_identify(src/us100_sensor_pkg) by extensions ['colcon_meta']
+[3.696s] Level 1:colcon.colcon_core.package_identification:_identify(src/us100_sensor_pkg) by extension 'colcon_meta'
+[3.696s] Level 1:colcon.colcon_core.package_identification:_identify(src/us100_sensor_pkg) by extensions ['ros']
+[3.696s] Level 1:colcon.colcon_core.package_identification:_identify(src/us100_sensor_pkg) by extension 'ros'
+[3.714s] DEBUG:colcon.colcon_core.package_identification:Package 'src/us100_sensor_pkg' with type 'ros.ament_python' and name 'us100_sensor_pkg'
+[3.714s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) using defaults
+[3.715s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) discover
+[3.715s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) using defaults
+[3.715s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) discover
+[3.715s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) using defaults
+[3.830s] Level 1:colcon.colcon_core.package_discovery:discover_packages(prefix_path) check parameters
+[3.830s] Level 1:colcon.colcon_core.package_discovery:discover_packages(prefix_path) discover
+[3.841s] WARNING:colcon.colcon_ros.prefix_path.ament:The path '/root/us100_sensor_ws/install/us100_sensor_pkg' in the environment variable AMENT_PREFIX_PATH doesn't exist
+[3.850s] DEBUG:colcon.colcon_installed_package_information.package_discovery:Found 0 installed packages in /root/us100_sensor_ws/install
+[3.855s] DEBUG:colcon.colcon_installed_package_information.package_discovery:Found 7 installed packages in /root/ros2_ws/install
+[3.859s] DEBUG:colcon.colcon_installed_package_information.package_discovery:Found 1 installed packages in /root/label_goal/install
+[3.862s] DEBUG:colcon.colcon_installed_package_information.package_discovery:Found 1 installed packages in /root/home_label/install
+[3.866s] DEBUG:colcon.colcon_installed_package_information.package_discovery:Found 3 installed packages in /root/uros_ws/install
+[3.872s] DEBUG:colcon.colcon_installed_package_information.package_discovery:Found 15 installed packages in /userdata/dev_ws/install
+[3.876s] DEBUG:colcon.colcon_installed_package_information.package_discovery:Found 55 installed packages in /opt/tros/humble
+[3.888s] DEBUG:colcon.colcon_installed_package_information.package_discovery:Found 320 installed packages in /opt/ros/humble
+[3.902s] Level 1:colcon.colcon_core.package_discovery:discover_packages(prefix_path) using defaults
+[4.379s] Level 5:colcon.colcon_core.verb:set package 'us100_sensor_pkg' build argument 'bazel_args' from command line to 'None'
+[4.380s] Level 5:colcon.colcon_core.verb:set package 'us100_sensor_pkg' build argument 'bazel_task' from command line to 'None'
+[4.380s] Level 5:colcon.colcon_core.verb:set package 'us100_sensor_pkg' build argument 'cmake_args' from command line to 'None'
+[4.380s] Level 5:colcon.colcon_core.verb:set package 'us100_sensor_pkg' build argument 'cmake_target' from command line to 'None'
+[4.381s] Level 5:colcon.colcon_core.verb:set package 'us100_sensor_pkg' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[4.381s] Level 5:colcon.colcon_core.verb:set package 'us100_sensor_pkg' build argument 'cmake_clean_cache' from command line to 'False'
+[4.382s] Level 5:colcon.colcon_core.verb:set package 'us100_sensor_pkg' build argument 'cmake_clean_first' from command line to 'False'
+[4.382s] Level 5:colcon.colcon_core.verb:set package 'us100_sensor_pkg' build argument 'cmake_force_configure' from command line to 'False'
+[4.383s] Level 5:colcon.colcon_core.verb:set package 'us100_sensor_pkg' build argument 'meson_args' from command line to '[]'
+[4.383s] Level 5:colcon.colcon_core.verb:set package 'us100_sensor_pkg' build argument 'ament_cmake_args' from command line to 'None'
+[4.384s] Level 5:colcon.colcon_core.verb:set package 'us100_sensor_pkg' build argument 'catkin_cmake_args' from command line to 'None'
+[4.384s] Level 5:colcon.colcon_core.verb:set package 'us100_sensor_pkg' build argument 'catkin_skip_building_tests' from command line to 'False'
+[4.385s] DEBUG:colcon.colcon_core.verb:Building package 'us100_sensor_pkg' with the following arguments: {'ament_cmake_args': None, 'bazel_args': None, 'bazel_task': None, 'build_base': '/root/us100_sensor_ws/build/us100_sensor_pkg', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/root/us100_sensor_ws/install/us100_sensor_pkg', 'merge_install': False, 'meson_args': [], 'path': '/root/us100_sensor_ws/src/us100_sensor_pkg', 'symlink_install': False, 'test_result_base': None}
+[4.387s] INFO:colcon.colcon_core.executor:Executing jobs using 'parallel' executor
+[4.394s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:run_until_complete
+[4.395s] INFO:colcon.colcon_ros.task.ament_python.build:Building ROS package in '/root/us100_sensor_ws/src/us100_sensor_pkg' with build type 'ament_python'
+[4.396s] Level 1:colcon.colcon_core.shell:create_environment_hook('us100_sensor_pkg', 'ament_prefix_path')
+[4.414s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_core.shell.bat': Not used on non-Windows systems
+[4.416s] INFO:colcon.colcon_core.shell:Creating environment hook '/root/us100_sensor_ws/install/us100_sensor_pkg/share/us100_sensor_pkg/hook/ament_prefix_path.ps1'
+[4.420s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/root/us100_sensor_ws/install/us100_sensor_pkg/share/us100_sensor_pkg/hook/ament_prefix_path.dsv'
+[4.422s] INFO:colcon.colcon_core.shell:Creating environment hook '/root/us100_sensor_ws/install/us100_sensor_pkg/share/us100_sensor_pkg/hook/ament_prefix_path.sh'
+[4.428s] DEBUG:colcon.colcon_ros_domain_id_coordinator.shell.ros_domain_id:Allocated ROS_DOMAIN_ID=217 for '/root/us100_sensor_ws/build/us100_sensor_pkg'
+[4.428s] INFO:colcon.colcon_core.shell:Skip shell extension 'ros_domain_id' for command environment: 
+[4.429s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[4.429s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[6.691s] INFO:colcon.colcon_core.task.python.build:Building Python package in '/root/us100_sensor_ws/src/us100_sensor_pkg'
+[6.694s] DEBUG:colcon.colcon_ros_domain_id_coordinator.shell.ros_domain_id:Allocated ROS_DOMAIN_ID=217 for '/root/us100_sensor_ws/build/us100_sensor_pkg'
+[6.694s] INFO:colcon.colcon_core.shell:Skip shell extension 'ros_domain_id' for command environment: 
+[6.695s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[6.695s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[9.636s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/root/us100_sensor_ws/src/us100_sensor_pkg': PYTHONPATH=/root/us100_sensor_ws/build/us100_sensor_pkg/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/root/us100_sensor_ws/install/us100_sensor_pkg/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/us100_sensor_pkg build --build-base /root/us100_sensor_ws/build/us100_sensor_pkg/build install --record /root/us100_sensor_ws/build/us100_sensor_pkg/install.log --single-version-externally-managed install_data
+[12.093s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/root/us100_sensor_ws/src/us100_sensor_pkg' returned '0': PYTHONPATH=/root/us100_sensor_ws/build/us100_sensor_pkg/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/root/us100_sensor_ws/install/us100_sensor_pkg/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/us100_sensor_pkg build --build-base /root/us100_sensor_ws/build/us100_sensor_pkg/build install --record /root/us100_sensor_ws/build/us100_sensor_pkg/install.log --single-version-externally-managed install_data
+[12.112s] Level 1:colcon.colcon_core.environment:checking '/root/us100_sensor_ws/install/us100_sensor_pkg' for CMake module files
+[12.115s] Level 1:colcon.colcon_core.environment:checking '/root/us100_sensor_ws/install/us100_sensor_pkg' for CMake config files
+[12.118s] Level 1:colcon.colcon_core.environment:checking '/root/us100_sensor_ws/install/us100_sensor_pkg/lib'
+[12.119s] Level 1:colcon.colcon_core.environment:checking '/root/us100_sensor_ws/install/us100_sensor_pkg/bin'
+[12.119s] Level 1:colcon.colcon_core.environment:checking '/root/us100_sensor_ws/install/us100_sensor_pkg/lib/pkgconfig/us100_sensor_pkg.pc'
+[12.121s] Level 1:colcon.colcon_core.environment:checking '/root/us100_sensor_ws/install/us100_sensor_pkg/lib/python3.10/site-packages'
+[12.121s] Level 1:colcon.colcon_core.shell:create_environment_hook('us100_sensor_pkg', 'pythonpath')
+[12.123s] INFO:colcon.colcon_core.shell:Creating environment hook '/root/us100_sensor_ws/install/us100_sensor_pkg/share/us100_sensor_pkg/hook/pythonpath.ps1'
+[12.126s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/root/us100_sensor_ws/install/us100_sensor_pkg/share/us100_sensor_pkg/hook/pythonpath.dsv'
+[12.128s] INFO:colcon.colcon_core.shell:Creating environment hook '/root/us100_sensor_ws/install/us100_sensor_pkg/share/us100_sensor_pkg/hook/pythonpath.sh'
+[12.132s] Level 1:colcon.colcon_core.environment:checking '/root/us100_sensor_ws/install/us100_sensor_pkg/bin'
+[12.133s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(us100_sensor_pkg)
+[12.136s] INFO:colcon.colcon_core.shell:Creating package script '/root/us100_sensor_ws/install/us100_sensor_pkg/share/us100_sensor_pkg/package.ps1'
+[12.143s] INFO:colcon.colcon_core.shell:Creating package descriptor '/root/us100_sensor_ws/install/us100_sensor_pkg/share/us100_sensor_pkg/package.dsv'
+[12.147s] INFO:colcon.colcon_core.shell:Creating package script '/root/us100_sensor_ws/install/us100_sensor_pkg/share/us100_sensor_pkg/package.sh'
+[12.152s] INFO:colcon.colcon_core.shell:Creating package script '/root/us100_sensor_ws/install/us100_sensor_pkg/share/us100_sensor_pkg/package.bash'
+[12.158s] INFO:colcon.colcon_core.shell:Creating package script '/root/us100_sensor_ws/install/us100_sensor_pkg/share/us100_sensor_pkg/package.zsh'
+[12.164s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/root/us100_sensor_ws/install/us100_sensor_pkg/share/colcon-core/packages/us100_sensor_pkg)
+[12.166s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:closing loop
+[12.167s] DEBUG:colcon.colcon_ros_domain_id_coordinator.shell.ros_domain_id:Released ROS_DOMAIN_ID=217 for '/root/us100_sensor_ws/build/us100_sensor_pkg'
+[12.169s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:loop closed
+[12.169s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:run_until_complete finished with '0'
+[12.170s] DEBUG:colcon.colcon_core.event_reactor:joining thread
+[12.205s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_notification.desktop_notification.notify_send': Could not find 'notify-send'
+[12.206s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_notification.desktop_notification.terminal_notifier': Not used on non-Darwin systems
+[12.207s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_notification.desktop_notification.win32': Not used on non-Windows systems
+[12.207s] INFO:colcon.colcon_notification.desktop_notification:Sending desktop notification using 'notify2'
+[37.213s] DEBUG:colcon.colcon_notification.desktop_notification.notify2:Failed to initialize notify2: org.freedesktop.DBus.Error.NoReply: Did not receive a reply. Possible causes include: the remote application did not send a reply, the message bus security policy blocked the reply, the reply timeout expired, or the network connection was broken.
+[37.213s] DEBUG:colcon.colcon_core.event_reactor:joined thread
+[37.216s] INFO:colcon.colcon_core.shell:Creating prefix script '/root/us100_sensor_ws/install/local_setup.ps1'
+[37.223s] INFO:colcon.colcon_core.shell:Creating prefix util module '/root/us100_sensor_ws/install/_local_setup_util_ps1.py'
+[37.234s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/root/us100_sensor_ws/install/setup.ps1'
+[37.249s] INFO:colcon.colcon_core.shell:Creating prefix script '/root/us100_sensor_ws/install/local_setup.sh'
+[37.252s] INFO:colcon.colcon_core.shell:Creating prefix util module '/root/us100_sensor_ws/install/_local_setup_util_sh.py'
+[37.257s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/root/us100_sensor_ws/install/setup.sh'
+[37.271s] INFO:colcon.colcon_core.shell:Creating prefix script '/root/us100_sensor_ws/install/local_setup.bash'
+[37.274s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/root/us100_sensor_ws/install/setup.bash'
+[37.288s] INFO:colcon.colcon_core.shell:Creating prefix script '/root/us100_sensor_ws/install/local_setup.zsh'
+[37.292s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/root/us100_sensor_ws/install/setup.zsh'
+[37.307s] INFO:colcon.colcon_core.shell:Creating '/root/us100_sensor_ws/install/spawn_shell.bash'

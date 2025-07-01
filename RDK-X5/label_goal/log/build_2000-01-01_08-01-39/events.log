@@ -1,0 +1,98 @@
+[0.000000] (-) TimerEvent: {}
+[0.001287] (label_goal_package) JobQueued: {'identifier': 'label_goal_package', 'dependencies': OrderedDict()}
+[0.002537] (label_goal_package) JobStarted: {'identifier': 'label_goal_package'}
+[0.099018] (-) TimerEvent: {}
+[0.199753] (-) TimerEvent: {}
+[0.300554] (-) TimerEvent: {}
+[0.401403] (-) TimerEvent: {}
+[0.502233] (-) TimerEvent: {}
+[0.603063] (-) TimerEvent: {}
+[0.703827] (-) TimerEvent: {}
+[0.804606] (-) TimerEvent: {}
+[0.905395] (-) TimerEvent: {}
+[1.006151] (-) TimerEvent: {}
+[1.106916] (-) TimerEvent: {}
+[1.207676] (-) TimerEvent: {}
+[1.308428] (-) TimerEvent: {}
+[1.409191] (-) TimerEvent: {}
+[1.509969] (-) TimerEvent: {}
+[1.610744] (-) TimerEvent: {}
+[1.711514] (-) TimerEvent: {}
+[1.812395] (-) TimerEvent: {}
+[1.913303] (-) TimerEvent: {}
+[2.014143] (-) TimerEvent: {}
+[2.114936] (-) TimerEvent: {}
+[2.215676] (-) TimerEvent: {}
+[2.316427] (-) TimerEvent: {}
+[2.417204] (-) TimerEvent: {}
+[2.517971] (-) TimerEvent: {}
+[2.618719] (-) TimerEvent: {}
+[2.719487] (-) TimerEvent: {}
+[2.820273] (-) TimerEvent: {}
+[2.921067] (-) TimerEvent: {}
+[3.021827] (-) TimerEvent: {}
+[3.122628] (-) TimerEvent: {}
+[3.223406] (-) TimerEvent: {}
+[3.324163] (-) TimerEvent: {}
+[3.424919] (-) TimerEvent: {}
+[3.525685] (-) TimerEvent: {}
+[3.626434] (-) TimerEvent: {}
+[3.727210] (-) TimerEvent: {}
+[3.828009] (-) TimerEvent: {}
+[3.928788] (-) TimerEvent: {}
+[4.029689] (-) TimerEvent: {}
+[4.130466] (-) TimerEvent: {}
+[4.231207] (-) TimerEvent: {}
+[4.331965] (-) TimerEvent: {}
+[4.432776] (-) TimerEvent: {}
+[4.533642] (-) TimerEvent: {}
+[4.634524] (-) TimerEvent: {}
+[4.675955] (label_goal_package) Command: {'cmd': ['/usr/bin/python3', '-W', 'ignore:setup.py install is deprecated', '-W', 'ignore:easy_install command is deprecated', 'setup.py', 'egg_info', '--egg-base', '../../build/label_goal_package', 'build', '--build-base', '/root/label_goal/build/label_goal_package/build', 'install', '--record', '/root/label_goal/build/label_goal_package/install.log', '--single-version-externally-managed', 'install_data'], 'cwd': '/root/label_goal/src/label_goal_package', 'env': {'LANGUAGE': 'en_US.UTF-8', 'USER': 'root', 'SSH_CLIENT': '192.168.0.138 53274 22', 'XDG_SESSION_TYPE': 'tty', 'SHLVL': '1', 'LD_LIBRARY_PATH': '/root/ros2_ws/install/orbbec_camera/lib:/root/ros2_ws/install/orbbec_camera_msgs/lib:/root/ros2_ws/install/libuvc/lib:/root/ros2_ws/install/astra_camera/lib:/root/ros2_ws/install/astra_camera_msgs/lib:/userdata/dev_ws/install/serial/lib:/userdata/dev_ws/install/originbot_msgs/lib:/root/uros_ws/install/micro_ros_agent/lib:/root/uros_ws/install/micro_ros_msgs/lib:/opt/tros/humble/lib/aarch64-linux-gnu:/opt/tros/humble/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib:/usr/hobot/lib:/app/lib:/app/pub/lib:/middleware/lib:/middleware/pub/lib:/usr/hobot/lib/sensor:/system/lib:/system/usr/lib:/lib:', 'MOTD_SHOWN': 'pam', 'HOME': '/root', 'OLDPWD': '/root', 'SSH_TTY': '/dev/pts/0', 'ROS_PYTHON_VERSION': '3', 'DBUS_SESSION_BUS_ADDRESS': 'unix:path=/run/user/0/bus', 'DEBUGINFOD_URLS': '', 'TROS_DISTRO': 'humble', 'COLCON_PREFIX_PATH': '/root/ros2_ws/install:/root/label_goal/install:/root/home_label/install:/root/uros_ws/install:/userdata/dev_ws/install', 'ROS_DISTRO': 'humble', 'LOGNAME': 'root', '_': '/usr/bin/colcon', 'ROS_VERSION': '2', 'PKG_CONFIG_PATH': '/root/ros2_ws/install/magic_enum/lib/aarch64-linux-gnu/pkgconfig:/root/ros2_ws/install/magic_enum/lib/pkgconfig:/root/ros2_ws/install/libuvc/lib/pkgconfig', 'XDG_SESSION_CLASS': 'user', 'TERM': 'xterm', 'XDG_SESSION_ID': '2', 'ROS_LOCALHOST_ONLY': '0', 'PATH': '/opt/tros/humble/bin:/opt/ros/humble/bin:/usr/hobot/bin/:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin', 'CAM_TYPE': 'usb', 'XDG_RUNTIME_DIR': '/run/user/0', 'DISPLAY': 'localhost:10.0', 'LANG': 'en_US.UTF-8', 'LS_COLORS': 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:', 'AMENT_PREFIX_PATH': '/root/ros2_ws/install/orbbec_description:/root/ros2_ws/install/orbbec_camera:/root/ros2_ws/install/orbbec_camera_msgs:/root/ros2_ws/install/astra_camera:/root/ros2_ws/install/astra_camera_msgs:/userdata/dev_ws/install/vp100_ros2:/userdata/dev_ws/install/originbot_base:/userdata/dev_ws/install/serial:/userdata/dev_ws/install/originbot_teleop:/userdata/dev_ws/install/originbot_send_goal:/userdata/dev_ws/install/originbot_qrcode_detect:/userdata/dev_ws/install/originbot_navigation:/userdata/dev_ws/install/originbot_linefollower:/userdata/dev_ws/install/originbot_demo:/userdata/dev_ws/install/originbot_msgs:/userdata/dev_ws/install/originbot_bringup:/userdata/dev_ws/install/line_follower_perception:/userdata/dev_ws/install/gesture_control:/userdata/dev_ws/install/body_tracking:/root/label_goal/install/label_goal_package:/root/home_label/install/home_label_package:/root/uros_ws/install/micro_ros_setup:/root/uros_ws/install/micro_ros_agent:/root/uros_ws/install/micro_ros_msgs:/opt/tros/humble:/opt/ros/humble', 'ROS_DOMAIN_ID': '3', 'SHELL': '/bin/bash', 'CMAKE_MODULE_PATH': '/root/ros2_ws/install/libuvc/lib/cmake/libuvc', 'PWD': '/root/label_goal/build/label_goal_package', 'SSH_CONNECTION': '192.168.0.138 53274 192.168.0.251 22', 'XDG_DATA_DIRS': '/usr/local/share:/usr/share:/var/lib/snapd/desktop', 'PYTHONPATH': '/root/label_goal/build/label_goal_package/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/root/label_goal/install/label_goal_package/lib/python3.10/site-packages:/root/ros2_ws/install/orbbec_camera_msgs/local/lib/python3.10/dist-packages:/root/ros2_ws/install/astra_camera_msgs/local/lib/python3.10/dist-packages:/userdata/dev_ws/install/originbot_linefollower/lib/python3.10/site-packages:/userdata/dev_ws/install/originbot_demo/lib/python3.10/site-packages:/userdata/dev_ws/install/originbot_msgs/local/lib/python3.10/dist-packages:/root/label_goal/install/label_goal_package/lib/python3.10/site-packages:/root/home_label/install/home_label_package/lib/python3.10/site-packages:/root/uros_ws/install/micro_ros_msgs/local/lib/python3.10/dist-packages:/opt/tros/humble/lib/python3.10/site-packages:/opt/tros/humble/local/lib/python3.10/dist-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages', 'COLCON': '1', 'CMAKE_PREFIX_PATH': '/root/ros2_ws/install/orbbec_description:/root/ros2_ws/install/orbbec_camera:/root/ros2_ws/install/orbbec_camera_msgs:/root/ros2_ws/install/magic_enum:/root/ros2_ws/install/libuvc:/root/ros2_ws/install/astra_camera:/root/ros2_ws/install/astra_camera_msgs:/userdata/dev_ws/install/vp100_ros2:/userdata/dev_ws/install/originbot_base:/userdata/dev_ws/install/serial:/userdata/dev_ws/install/originbot_teleop:/userdata/dev_ws/install/originbot_send_goal:/userdata/dev_ws/install/originbot_qrcode_detect:/userdata/dev_ws/install/originbot_navigation:/userdata/dev_ws/install/originbot_msgs:/userdata/dev_ws/install/originbot_bringup:/userdata/dev_ws/install/line_follower_perception:/userdata/dev_ws/install/gesture_control:/userdata/dev_ws/install/body_tracking:/root/uros_ws/install/micro_ros_setup:/root/uros_ws/install/micro_ros_agent:/root/uros_ws/install/micro_ros_msgs'}, 'shell': False}
+[4.734702] (-) TimerEvent: {}
+[4.835501] (-) TimerEvent: {}
+[4.936267] (-) TimerEvent: {}
+[5.037032] (-) TimerEvent: {}
+[5.137794] (-) TimerEvent: {}
+[5.238552] (-) TimerEvent: {}
+[5.339324] (-) TimerEvent: {}
+[5.440100] (-) TimerEvent: {}
+[5.540850] (-) TimerEvent: {}
+[5.641632] (-) TimerEvent: {}
+[5.742450] (-) TimerEvent: {}
+[5.843240] (-) TimerEvent: {}
+[5.944022] (-) TimerEvent: {}
+[6.044828] (-) TimerEvent: {}
+[6.145595] (-) TimerEvent: {}
+[6.246349] (-) TimerEvent: {}
+[6.287158] (label_goal_package) StdoutLine: {'line': b'running egg_info\n'}
+[6.292672] (label_goal_package) StdoutLine: {'line': b'writing ../../build/label_goal_package/label_goal_package.egg-info/PKG-INFO\n'}
+[6.294539] (label_goal_package) StdoutLine: {'line': b'writing dependency_links to ../../build/label_goal_package/label_goal_package.egg-info/dependency_links.txt\n'}
+[6.295396] (label_goal_package) StdoutLine: {'line': b'writing entry points to ../../build/label_goal_package/label_goal_package.egg-info/entry_points.txt\n'}
+[6.296018] (label_goal_package) StdoutLine: {'line': b'writing requirements to ../../build/label_goal_package/label_goal_package.egg-info/requires.txt\n'}
+[6.296597] (label_goal_package) StdoutLine: {'line': b'writing top-level names to ../../build/label_goal_package/label_goal_package.egg-info/top_level.txt\n'}
+[6.306365] (label_goal_package) StdoutLine: {'line': b"reading manifest file '../../build/label_goal_package/label_goal_package.egg-info/SOURCES.txt'\n"}
+[6.338473] (label_goal_package) StdoutLine: {'line': b"writing manifest file '../../build/label_goal_package/label_goal_package.egg-info/SOURCES.txt'\n"}
+[6.339324] (label_goal_package) StdoutLine: {'line': b'running build\n'}
+[6.339883] (label_goal_package) StdoutLine: {'line': b'running build_py\n'}
+[6.346450] (-) TimerEvent: {}
+[6.376258] (label_goal_package) StdoutLine: {'line': b'copying label_goal_package/navigation_label_node.py -> /root/label_goal/build/label_goal_package/build/lib/label_goal_package\n'}
+[6.378556] (label_goal_package) StdoutLine: {'line': b'running install\n'}
+[6.380312] (label_goal_package) StdoutLine: {'line': b'running install_lib\n'}
+[6.384745] (label_goal_package) StdoutLine: {'line': b'copying /root/label_goal/build/label_goal_package/build/lib/label_goal_package/navigation_label_node.py -> /root/label_goal/install/label_goal_package/lib/python3.10/site-packages/label_goal_package\n'}
+[6.388815] (label_goal_package) StdoutLine: {'line': b'byte-compiling /root/label_goal/install/label_goal_package/lib/python3.10/site-packages/label_goal_package/navigation_label_node.py to navigation_label_node.cpython-310.pyc\n'}
+[6.396988] (label_goal_package) StdoutLine: {'line': b'running install_data\n'}
+[6.412578] (label_goal_package) StdoutLine: {'line': b'running install_egg_info\n'}
+[6.422602] (label_goal_package) StdoutLine: {'line': b"removing '/root/label_goal/install/label_goal_package/lib/python3.10/site-packages/label_goal_package-0.0.0-py3.10.egg-info' (and everything under it)\n"}
+[6.424138] (label_goal_package) StdoutLine: {'line': b'Copying ../../build/label_goal_package/label_goal_package.egg-info to /root/label_goal/install/label_goal_package/lib/python3.10/site-packages/label_goal_package-0.0.0-py3.10.egg-info\n'}
+[6.429073] (label_goal_package) StdoutLine: {'line': b'running install_scripts\n'}
+[6.446678] (-) TimerEvent: {}
+[6.547583] (-) TimerEvent: {}
+[6.551825] (label_goal_package) StdoutLine: {'line': b'Installing label_goal_node script to /root/label_goal/install/label_goal_package/lib/label_goal_package\n'}
+[6.568355] (label_goal_package) StdoutLine: {'line': b"writing list of installed files to '/root/label_goal/build/label_goal_package/install.log'\n"}
+[6.647811] (-) TimerEvent: {}
+[6.748822] (-) TimerEvent: {}
+[6.770604] (label_goal_package) CommandEnded: {'returncode': 0}
+[6.848965] (-) TimerEvent: {}
+[6.949712] (-) TimerEvent: {}
+[6.966314] (label_goal_package) JobEnded: {'identifier': 'label_goal_package', 'rc': 0}
+[6.969199] (-) EventReactorShutdown: {}

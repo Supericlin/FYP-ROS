@@ -1,0 +1,3 @@
+[console_scripts]
+label_goal_node = label_goal_package.navigation_label_node:main
+

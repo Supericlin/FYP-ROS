@@ -1,0 +1,3 @@
+[console_scripts]
+mqtt_navigation_node = mqtt_navigation.mqtt_navigation_node:main
+

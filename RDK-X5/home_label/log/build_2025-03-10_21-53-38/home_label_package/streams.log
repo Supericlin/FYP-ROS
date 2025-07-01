@@ -1,0 +1,24 @@
+[4.757s] Invoking command in '/root/home_label/src/home_label_package': PYTHONPATH=/root/home_label/build/home_label_package/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/root/home_label/install/home_label_package/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/home_label_package build --build-base /root/home_label/build/home_label_package/build install --record /root/home_label/build/home_label_package/install.log --single-version-externally-managed install_data
+[6.478s] running egg_info
+[6.482s] writing ../../build/home_label_package/home_label_package.egg-info/PKG-INFO
+[6.484s] writing dependency_links to ../../build/home_label_package/home_label_package.egg-info/dependency_links.txt
+[6.485s] writing entry points to ../../build/home_label_package/home_label_package.egg-info/entry_points.txt
+[6.486s] writing requirements to ../../build/home_label_package/home_label_package.egg-info/requires.txt
+[6.487s] writing top-level names to ../../build/home_label_package/home_label_package.egg-info/top_level.txt
+[6.498s] reading manifest file '../../build/home_label_package/home_label_package.egg-info/SOURCES.txt'
+[6.504s] writing manifest file '../../build/home_label_package/home_label_package.egg-info/SOURCES.txt'
+[6.504s] running build
+[6.505s] running build_py
+[6.506s] copying home_label_package/home_label_publisher.py -> /root/home_label/build/home_label_package/build/lib/home_label_package
+[6.508s] running install
+[6.510s] running install_lib
+[6.516s] copying /root/home_label/build/home_label_package/build/lib/home_label_package/home_label_publisher.py -> /root/home_label/install/home_label_package/lib/python3.10/site-packages/home_label_package
+[6.521s] byte-compiling /root/home_label/install/home_label_package/lib/python3.10/site-packages/home_label_package/home_label_publisher.py to home_label_publisher.cpython-310.pyc
+[6.525s] running install_data
+[6.526s] running install_egg_info
+[6.536s] removing '/root/home_label/install/home_label_package/lib/python3.10/site-packages/home_label_package-0.0.0-py3.10.egg-info' (and everything under it)
+[6.538s] Copying ../../build/home_label_package/home_label_package.egg-info to /root/home_label/install/home_label_package/lib/python3.10/site-packages/home_label_package-0.0.0-py3.10.egg-info
+[6.543s] running install_scripts
+[6.672s] Installing home_label_node script to /root/home_label/install/home_label_package/lib/home_label_package
+[6.674s] writing list of installed files to '/root/home_label/build/home_label_package/install.log'
+[6.889s] Invoked command in '/root/home_label/src/home_label_package' returned '0': PYTHONPATH=/root/home_label/build/home_label_package/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/root/home_label/install/home_label_package/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/home_label_package build --build-base /root/home_label/build/home_label_package/build install --record /root/home_label/build/home_label_package/install.log --single-version-externally-managed install_data

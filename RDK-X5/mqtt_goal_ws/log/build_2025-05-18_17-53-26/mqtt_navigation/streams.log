@@ -1,0 +1,24 @@
+[4.368s] Invoking command in '/root/mqtt_goal_ws/src/mqtt_navigation': PYTHONPATH=/root/mqtt_goal_ws/build/mqtt_navigation/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/root/mqtt_goal_ws/install/mqtt_navigation/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/mqtt_navigation build --build-base /root/mqtt_goal_ws/build/mqtt_navigation/build install --record /root/mqtt_goal_ws/build/mqtt_navigation/install.log --single-version-externally-managed install_data
+[6.050s] running egg_info
+[6.054s] writing ../../build/mqtt_navigation/mqtt_navigation.egg-info/PKG-INFO
+[6.055s] writing dependency_links to ../../build/mqtt_navigation/mqtt_navigation.egg-info/dependency_links.txt
+[6.056s] writing entry points to ../../build/mqtt_navigation/mqtt_navigation.egg-info/entry_points.txt
+[6.057s] writing requirements to ../../build/mqtt_navigation/mqtt_navigation.egg-info/requires.txt
+[6.057s] writing top-level names to ../../build/mqtt_navigation/mqtt_navigation.egg-info/top_level.txt
+[6.068s] reading manifest file '../../build/mqtt_navigation/mqtt_navigation.egg-info/SOURCES.txt'
+[6.073s] writing manifest file '../../build/mqtt_navigation/mqtt_navigation.egg-info/SOURCES.txt'
+[6.074s] running build
+[6.074s] running build_py
+[6.075s] copying mqtt_navigation/mqtt_navigation_node.py -> /root/mqtt_goal_ws/build/mqtt_navigation/build/lib/mqtt_navigation
+[6.076s] running install
+[6.077s] running install_lib
+[6.081s] copying /root/mqtt_goal_ws/build/mqtt_navigation/build/lib/mqtt_navigation/mqtt_navigation_node.py -> /root/mqtt_goal_ws/install/mqtt_navigation/lib/python3.10/site-packages/mqtt_navigation
+[6.085s] byte-compiling /root/mqtt_goal_ws/install/mqtt_navigation/lib/python3.10/site-packages/mqtt_navigation/mqtt_navigation_node.py to mqtt_navigation_node.cpython-310.pyc
+[6.094s] running install_data
+[6.095s] running install_egg_info
+[6.112s] removing '/root/mqtt_goal_ws/install/mqtt_navigation/lib/python3.10/site-packages/mqtt_navigation-0.0.1-py3.10.egg-info' (and everything under it)
+[6.114s] Copying ../../build/mqtt_navigation/mqtt_navigation.egg-info to /root/mqtt_goal_ws/install/mqtt_navigation/lib/python3.10/site-packages/mqtt_navigation-0.0.1-py3.10.egg-info
+[6.118s] running install_scripts
+[6.234s] Installing mqtt_navigation_node script to /root/mqtt_goal_ws/install/mqtt_navigation/lib/mqtt_navigation
+[6.236s] writing list of installed files to '/root/mqtt_goal_ws/build/mqtt_navigation/install.log'
+[6.443s] Invoked command in '/root/mqtt_goal_ws/src/mqtt_navigation' returned '0': PYTHONPATH=/root/mqtt_goal_ws/build/mqtt_navigation/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/root/mqtt_goal_ws/install/mqtt_navigation/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/mqtt_navigation build --build-base /root/mqtt_goal_ws/build/mqtt_navigation/build install --record /root/mqtt_goal_ws/build/mqtt_navigation/install.log --single-version-externally-managed install_data

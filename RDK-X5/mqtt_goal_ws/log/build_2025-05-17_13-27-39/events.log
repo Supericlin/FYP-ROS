@@ -1,0 +1,121 @@
+[0.000000] (-) TimerEvent: {}
+[0.003822] (mqtt_navigation) JobQueued: {'identifier': 'mqtt_navigation', 'dependencies': OrderedDict()}
+[0.005409] (mqtt_navigation) JobStarted: {'identifier': 'mqtt_navigation'}
+[0.097850] (-) TimerEvent: {}
+[0.200225] (-) TimerEvent: {}
+[0.301379] (-) TimerEvent: {}
+[0.402290] (-) TimerEvent: {}
+[0.503219] (-) TimerEvent: {}
+[0.604090] (-) TimerEvent: {}
+[0.705442] (-) TimerEvent: {}
+[0.806489] (-) TimerEvent: {}
+[0.907580] (-) TimerEvent: {}
+[1.008599] (-) TimerEvent: {}
+[1.109787] (-) TimerEvent: {}
+[1.210966] (-) TimerEvent: {}
+[1.311999] (-) TimerEvent: {}
+[1.413047] (-) TimerEvent: {}
+[1.513993] (-) TimerEvent: {}
+[1.615054] (-) TimerEvent: {}
+[1.715991] (-) TimerEvent: {}
+[1.817058] (-) TimerEvent: {}
+[1.917971] (-) TimerEvent: {}
+[2.018941] (-) TimerEvent: {}
+[2.120051] (-) TimerEvent: {}
+[2.221165] (-) TimerEvent: {}
+[2.322282] (-) TimerEvent: {}
+[2.423725] (-) TimerEvent: {}
+[2.525905] (-) TimerEvent: {}
+[2.627233] (-) TimerEvent: {}
+[2.728210] (-) TimerEvent: {}
+[2.829275] (-) TimerEvent: {}
+[2.930209] (-) TimerEvent: {}
+[3.031232] (-) TimerEvent: {}
+[3.132207] (-) TimerEvent: {}
+[3.233296] (-) TimerEvent: {}
+[3.334280] (-) TimerEvent: {}
+[3.435452] (-) TimerEvent: {}
+[3.536425] (-) TimerEvent: {}
+[3.637521] (-) TimerEvent: {}
+[3.738432] (-) TimerEvent: {}
+[3.839403] (-) TimerEvent: {}
+[3.940354] (-) TimerEvent: {}
+[4.041553] (-) TimerEvent: {}
+[4.142570] (-) TimerEvent: {}
+[4.243835] (-) TimerEvent: {}
+[4.344733] (-) TimerEvent: {}
+[4.445675] (-) TimerEvent: {}
+[4.546890] (-) TimerEvent: {}
+[4.648104] (-) TimerEvent: {}
+[4.749209] (-) TimerEvent: {}
+[4.850221] (-) TimerEvent: {}
+[4.951678] (-) TimerEvent: {}
+[5.052953] (-) TimerEvent: {}
+[5.154516] (-) TimerEvent: {}
+[5.255557] (-) TimerEvent: {}
+[5.356609] (-) TimerEvent: {}
+[5.457591] (-) TimerEvent: {}
+[5.558656] (-) TimerEvent: {}
+[5.659921] (-) TimerEvent: {}
+[5.761130] (-) TimerEvent: {}
+[5.862408] (-) TimerEvent: {}
+[5.963649] (-) TimerEvent: {}
+[5.976364] (mqtt_navigation) Command: {'cmd': ['/usr/bin/python3', '-W', 'ignore:setup.py install is deprecated', '-W', 'ignore:easy_install command is deprecated', 'setup.py', 'egg_info', '--egg-base', '../../build/mqtt_navigation', 'build', '--build-base', '/root/mqtt_goal_ws/build/mqtt_navigation/build', 'install', '--record', '/root/mqtt_goal_ws/build/mqtt_navigation/install.log', '--single-version-externally-managed', 'install_data'], 'cwd': '/root/mqtt_goal_ws/src/mqtt_navigation', 'env': {'LANGUAGE': 'en_US.UTF-8', 'USER': 'root', 'SSH_CLIENT': '192.168.0.138 51347 22', 'XDG_SESSION_TYPE': 'tty', 'SHLVL': '1', 'LD_LIBRARY_PATH': '/userdata/dev_ws/install/serial/lib:/userdata/dev_ws/install/originbot_msgs/lib:/root/ros2_ws/install/orbbec_camera/lib:/root/ros2_ws/install/orbbec_camera_msgs/lib:/root/ros2_ws/install/libuvc/lib:/root/ros2_ws/install/astra_camera/lib:/root/ros2_ws/install/astra_camera_msgs/lib:/root/uros_ws/install/micro_ros_agent/lib:/root/uros_ws/install/micro_ros_msgs/lib:/opt/tros/humble/lib/aarch64-linux-gnu:/opt/tros/humble/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib:/usr/hobot/lib:/app/lib:/app/pub/lib:/middleware/lib:/middleware/pub/lib:/usr/hobot/lib/sensor:/system/lib:/system/usr/lib:/lib:', 'MOTD_SHOWN': 'pam', 'HOME': '/root', 'OLDPWD': '/root', 'SSH_TTY': '/dev/pts/1', 'ROS_PYTHON_VERSION': '3', 'DBUS_SESSION_BUS_ADDRESS': 'unix:path=/run/user/0/bus', 'DEBUGINFOD_URLS': '', 'TROS_DISTRO': 'humble', 'COLCON_PREFIX_PATH': '/root/mqtt_goal_ws/install:/root/us100_sensor_ws/install:/root/ros2_ws/install:/root/label_goal/install:/root/home_label/install:/root/uros_ws/install:/userdata/dev_ws/install', 'ROS_DISTRO': 'humble', 'LOGNAME': 'root', '_': '/usr/bin/colcon', 'ROS_VERSION': '2', 'PKG_CONFIG_PATH': '/root/ros2_ws/install/magic_enum/lib/aarch64-linux-gnu/pkgconfig:/root/ros2_ws/install/magic_enum/lib/pkgconfig:/root/ros2_ws/install/libuvc/lib/pkgconfig', 'XDG_SESSION_CLASS': 'user', 'TERM': 'xterm', 'XDG_SESSION_ID': '5', 'ROS_LOCALHOST_ONLY': '0', 'PATH': '/opt/tros/humble/bin:/opt/ros/humble/bin:/usr/hobot/bin/:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin', 'CAM_TYPE': 'usb', 'XDG_RUNTIME_DIR': '/run/user/0', 'DISPLAY': 'localhost:11.0', 'LANG': 'en_US.UTF-8', 'LS_COLORS': 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:', 'AMENT_PREFIX_PATH': '/root/mqtt_goal_ws/install/mqtt_navigation:/userdata/dev_ws/install/vp100_ros2:/userdata/dev_ws/install/originbot_base:/userdata/dev_ws/install/serial:/userdata/dev_ws/install/originbot_teleop:/userdata/dev_ws/install/originbot_send_goal:/userdata/dev_ws/install/originbot_qrcode_detect:/userdata/dev_ws/install/originbot_navigation:/userdata/dev_ws/install/originbot_linefollower:/userdata/dev_ws/install/originbot_demo:/userdata/dev_ws/install/originbot_msgs:/userdata/dev_ws/install/originbot_bringup:/userdata/dev_ws/install/line_follower_perception:/userdata/dev_ws/install/gesture_control:/userdata/dev_ws/install/body_tracking:/root/us100_sensor_ws/install/us100_sensor_pkg:/root/ros2_ws/install/orbbec_description:/root/ros2_ws/install/orbbec_camera:/root/ros2_ws/install/orbbec_camera_msgs:/root/ros2_ws/install/astra_camera:/root/ros2_ws/install/astra_camera_msgs:/root/label_goal/install/label_goal_package:/root/home_label/install/home_label_package:/root/uros_ws/install/micro_ros_setup:/root/uros_ws/install/micro_ros_agent:/root/uros_ws/install/micro_ros_msgs:/opt/tros/humble:/opt/ros/humble', 'ROS_DOMAIN_ID': '55', 'SHELL': '/bin/bash', 'CMAKE_MODULE_PATH': '/root/ros2_ws/install/libuvc/lib/cmake/libuvc', 'PWD': '/root/mqtt_goal_ws/build/mqtt_navigation', 'SSH_CONNECTION': '192.168.0.138 51347 192.168.0.207 22', 'XDG_DATA_DIRS': '/usr/local/share:/usr/share:/var/lib/snapd/desktop', 'PYTHONPATH': '/root/mqtt_goal_ws/build/mqtt_navigation/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/root/mqtt_goal_ws/install/mqtt_navigation/lib/python3.10/site-packages:/root/mqtt_goal_ws/install/mqtt_navigation/lib/python3.10/site-packages:/userdata/dev_ws/install/originbot_linefollower/lib/python3.10/site-packages:/userdata/dev_ws/install/originbot_demo/lib/python3.10/site-packages:/userdata/dev_ws/install/originbot_msgs/local/lib/python3.10/dist-packages:/root/us100_sensor_ws/install/us100_sensor_pkg/lib/python3.10/site-packages:/root/ros2_ws/install/orbbec_camera_msgs/local/lib/python3.10/dist-packages:/root/ros2_ws/install/astra_camera_msgs/local/lib/python3.10/dist-packages:/root/label_goal/install/label_goal_package/lib/python3.10/site-packages:/root/home_label/install/home_label_package/lib/python3.10/site-packages:/root/uros_ws/install/micro_ros_msgs/local/lib/python3.10/dist-packages:/opt/tros/humble/lib/python3.10/site-packages:/opt/tros/humble/local/lib/python3.10/dist-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages', 'COLCON': '1', 'CMAKE_PREFIX_PATH': '/userdata/dev_ws/install/vp100_ros2:/userdata/dev_ws/install/originbot_base:/userdata/dev_ws/install/serial:/userdata/dev_ws/install/originbot_teleop:/userdata/dev_ws/install/originbot_send_goal:/userdata/dev_ws/install/originbot_qrcode_detect:/userdata/dev_ws/install/originbot_navigation:/userdata/dev_ws/install/originbot_msgs:/userdata/dev_ws/install/originbot_bringup:/userdata/dev_ws/install/line_follower_perception:/userdata/dev_ws/install/gesture_control:/userdata/dev_ws/install/body_tracking:/root/ros2_ws/install/orbbec_description:/root/ros2_ws/install/orbbec_camera:/root/ros2_ws/install/orbbec_camera_msgs:/root/ros2_ws/install/magic_enum:/root/ros2_ws/install/libuvc:/root/ros2_ws/install/astra_camera:/root/ros2_ws/install/astra_camera_msgs:/root/uros_ws/install/micro_ros_setup:/root/uros_ws/install/micro_ros_agent:/root/uros_ws/install/micro_ros_msgs'}, 'shell': False}
+[6.063902] (-) TimerEvent: {}
+[6.167851] (-) TimerEvent: {}
+[6.268880] (-) TimerEvent: {}
+[6.369840] (-) TimerEvent: {}
+[6.470773] (-) TimerEvent: {}
+[6.571807] (-) TimerEvent: {}
+[6.672797] (-) TimerEvent: {}
+[6.773926] (-) TimerEvent: {}
+[6.875215] (-) TimerEvent: {}
+[6.976178] (-) TimerEvent: {}
+[7.077217] (-) TimerEvent: {}
+[7.178195] (-) TimerEvent: {}
+[7.279182] (-) TimerEvent: {}
+[7.380207] (-) TimerEvent: {}
+[7.481264] (-) TimerEvent: {}
+[7.582132] (-) TimerEvent: {}
+[7.683185] (-) TimerEvent: {}
+[7.784058] (-) TimerEvent: {}
+[7.884992] (-) TimerEvent: {}
+[7.985850] (-) TimerEvent: {}
+[8.086855] (-) TimerEvent: {}
+[8.187923] (-) TimerEvent: {}
+[8.289090] (-) TimerEvent: {}
+[8.390233] (-) TimerEvent: {}
+[8.491567] (-) TimerEvent: {}
+[8.592615] (-) TimerEvent: {}
+[8.668120] (mqtt_navigation) StdoutLine: {'line': b'running egg_info\n'}
+[8.673511] (mqtt_navigation) StdoutLine: {'line': b'writing ../../build/mqtt_navigation/mqtt_navigation.egg-info/PKG-INFO\n'}
+[8.675700] (mqtt_navigation) StdoutLine: {'line': b'writing dependency_links to ../../build/mqtt_navigation/mqtt_navigation.egg-info/dependency_links.txt\n'}
+[8.676964] (mqtt_navigation) StdoutLine: {'line': b'writing entry points to ../../build/mqtt_navigation/mqtt_navigation.egg-info/entry_points.txt\n'}
+[8.678076] (mqtt_navigation) StdoutLine: {'line': b'writing requirements to ../../build/mqtt_navigation/mqtt_navigation.egg-info/requires.txt\n'}
+[8.678797] (mqtt_navigation) StdoutLine: {'line': b'writing top-level names to ../../build/mqtt_navigation/mqtt_navigation.egg-info/top_level.txt\n'}
+[8.693020] (-) TimerEvent: {}
+[8.694990] (mqtt_navigation) StdoutLine: {'line': b"reading manifest file '../../build/mqtt_navigation/mqtt_navigation.egg-info/SOURCES.txt'\n"}
+[8.701880] (mqtt_navigation) StdoutLine: {'line': b"writing manifest file '../../build/mqtt_navigation/mqtt_navigation.egg-info/SOURCES.txt'\n"}
+[8.703210] (mqtt_navigation) StdoutLine: {'line': b'running build\n'}
+[8.704257] (mqtt_navigation) StdoutLine: {'line': b'running build_py\n'}
+[8.705439] (mqtt_navigation) StdoutLine: {'line': b'copying mqtt_navigation/mqtt_navigation_node.py -> /root/mqtt_goal_ws/build/mqtt_navigation/build/lib/mqtt_navigation\n'}
+[8.707962] (mqtt_navigation) StdoutLine: {'line': b'running install\n'}
+[8.710300] (mqtt_navigation) StdoutLine: {'line': b'running install_lib\n'}
+[8.715914] (mqtt_navigation) StdoutLine: {'line': b'copying /root/mqtt_goal_ws/build/mqtt_navigation/build/lib/mqtt_navigation/mqtt_navigation_node.py -> /root/mqtt_goal_ws/install/mqtt_navigation/lib/python3.10/site-packages/mqtt_navigation\n'}
+[8.720988] (mqtt_navigation) StdoutLine: {'line': b'byte-compiling /root/mqtt_goal_ws/install/mqtt_navigation/lib/python3.10/site-packages/mqtt_navigation/mqtt_navigation_node.py to mqtt_navigation_node.cpython-310.pyc\n'}
+[8.729307] (mqtt_navigation) StdoutLine: {'line': b'running install_data\n'}
+[8.731110] (mqtt_navigation) StdoutLine: {'line': b'running install_egg_info\n'}
+[8.752283] (mqtt_navigation) StdoutLine: {'line': b"removing '/root/mqtt_goal_ws/install/mqtt_navigation/lib/python3.10/site-packages/mqtt_navigation-0.0.1-py3.10.egg-info' (and everything under it)\n"}
+[8.753818] (mqtt_navigation) StdoutLine: {'line': b'Copying ../../build/mqtt_navigation/mqtt_navigation.egg-info to /root/mqtt_goal_ws/install/mqtt_navigation/lib/python3.10/site-packages/mqtt_navigation-0.0.1-py3.10.egg-info\n'}
+[8.760628] (mqtt_navigation) StdoutLine: {'line': b'running install_scripts\n'}
+[8.793297] (-) TimerEvent: {}
+[8.894358] (-) TimerEvent: {}
+[8.905914] (mqtt_navigation) StdoutLine: {'line': b'Installing mqtt_navigation_node script to /root/mqtt_goal_ws/install/mqtt_navigation/lib/mqtt_navigation\n'}
+[8.908457] (mqtt_navigation) StdoutLine: {'line': b"writing list of installed files to '/root/mqtt_goal_ws/build/mqtt_navigation/install.log'\n"}
+[8.994699] (-) TimerEvent: {}
+[9.096095] (-) TimerEvent: {}
+[9.184155] (mqtt_navigation) CommandEnded: {'returncode': 0}
+[9.196274] (-) TimerEvent: {}
+[9.296794] (mqtt_navigation) JobEnded: {'identifier': 'mqtt_navigation', 'rc': 0}
+[9.301415] (-) TimerEvent: {}
+[9.301894] (-) EventReactorShutdown: {}

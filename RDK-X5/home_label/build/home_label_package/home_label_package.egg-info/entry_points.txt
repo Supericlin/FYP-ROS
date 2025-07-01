@@ -1,0 +1,3 @@
+[console_scripts]
+home_label_node = home_label_package.home_label_publisher:main
+
