@@ -178,17 +178,17 @@ class MqttNavigationNode(Node):
             if len(msg.status_list) > 0:
                 status = msg.status_list[0].status
                 if status == 1:  # ACCEPTED
-                    self.mqtt_client.publish(self.mqtt_status_topic, "nav_started")
-                    self.get_logger().info("Navigation started - Published nav_started")
+                    self.mqtt_client.publish(self.mqtt_status_topic, "navStatus_1")
+                    self.get_logger().info("Navigation started - Published navStatus_1")
                 elif status == 4:  # EXECUTING
-                    self.mqtt_client.publish(self.mqtt_status_topic, "nav_in_progress")
-                    self.get_logger().info("Navigation in progress - Published nav_in_progress")
+                    self.mqtt_client.publish(self.mqtt_status_topic, "navStatus_4")
+                    self.get_logger().info("Navigation progress - Published navStatus_4")
                 elif status == 5:  # SUCCEEDED
-                    self.mqtt_client.publish(self.mqtt_status_topic, "nav_completed")
-                    self.get_logger().info("Navigation completed - Published nav_completed")
+                    self.mqtt_client.publish(self.mqtt_status_topic, "navStatus_5")
+                    self.get_logger().info("Navigation completed - Published navStatus_5")
                 elif status == 6:  # CANCELED
-                    self.mqtt_client.publish(self.mqtt_status_topic, "nav_canceled")
-                    self.get_logger().info("Navigation canceled - Published nav_canceled")
+                    self.mqtt_client.publish(self.mqtt_status_topic, "navStatus_6")
+                    self.get_logger().info("Navigation canceled - Published navStatus_6")
         except Exception as e:
             self.get_logger().error(f"Error processing navigation status: {e}")
 
