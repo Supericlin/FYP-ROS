@@ -29,6 +29,11 @@ class FallDetector(Node):
         self.fall_detection_count = 0
         self.last_fall_time = 0
         self.fall_cooldown = 3.0  # Reduced cooldown for faster response
+        
+        # Detection stability parameters
+        self.person_detection_history = []  # Track recent detections
+        self.history_size = 5  # Number of frames to consider
+        self.stable_detection_threshold = 3  # Minimum detections in history to be "stable"
                 
         package_dir = get_package_share_directory('fall_detection_pkg')
        
@@ -138,9 +143,13 @@ class FallDetector(Node):
             
             # Process detections - only look for persons (class 0)
             person_detected = False
+            max_confidence = 0.0
+            
             for i in range(num_detections):
-                if scores[i] > self.confidence_threshold and classes[i] == 0:  # Class 0 = person
-                    person_detected = True
+                if classes[i] == 0:  # Class 0 = person
+                    max_confidence = max(max_confidence, scores[i])
+                    if scores[i] > self.confidence_threshold:
+                        person_detected = True
                     ymin = int(boxes[i][0] * frame.shape[0])
                     xmin = int(boxes[i][1] * frame.shape[1])
                     ymax = int(boxes[i][2] * frame.shape[0])
@@ -190,13 +199,22 @@ class FallDetector(Node):
                         self.mqtt_client.publish("robot/control", "navStop")
                         break  # Only detect one fall per frame
             
-            # Log person detection status changes
-            if person_detected != self.last_person_detected:
-                if person_detected:
-                    self.get_logger().info("👤 Person detected")
+            # Update detection history for stability
+            self.person_detection_history.append(person_detected)
+            if len(self.person_detection_history) > self.history_size:
+                self.person_detection_history.pop(0)
+            
+            # Calculate stable detection
+            recent_detections = sum(self.person_detection_history)
+            stable_person_detected = recent_detections >= self.stable_detection_threshold
+            
+            # Log person detection status changes (only when stable)
+            if stable_person_detected != self.last_person_detected:
+                if stable_person_detected:
+                    self.get_logger().info(f"👤 Person detected (stable: {recent_detections}/{self.history_size}, max_conf: {max_confidence:.3f})")
                 else:
-                    self.get_logger().info("❌ No person detected")
-                self.last_person_detected = person_detected
+                    self.get_logger().info(f"❌ No person detected (stable: {recent_detections}/{self.history_size}, max_conf: {max_confidence:.3f})")
+                self.last_person_detected = stable_person_detected
             
             # Calculate processing FPS
             self._calculate_fps()
@@ -247,9 +265,17 @@ def main(args=None):
         rclpy.spin(node)
     except KeyboardInterrupt:
         pass
+    except Exception as e:
+        print(f"Unexpected error: {str(e)}")
     finally:
-        node.destroy_node()
-        rclpy.shutdown()
+        try:
+            node.destroy_node()
+        except Exception as e:
+            print(f"Error during node destruction: {str(e)}")
+        try:
+            rclpy.shutdown()
+        except Exception as e:
+            print(f"Error during shutdown: {str(e)}")
 
 if __name__ == '__main__':
     main()

@@ -1,11 +1,14 @@
 package mad.s20195115.myapplication;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.ResolveInfo;
 import android.net.Uri;
 import android.os.Bundle;
 import android.speech.RecognizerIntent;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -34,9 +37,15 @@ import androidx.appcompat.app.AppCompatActivity;
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
     private MqttClient mqttClient;
-    private static final String BROKER_URL = "tcp://10.123.79.8:1883"; // MQTT broker address
     private static final String CLIENT_ID = "AndroidRobotController";
-    private static final String TOPIC_GOAL = "robot/goal";
+    private static final String TOPIC_GOAL = "robot/control";
+    private static final String TOPIC_STATUS = "robot/status";
+    
+    // MQTT settings (will be loaded from SharedPreferences)
+    private String brokerAddress = "192.168.0.224";
+    private String brokerPort = "1883";
+    private String username = "mouser";
+    private String password = "m0user";
 
     private Spinner locationSpinner;
     private TextView voiceResult;
@@ -49,6 +58,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        // Set up toolbar
+        androidx.appcompat.widget.Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
         // Find UI elements
         locationSpinner = findViewById(R.id.locationSpinner);
@@ -67,6 +80,9 @@ public class MainActivity extends AppCompatActivity {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         locationSpinner.setAdapter(adapter);
 
+        // Load MQTT settings
+        loadMqttSettings();
+        
         // Set up MQTT connection
         connectToMqttBroker();
 
@@ -125,18 +141,48 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    private void loadMqttSettings() {
+        SharedPreferences prefs = getSharedPreferences("MQTTSettings", MODE_PRIVATE);
+        brokerAddress = prefs.getString("broker_address", "192.168.0.224");
+        brokerPort = prefs.getString("broker_port", "1883");
+        username = prefs.getString("username", "mouser");
+        password = prefs.getString("password", "m0user");
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == R.id.action_settings) {
+            Intent intent = new Intent(this, SettingsActivity.class);
+            startActivityForResult(intent, 100); // Use request code 100 for settings
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    public void openSettings(View view) {
+        Intent intent = new Intent(this, SettingsActivity.class);
+        startActivityForResult(intent, 100);
+    }
+
     private void connectToMqttBroker() {
         connectionStatus.setText("Connection Status: Connecting...");
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.JELLY_BEAN) {
             connectionStatus.announceForAccessibility("Connecting to robot control system");
         }
         try {
-            mqttClient = new MqttClient(BROKER_URL, CLIENT_ID, new MemoryPersistence());
+            String brokerUrl = "tcp://" + brokerAddress + ":" + brokerPort;
+            mqttClient = new MqttClient(brokerUrl, CLIENT_ID, new MemoryPersistence());
             MqttConnectOptions options = new MqttConnectOptions();
             options.setCleanSession(true);
             options.setAutomaticReconnect(true);
-            options.setUserName("mouser");
-            options.setPassword("m0user".toCharArray());
+            options.setUserName(username);
+            options.setPassword(password.toCharArray());
 
             options.setConnectionTimeout(60);
             options.setKeepAliveInterval(60);
@@ -157,8 +203,15 @@ public class MainActivity extends AppCompatActivity {
 
                 @Override
                 public void messageArrived(String topic, MqttMessage message) {
-                    // Not expecting messages from the broker in this app
-                    Log.d(TAG, "Message received: " + new String(message.getPayload()));
+                    String payload = new String(message.getPayload());
+                    Log.d(TAG, "Message received from " + topic + ": " + payload);
+                    
+                    // Handle status messages
+                    if (topic.equals(TOPIC_STATUS)) {
+                        runOnUiThread(() -> {
+                            handleStatusMessage(payload);
+                        });
+                    }
                 }
 
                 @Override
@@ -174,6 +227,10 @@ public class MainActivity extends AppCompatActivity {
                 connectionStatus.announceForAccessibility("Connected to robot control system");
             }
             Toast.makeText(this, "Connected to robot control system", Toast.LENGTH_SHORT).show();
+            
+            // Subscribe to status topic
+            mqttClient.subscribe(TOPIC_STATUS);
+            Log.d(TAG, "Subscribed to status topic: " + TOPIC_STATUS);
 
         } catch (MqttException e) {
             Log.e(TAG, "Error setting up MQTT client", e);
@@ -187,75 +244,24 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void sendNavigationGoal(String location) {
-        // Define location coordinates
-        JSONObject goalMsg = new JSONObject();
-        try {
-            goalMsg.put("action", "navigate");
-            goalMsg.put("location", location);
-            goalMsg.put("coordinates", createLocationCoordinates(location));
-
-            // Send goal via MQTT
-            publishMqttMessage(TOPIC_GOAL, goalMsg.toString());
-            Toast.makeText(this, "Navigating to " + location, Toast.LENGTH_LONG).show();
-            voiceResult.setText("Robot is going to: " + location);
-            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.JELLY_BEAN) {
-                voiceResult.announceForAccessibility("Robot is going to " + location);
-            }
-        } catch (JSONException e) {
-            Log.e(TAG, "Error creating JSON message", e);
-            Toast.makeText(this, "Error creating message: " + e.getMessage(),
-                    Toast.LENGTH_LONG).show();
+        // Send simple text command (compatible with your MQTT navigation system)
+        publishMqttMessage(TOPIC_GOAL, location);
+        Toast.makeText(this, "Navigating to " + location, Toast.LENGTH_LONG).show();
+        voiceResult.setText("Robot is going to: " + location);
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.JELLY_BEAN) {
+            voiceResult.announceForAccessibility("Robot is going to " + location);
         }
     }
 
-    private JSONObject createLocationCoordinates(String location) throws JSONException {
-        // Predefined locations
-        double x = 0.0, y = 0.0, yaw = 0.0;
-        switch (location.toLowerCase()) {
-            case "study_room":
-                x = -0.725; y = 0.099; yaw = 0.00226;
-                break;
-            case "toilet":
-                x = 1.05; y = -0.187; yaw = 0.000485;
-                break;
-            case "bedroom":
-                x = 0.615; y = -2.81; yaw = -0.0018;
-                break;
-            case "dining_room":
-                x = 3.69; y = 1.87; yaw = 0.000647;
-                break;
-            case "living_room":
-                x = 0.24; y = 1.78; yaw = 0.00119;
-                break;
-            default:
-                Toast.makeText(this, "Unknown location: " + location, Toast.LENGTH_LONG).show();
-        }
 
-        // Build coordinates JSON object
-        JSONObject coordinates = new JSONObject();
-        coordinates.put("x", x);
-        coordinates.put("y", y);
-        coordinates.put("yaw", yaw);
-
-        return coordinates;
-    }
 
     private void stopNavigation() {
-        JSONObject cancelMsg = new JSONObject();
-        try {
-            cancelMsg.put("action", "cancel");
-
-            // Send cancel command via MQTT
-            publishMqttMessage(TOPIC_GOAL, cancelMsg.toString());
-            Toast.makeText(this, "Navigation canceled", Toast.LENGTH_LONG).show();
-            voiceResult.setText("Robot navigation stopped");
-            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.JELLY_BEAN) {
-                voiceResult.announceForAccessibility("Robot navigation stopped");
-            }
-        } catch (JSONException e) {
-            Log.e(TAG, "Error creating cancel message", e);
-            Toast.makeText(this, "Error creating cancel message: " + e.getMessage(),
-                    Toast.LENGTH_LONG).show();
+        // Send simple stop command (compatible with your MQTT navigation system)
+        publishMqttMessage(TOPIC_GOAL, "navStop");
+        Toast.makeText(this, "Navigation canceled", Toast.LENGTH_LONG).show();
+        voiceResult.setText("Robot navigation stopped");
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.JELLY_BEAN) {
+            voiceResult.announceForAccessibility("Robot navigation stopped");
         }
     }
 
@@ -280,6 +286,39 @@ public class MainActivity extends AppCompatActivity {
             }
             // Try to reconnect
             connectToMqttBroker();
+        }
+    }
+
+    private void handleStatusMessage(String status) {
+        // Update UI based on robot status
+        if (status.startsWith("navStatus_")) {
+            String navStatus = status.substring(10); // Remove "navStatus_" prefix
+            switch (navStatus) {
+                case "1":
+                    voiceResult.setText("Robot Status: Navigation Started");
+                    break;
+                case "4":
+                    voiceResult.setText("Robot Status: Navigation in Progress");
+                    break;
+                case "5":
+                    voiceResult.setText("Robot Status: Navigation Completed");
+                    break;
+                case "6":
+                    voiceResult.setText("Robot Status: Navigation Canceled");
+                    break;
+            }
+        } else if (status.startsWith("battery_voltage:")) {
+            String voltage = status.substring(15); // Remove "battery_voltage:" prefix
+            connectionStatus.setText("Battery: " + voltage + "V");
+        } else if (status.equals("batt_red")) {
+            Toast.makeText(this, "Warning: Low Battery!", Toast.LENGTH_LONG).show();
+            connectionStatus.setText("Battery: LOW");
+        } else if (status.equals("FALL_DETECTED")) {
+            Toast.makeText(this, "ALERT: Fall Detected!", Toast.LENGTH_LONG).show();
+            voiceResult.setText("Robot Status: Fall Detected - Emergency Stop");
+        } else if (status.equals("no_pressure")) {
+            Toast.makeText(this, "Warning: No Pressure Detected!", Toast.LENGTH_LONG).show();
+            voiceResult.setText("Robot Status: No Pressure - Navigation Stopped");
         }
     }
 
@@ -347,10 +386,10 @@ public class MainActivity extends AppCompatActivity {
                 // Check if voice input contains a recognized location
                 if (voiceInput.contains("study") || voiceInput.contains("study room")) {
                     sendNavigationGoal("study_room");
-                } else if (voiceInput.contains("toilet") || voiceInput.contains("bathroom")) {
-                    sendNavigationGoal("toilet");
+                } else if (voiceInput.contains("toilet") || voiceInput.contains("bathroom") || voiceInput.contains("washroom")) {
+                    sendNavigationGoal("washroom");
                 } else if (voiceInput.contains("bedroom") || voiceInput.contains("bed room")) {
-                    sendNavigationGoal("bedroom");
+                    sendNavigationGoal("bed_room");
                 } else if (voiceInput.contains("dining") || voiceInput.contains("dining room")) {
                     sendNavigationGoal("dining_room");
                 } else if (voiceInput.contains("living") || voiceInput.contains("living room")) {
@@ -369,6 +408,21 @@ public class MainActivity extends AppCompatActivity {
                 // Voice recognition failed or was cancelled
                 voiceResult.setText("Voice recognition failed or was cancelled");
                 showManualLocationDialog();
+            }
+        } else if (requestCode == 100) {
+            // Settings activity returned
+            if (resultCode == RESULT_OK) {
+                // Reload settings and reconnect
+                loadMqttSettings();
+                if (mqttClient != null && mqttClient.isConnected()) {
+                    try {
+                        mqttClient.disconnect();
+                    } catch (MqttException e) {
+                        Log.e(TAG, "Error disconnecting MQTT client", e);
+                    }
+                }
+                connectToMqttBroker();
+                Toast.makeText(this, "MQTT settings updated and reconnected", Toast.LENGTH_SHORT).show();
             }
         }
     }

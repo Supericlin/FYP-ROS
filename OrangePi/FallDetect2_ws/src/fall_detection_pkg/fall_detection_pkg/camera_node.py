@@ -16,23 +16,23 @@ class CameraPublisher(Node):
         
         # Declare parameters for HF867 wide-angle camera
         self.declare_parameter('camera_device', 0)
-        self.declare_parameter('frame_width', 640)  # Higher resolution for better quality
-        self.declare_parameter('frame_height', 480)
+        self.declare_parameter('frame_width', 320)  # Higher resolution for better quality
+        self.declare_parameter('frame_height', 240)
         self.declare_parameter('fps', 30)
-        self.declare_parameter('enable_undistortion', True)  # Enable for wide-angle
+        self.declare_parameter('enable_undistortion', False)  # Enable for wide-angle
         self.declare_parameter('camera_matrix_path', '')
         self.declare_parameter('distortion_coeffs_path', '')
-        self.declare_parameter('buffer_size', 1)
+        self.declare_parameter('buffer_size', 3)
         
         # HF867 specific exposure and color parameters
-        self.declare_parameter('auto_exposure', True)  # Manual exposure for HF867
-        self.declare_parameter('exposure_time', 166)  # Low exposure to prevent overexposure
+        self.declare_parameter('auto_exposure', False)  # Manual exposure for HF867
+        self.declare_parameter('exposure_time', 50)  # Very low exposure to prevent overexposure
         self.declare_parameter('gain', 0)  # Low gain for better quality
-        self.declare_parameter('brightness', 50)  # Lower brightness
-        self.declare_parameter('contrast', 50)  # Higher contrast
-        self.declare_parameter('saturation', 50)  # Higher saturation for wide-angle
+        self.declare_parameter('brightness', 30)  # Lower brightness
+        self.declare_parameter('contrast', 80)  # Higher contrast
+        self.declare_parameter('saturation', 60)  # Higher saturation for wide-angle
         self.declare_parameter('white_balance', True)
-        self.declare_parameter('enable_color_correction', False)
+        self.declare_parameter('enable_color_correction', True)
         self.declare_parameter('enable_wide_angle_correction', True)
         
         # Get parameters
@@ -86,8 +86,14 @@ class CameraPublisher(Node):
     def _configure_hf867_camera(self):
         """Configure HF867 wide-angle camera with optimal settings"""
         try:
-            # Set codec for better performance
-            self.cap.set(cv2.CAP_PROP_FOURCC, cv2.VideoWriter_fourcc('M','J','P','G'))
+            # Set codec for better performance - try YUYV first for less compression
+            try:
+                self.cap.set(cv2.CAP_PROP_FOURCC, cv2.VideoWriter_fourcc('Y','U','Y','V'))
+                self.get_logger().info('Using YUYV codec for better quality')
+            except:
+                # Fallback to MJPEG if YUYV not supported
+                self.cap.set(cv2.CAP_PROP_FOURCC, cv2.VideoWriter_fourcc('M','J','P','G'))
+                self.get_logger().info('Using MJPEG codec (fallback)')
             
             # Set resolution
             self.cap.set(cv2.CAP_PROP_FRAME_WIDTH, self.frame_width)
@@ -149,6 +155,15 @@ class CameraPublisher(Node):
             self.get_logger().info(f'Exposure: {actual_exposure}, Gain: {actual_gain}')
             self.get_logger().info(f'Brightness: {actual_brightness}, Saturation: {actual_saturation}')
             
+            # Validate exposure setting
+            if not self.auto_exposure and abs(actual_exposure - self.exposure_time) > 5:
+                self.get_logger().warn(f'Exposure mismatch: requested {self.exposure_time}, actual {actual_exposure}')
+                # Try to force the exposure setting again
+                self.cap.set(cv2.CAP_PROP_EXPOSURE, self.exposure_time)
+                time.sleep(0.1)
+                retry_exposure = self.cap.get(cv2.CAP_PROP_EXPOSURE)
+                self.get_logger().info(f'Retry exposure setting: {retry_exposure}')
+            
         except Exception as e:
             self.get_logger().error(f'Failed to configure HF867 camera: {str(e)}')
             raise
@@ -159,9 +174,13 @@ class CameraPublisher(Node):
             # Use v4l2-ctl to set additional controls
             device = f'/dev/video{self.camera_device}'
             
-            # Set exposure time (in microseconds)
-            subprocess.run(['v4l2-ctl', '-d', device, '-c', 'exposure_time_absolute=100'], 
-                         capture_output=True, text=True)
+            # Set exposure time (in microseconds) - use the parameter value
+            result = subprocess.run(['v4l2-ctl', '-d', device, '-c', f'exposure_time_absolute={self.exposure_time}'], 
+                                  capture_output=True, text=True)
+            if result.returncode != 0:
+                self.get_logger().warn(f'V4L2 exposure setting failed: {result.stderr}')
+            else:
+                self.get_logger().info(f'V4L2 exposure set to {self.exposure_time}')
             
             # Set gain
             subprocess.run(['v4l2-ctl', '-d', device, '-c', f'gain={self.gain}'], 
@@ -177,6 +196,34 @@ class CameraPublisher(Node):
             
             # Set saturation
             subprocess.run(['v4l2-ctl', '-d', device, '-c', f'saturation={self.saturation}'], 
+                         capture_output=True, text=True)
+            
+            # Set white balance for better color
+            subprocess.run(['v4l2-ctl', '-d', device, '-c', 'white_balance_automatic=1'], 
+                         capture_output=True, text=True)
+            
+            # Set gamma correction
+            subprocess.run(['v4l2-ctl', '-d', device, '-c', 'gamma=120'], 
+                         capture_output=True, text=True)
+            
+            # Set sharpness
+            subprocess.run(['v4l2-ctl', '-d', device, '-c', 'sharpness=50'], 
+                         capture_output=True, text=True)
+            
+            # Set backlight compensation
+            subprocess.run(['v4l2-ctl', '-d', device, '-c', 'backlight_compensation=0'], 
+                         capture_output=True, text=True)
+            
+            # Set noise reduction (if available)
+            subprocess.run(['v4l2-ctl', '-d', device, '-c', 'noise_reduction=1'], 
+                         capture_output=True, text=True)
+            
+            # Set power line frequency (reduces flicker)
+            subprocess.run(['v4l2-ctl', '-d', device, '-c', 'power_line_frequency=1'], 
+                         capture_output=True, text=True)
+            
+            # Set auto exposure priority (if available)
+            subprocess.run(['v4l2-ctl', '-d', device, '-c', 'auto_exposure_priority=0'], 
                          capture_output=True, text=True)
             
             self.get_logger().info('V4L2 controls set successfully')
@@ -262,6 +309,11 @@ class CameraPublisher(Node):
             return frame
         
         try:
+            # First, apply histogram equalization to improve contrast
+            frame_yuv = cv2.cvtColor(frame, cv2.COLOR_BGR2YUV)
+            frame_yuv[:,:,0] = cv2.equalizeHist(frame_yuv[:,:,0])
+            frame = cv2.cvtColor(frame_yuv, cv2.COLOR_YUV2BGR)
+            
             # Convert to LAB color space for better color correction
             lab = cv2.cvtColor(frame, cv2.COLOR_BGR2LAB)
             
@@ -269,11 +321,11 @@ class CameraPublisher(Node):
             l, a, b = cv2.split(lab)
             
             # Enhance color channels (a and b) for wide-angle
-            a = cv2.multiply(a, 1.3)  # Increase green-red channel
-            b = cv2.multiply(b, 1.3)  # Increase blue-yellow channel
+            a = cv2.multiply(a, 1.2)  # Increase green-red channel
+            b = cv2.multiply(b, 1.2)  # Increase blue-yellow channel
             
             # Enhance lightness slightly
-            l = cv2.multiply(l, 1.1)
+            l = cv2.multiply(l, 1.05)
             
             # Merge channels back
             enhanced_lab = cv2.merge([l, a, b])
@@ -281,14 +333,21 @@ class CameraPublisher(Node):
             # Convert back to BGR
             enhanced_frame = cv2.cvtColor(enhanced_lab, cv2.COLOR_LAB2BGR)
             
-            # Apply additional color enhancement
-            enhanced_frame = cv2.convertScaleAbs(enhanced_frame, alpha=1.2, beta=10)
+            # Apply CLAHE (Contrast Limited Adaptive Histogram Equalization)
+            clahe = cv2.createCLAHE(clipLimit=2.0, tileGridSize=(8,8))
+            enhanced_frame_yuv = cv2.cvtColor(enhanced_frame, cv2.COLOR_BGR2YUV)
+            enhanced_frame_yuv[:,:,0] = clahe.apply(enhanced_frame_yuv[:,:,0])
+            enhanced_frame = cv2.cvtColor(enhanced_frame_yuv, cv2.COLOR_YUV2BGR)
             
             # Apply gamma correction for better contrast
-            gamma = 0.8
+            gamma = 0.9
             inv_gamma = 1.0 / gamma
             table = np.array([((i / 255.0) ** inv_gamma) * 255 for i in np.arange(0, 256)]).astype("uint8")
             enhanced_frame = cv2.LUT(enhanced_frame, table)
+            
+            # Apply slight sharpening
+            kernel = np.array([[-1,-1,-1], [-1,9,-1], [-1,-1,-1]])
+            enhanced_frame = cv2.filter2D(enhanced_frame, -1, kernel)
             
             return enhanced_frame
             
@@ -376,9 +435,17 @@ def main(args=None):
         rclpy.spin(node)
     except KeyboardInterrupt:
         pass
+    except Exception as e:
+        print(f"Unexpected error: {str(e)}")
     finally:
-        node.destroy_node()
-        rclpy.shutdown()
+        try:
+            node.destroy_node()
+        except Exception as e:
+            print(f"Error during node destruction: {str(e)}")
+        try:
+            rclpy.shutdown()
+        except Exception as e:
+            print(f"Error during shutdown: {str(e)}")
 
 if __name__ == '__main__':
     main()

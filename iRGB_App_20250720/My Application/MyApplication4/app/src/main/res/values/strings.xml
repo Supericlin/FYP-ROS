@@ -3,8 +3,8 @@
 
     <string-array name="locations">
         <item>study_room</item>
-        <item>toilet</item>
-        <item>bedroom</item>
+        <item>washroom</item>
+        <item>bed_room</item>
         <item>dining_room</item>
         <item>living_room</item>
     </string-array>

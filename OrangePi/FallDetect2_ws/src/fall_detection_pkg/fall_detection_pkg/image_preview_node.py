@@ -20,8 +20,8 @@ class ImagePreviewNode(Node):
         
         # Declare parameters
         self.declare_parameter('window_name', 'Fall Detection Preview')
-        self.declare_parameter('window_width', 640)
-        self.declare_parameter('window_height', 480)
+        self.declare_parameter('window_width', 320)
+        self.declare_parameter('window_height', 240)
         self.declare_parameter('show_fps', True)
         self.declare_parameter('show_timestamp', True)
         self.declare_parameter('enable_display', True)

@@ -35,7 +35,7 @@ def generate_launch_description():
         ),
         DeclareLaunchArgument(
             'exposure_time',
-            default_value='166',
+            default_value='30',
             description='Manual exposure time (lower = less overexposure)'
         ),
         DeclareLaunchArgument(
@@ -45,17 +45,17 @@ def generate_launch_description():
         ),
         DeclareLaunchArgument(
             'brightness',
-            default_value='50',
+            default_value='25',
             description='Brightness (0-100, lower for HF867)'
         ),
         DeclareLaunchArgument(
             'contrast',
-            default_value='50',
+            default_value='85',
             description='Contrast (0-100, higher for HF867)'
         ),
         DeclareLaunchArgument(
             'saturation',
-            default_value='50',
+            default_value='65',
             description='Saturation (0-100, higher for wide-angle)'
         ),
         DeclareLaunchArgument(
@@ -65,7 +65,7 @@ def generate_launch_description():
         ),
         DeclareLaunchArgument(
             'enable_color_correction',
-            default_value='true',
+            default_value='false',
             description='Enable color correction for HF867'
         ),
         
@@ -77,12 +77,12 @@ def generate_launch_description():
         ),
         DeclareLaunchArgument(
             'confidence_threshold',
-            default_value='0.4',
+            default_value='0.2',
             description='Minimum confidence for person detection'
         ),
         DeclareLaunchArgument(
             'debug_mode',
-            default_value='false',
+            default_value='true',
             description='Enable debug logging'
         ),
         DeclareLaunchArgument(

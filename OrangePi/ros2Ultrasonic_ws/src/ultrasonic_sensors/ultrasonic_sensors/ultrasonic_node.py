@@ -12,9 +12,9 @@ class UltrasonicNode(Node):
 
         # GPIO pin assignments
         self.sensors = [
-            #{"trig": 19, "echo": 20},
-            {"trig": 24, "echo": 25},
-            {"trig": 10, "echo": 13},
+            #{"trig": 19, "echo": 20},  # Sensor 3 (commented out)
+            {"trig": 24, "echo": 25},   # Sensor 4
+            {"trig": 10, "echo": 13},   # Sensor 5
         ]
 
         # Initialize WiringOP
@@ -26,6 +26,16 @@ class UltrasonicNode(Node):
             self.get_logger().info(
                 f"Sensor {i + 4}: Initialized with TRIG pin {sensor['trig']} and ECHO pin {sensor['echo']}"
             )
+            
+            # Test the sensor with a quick reading
+            try:
+                test_distance = self.measure_distance(sensor["trig"], sensor["echo"])
+                if test_distance == float('inf'):
+                    self.get_logger().warn(f"Sensor {i + 4}: No response during initialization test")
+                else:
+                    self.get_logger().info(f"Sensor {i + 4}: Initial test reading = {test_distance:.2f} cm")
+            except Exception as e:
+                self.get_logger().error(f"Sensor {i + 4}: Error during initialization test: {str(e)}")
 
         # Publishers for each sensor
         self.sensor_publishers = []
@@ -41,6 +51,7 @@ class UltrasonicNode(Node):
         self.last_readings = [-1.0] * len(self.sensors)  # Initialize to -1 to indicate no previous reading
         self.same_reading_count = [0] * len(self.sensors)
         self.stuck_warning_sent = [False] * len(self.sensors)  # Track if warning was already sent
+        self.last_warning_time = [0.0] * len(self.sensors)  # Track when last warning was sent
         
         # Create a timer to read sensors
         self.timer = self.create_timer(0.1, self.read_sensors)
@@ -49,6 +60,23 @@ class UltrasonicNode(Node):
         wiringpi.pinMode(trig, 1)  # Output
         wiringpi.digitalWrite(trig, 0)  # Ensure trigger starts LOW
         wiringpi.pinMode(echo, 0)  # Input
+
+    def reset_sensor(self, trig, echo):
+        """Reset a sensor by reconfiguring its GPIO pins"""
+        try:
+            # Reset pins to safe state
+            wiringpi.pinMode(trig, 0)  # Set as input temporarily
+            wiringpi.pinMode(echo, 0)  # Set as input
+            time.sleep(0.1)  # Wait for pins to settle
+            
+            # Reconfigure pins
+            wiringpi.pinMode(trig, 1)  # Set trigger as output
+            wiringpi.digitalWrite(trig, 0)  # Ensure trigger is LOW
+            wiringpi.pinMode(echo, 0)  # Set echo as input
+            
+            self.get_logger().info(f"Reset sensor with TRIG pin {trig} and ECHO pin {echo}")
+        except Exception as e:
+            self.get_logger().error(f"Error resetting sensor: {str(e)}")
 
     def read_sensors(self):
         # Skip if already processing to prevent overlap
@@ -68,21 +96,24 @@ class UltrasonicNode(Node):
                     
                     # Check for stuck readings (same value multiple times)
                     if self.last_readings[i] >= 0:  # Only check if we have a previous reading
-                        if abs(distance - self.last_readings[i]) < 0.5:  # Increased threshold to 0.5 cm
+                        if abs(distance - self.last_readings[i]) < 1.0:  # Increased threshold to 1.0 cm
                             self.same_reading_count[i] += 1
-                            if self.same_reading_count[i] > 100:  # Increased to 100 readings (10 seconds)
-                                if not self.stuck_warning_sent[i]:  # Only warn once
-                                    self.get_logger().warn(f"Sensor {i + 4} might be stuck, value: {distance}")
-                                    self.stuck_warning_sent[i] = True
-                                # Force a reset and clear the stuck state
-                                wiringpi.pinMode(sensor["trig"], 1)
-                                wiringpi.pinMode(sensor["echo"], 0)
+                            current_time = time.time()
+                            
+                            # Only warn if we have many consecutive readings AND haven't warned recently
+                            if (self.same_reading_count[i] > 200 and  # 20 seconds of same reading
+                                current_time - self.last_warning_time[i] > 60.0):  # Only warn every 60 seconds
+                                
+                                self.get_logger().warn(f"Sensor {i + 4} might be stuck, value: {distance}")
+                                self.last_warning_time[i] = current_time
+                                
+                                # Try to reset the sensor
+                                self.reset_sensor(sensor["trig"], sensor["echo"])
                                 self.same_reading_count[i] = 0
                                 self.last_readings[i] = -1.0  # Reset last reading to force a fresh start
                         else:
                             # Reading changed, reset stuck detection
                             self.same_reading_count[i] = 0
-                            self.stuck_warning_sent[i] = False  # Reset warning flag
                     
                     self.last_readings[i] = distance
                     
@@ -91,6 +122,10 @@ class UltrasonicNode(Node):
                         self.get_logger().debug(f"Sensor {i + 4}: No echo received (object out of range)")
                     elif distance < 0.02:
                         self.get_logger().debug(f"Sensor {i + 4}: Object too close, reporting minimum range")
+                    else:
+                        # Log sensor 4 readings more frequently for debugging
+                        if i == 0:  # Sensor 4 (first sensor in the list)
+                            self.get_logger().debug(f"Sensor {i + 4}: Distance = {distance:.2f} cm")
                     
                     self.publish_range_msg(i, distance)
                     
@@ -138,7 +173,12 @@ class UltrasonicNode(Node):
         # Sanity check for very large values
         if distance > 400:  # More than 4m
             return float('inf')
-            
+        
+        # Check if the reading is reasonable (not exactly 63cm repeatedly)
+        if 62.5 < distance < 63.5:
+            # This might be a stuck sensor reading, log it
+            return distance  # Still return the value but it will be flagged as stuck
+        
         return distance
 
     def publish_range_msg(self, sensor_index, distance):

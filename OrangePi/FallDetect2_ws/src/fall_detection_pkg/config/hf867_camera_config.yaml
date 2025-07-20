@@ -7,16 +7,16 @@ camera_publisher:
     camera_device: 0
     frame_width: 320
     frame_height: 240
-    fps: 15
+    fps: 30
     buffer_size: 3
     
     # Wide-angle lens settings
-    enable_undistortion: true  # Highly recommended for 120° FOV
+    enable_undistortion: false  # Highly recommended for 120° FOV
     camera_matrix_path: "calibration_data/hf867_camera_matrix.npy"
     distortion_coeffs_path: "calibration_data/hf867_dist_coeffs.npy"
     
     # Exposure settings for wide-angle
-    auto_exposure: true
+    auto_exposure: false
     #exposure_time: -1  # Auto exposure
 
 fall_detector:
