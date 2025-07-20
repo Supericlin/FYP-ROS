@@ -1,0 +1,6 @@
+setuptools
+numpy
+paho-mqtt
+tflite-runtime
+mediapipe
+opencv-python-headless

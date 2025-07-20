@@ -15,8 +15,8 @@ def generate_launch_description():
         ),
         DeclareLaunchArgument(
             'log_interval',
-            default_value='10.0',
-            description='Interval in seconds for status logging (0.0 to disable)'
+            default_value='30.0',
+            description='Interval in seconds for status logging (0.0 to disable, optimized: 30s)'
         ),
         DeclareLaunchArgument(
             'enable_detailed_logging',

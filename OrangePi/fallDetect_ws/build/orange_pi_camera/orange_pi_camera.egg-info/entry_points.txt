@@ -1,0 +1,3 @@
+[console_scripts]
+camera_node = orange_pi_camera.camera_node:main
+fall_detection_node = orange_pi_camera.fall_detection_node:main

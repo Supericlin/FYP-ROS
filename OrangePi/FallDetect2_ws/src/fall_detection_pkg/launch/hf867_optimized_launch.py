@@ -72,13 +72,13 @@ def generate_launch_description():
         # Fall Detection Parameters
         DeclareLaunchArgument(
             'fall_threshold',
-            default_value='0.7',
-            description='Aspect ratio threshold for fall detection'
+            default_value='0.8',
+            description='Aspect ratio threshold for fall detection (higher = less sensitive)'
         ),
         DeclareLaunchArgument(
             'confidence_threshold',
-            default_value='0.2',
-            description='Minimum confidence for person detection'
+            default_value='0.3',
+            description='Minimum confidence for person detection (higher = less sensitive)'
         ),
         DeclareLaunchArgument(
             'debug_mode',

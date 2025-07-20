@@ -276,17 +276,17 @@ class MqttNavigationNode(Node):
                 self.process_location_command(payload)
             elif payload == "navStop":
                 if self.enable_nav_stop:
-                    self.cancel_navigation()
+                self.cancel_navigation()
                 else:
                     self.get_logger().warning("navStop command received but function is DISABLED")
             elif payload == "navPause":  # Fixed command match
                 if self.enable_nav_pause:
-                    self.pause_navigation()
+                self.pause_navigation()
                 else:
                     self.get_logger().warning("navPause command received but function is DISABLED")
             elif payload == "navCon":
                 if self.enable_nav_resume:
-                    self.resume_navigation()
+                self.resume_navigation()
                 else:
                     self.get_logger().warning("navCon command received but function is DISABLED")
             elif payload == "get_battery":

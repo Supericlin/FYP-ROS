@@ -1,0 +1,18 @@
+Metadata-Version: 2.2
+Name: orange_pi_camera
+Version: 0.0.0
+Summary: Camera package for Orange Pi
+Maintainer: your_name
+Maintainer-email: your_email@domain.com
+License: Apache License 2.0
+Requires-Dist: setuptools
+Requires-Dist: numpy
+Requires-Dist: paho-mqtt
+Requires-Dist: tflite-runtime
+Requires-Dist: mediapipe
+Requires-Dist: opencv-python-headless
+Dynamic: license
+Dynamic: maintainer
+Dynamic: maintainer-email
+Dynamic: requires-dist
+Dynamic: summary

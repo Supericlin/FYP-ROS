@@ -10,6 +10,7 @@ setup(
         ('share/ament_index/resource_index/packages',
             ['resource/' + package_name]),
         ('share/' + package_name, ['package.xml']),
+        ('share/' + package_name + '/launch', ['launch/orangepi_ultrasonic_launch.py']),
     ],
     install_requires=['setuptools'],
     zip_safe=True,
@@ -20,7 +21,7 @@ setup(
     #tests_require=['pytest'],
     entry_points={
         'console_scripts': [
-            'ultrasonic_node2 = ultrasonic_sensors.ultrasonic_node:main',
+            'ultrasonic_node = ultrasonic_sensors.ultrasonic_node:main',
         ],
     },
 )

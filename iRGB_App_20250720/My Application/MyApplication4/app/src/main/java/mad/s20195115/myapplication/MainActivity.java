@@ -47,6 +47,14 @@ public class MainActivity extends AppCompatActivity {
     private String username = "mouser";
     private String password = "m0user";
 
+    // Connection state management
+    private boolean isConnecting = false;
+    private boolean isConnected = false;
+    private int reconnectAttempts = 0;
+    private static final int MAX_RECONNECT_ATTEMPTS = 3;
+    private static final long RECONNECT_DELAY_MS = 5000; // 5 seconds
+    private Toast currentToast = null;
+
     private Spinner locationSpinner;
     private TextView voiceResult;
     private TextView connectionStatus;
@@ -170,34 +178,63 @@ public class MainActivity extends AppCompatActivity {
         startActivityForResult(intent, 100);
     }
 
+    private void showToast(String message, int duration) {
+        // Cancel any existing toast to prevent stacking
+        if (currentToast != null) {
+            currentToast.cancel();
+        }
+        currentToast = Toast.makeText(this, message, duration);
+        currentToast.show();
+    }
+
     private void connectToMqttBroker() {
+        if (isConnecting) {
+            Log.d(TAG, "Already attempting to connect, skipping...");
+            return;
+        }
+
+        isConnecting = true;
         connectionStatus.setText("Connection Status: Connecting...");
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.JELLY_BEAN) {
             connectionStatus.announceForAccessibility("Connecting to robot control system");
         }
+
         try {
             String brokerUrl = "tcp://" + brokerAddress + ":" + brokerPort;
             mqttClient = new MqttClient(brokerUrl, CLIENT_ID, new MemoryPersistence());
             MqttConnectOptions options = new MqttConnectOptions();
             options.setCleanSession(true);
-            options.setAutomaticReconnect(true);
+            options.setAutomaticReconnect(false); // Disable automatic reconnect to prevent loops
             options.setUserName(username);
             options.setPassword(password.toCharArray());
 
-            options.setConnectionTimeout(60);
+            options.setConnectionTimeout(30); // Reduced timeout
             options.setKeepAliveInterval(60);
 
             mqttClient.setCallback(new MqttCallback() {
                 @Override
                 public void connectionLost(Throwable cause) {
                     Log.e(TAG, "Connection to MQTT broker lost", cause);
+                    isConnected = false;
+                    isConnecting = false;
+                    
                     runOnUiThread(() -> {
                         connectionStatus.setText("Connection Status: Disconnected");
                         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.JELLY_BEAN) {
                             connectionStatus.announceForAccessibility("Connection to robot lost");
                         }
-                        Toast.makeText(MainActivity.this,
-                                "Connection to robot lost", Toast.LENGTH_LONG).show();
+                        showToast("Connection to robot lost", Toast.LENGTH_SHORT);
+                        
+                        // Attempt reconnection with delay
+                        if (reconnectAttempts < MAX_RECONNECT_ATTEMPTS) {
+                            reconnectAttempts++;
+                            connectionStatus.postDelayed(() -> {
+                                Log.d(TAG, "Attempting reconnection " + reconnectAttempts + "/" + MAX_RECONNECT_ATTEMPTS);
+                                connectToMqttBroker();
+                            }, RECONNECT_DELAY_MS);
+                        } else {
+                            showToast("Connection failed after " + MAX_RECONNECT_ATTEMPTS + " attempts. Please check settings.", Toast.LENGTH_LONG);
+                        }
                     });
                 }
 
@@ -222,11 +259,15 @@ public class MainActivity extends AppCompatActivity {
             });
 
             mqttClient.connect(options);
+            isConnected = true;
+            isConnecting = false;
+            reconnectAttempts = 0; // Reset reconnect attempts on successful connection
+            
             connectionStatus.setText("Connection Status: Connected");
             if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.JELLY_BEAN) {
                 connectionStatus.announceForAccessibility("Connected to robot control system");
             }
-            Toast.makeText(this, "Connected to robot control system", Toast.LENGTH_SHORT).show();
+            showToast("Connected to robot control system", Toast.LENGTH_SHORT);
             
             // Subscribe to status topic
             mqttClient.subscribe(TOPIC_STATUS);
@@ -234,31 +275,40 @@ public class MainActivity extends AppCompatActivity {
 
         } catch (MqttException e) {
             Log.e(TAG, "Error setting up MQTT client", e);
+            isConnecting = false;
             connectionStatus.setText("Connection Status: Failed - " + e.getMessage());
             if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.JELLY_BEAN) {
                 connectionStatus.announceForAccessibility("Connection to robot failed");
             }
-            Toast.makeText(this, "Error connecting to robot: " + e.getMessage(),
-                    Toast.LENGTH_LONG).show();
+            showToast("Error connecting to robot: " + e.getMessage(), Toast.LENGTH_SHORT);
+            
+            // Attempt reconnection with delay
+            if (reconnectAttempts < MAX_RECONNECT_ATTEMPTS) {
+                reconnectAttempts++;
+                connectionStatus.postDelayed(() -> {
+                    Log.d(TAG, "Attempting reconnection " + reconnectAttempts + "/" + MAX_RECONNECT_ATTEMPTS);
+                    connectToMqttBroker();
+                }, RECONNECT_DELAY_MS);
+            } else {
+                showToast("Connection failed after " + MAX_RECONNECT_ATTEMPTS + " attempts. Please check settings.", Toast.LENGTH_LONG);
+            }
         }
     }
 
     private void sendNavigationGoal(String location) {
         // Send simple text command (compatible with your MQTT navigation system)
         publishMqttMessage(TOPIC_GOAL, location);
-        Toast.makeText(this, "Navigating to " + location, Toast.LENGTH_LONG).show();
+        showToast("Navigating to " + location, Toast.LENGTH_SHORT);
         voiceResult.setText("Robot is going to: " + location);
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.JELLY_BEAN) {
             voiceResult.announceForAccessibility("Robot is going to " + location);
         }
     }
 
-
-
     private void stopNavigation() {
         // Send simple stop command (compatible with your MQTT navigation system)
         publishMqttMessage(TOPIC_GOAL, "navStop");
-        Toast.makeText(this, "Navigation canceled", Toast.LENGTH_LONG).show();
+        showToast("Navigation canceled", Toast.LENGTH_SHORT);
         voiceResult.setText("Robot navigation stopped");
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.JELLY_BEAN) {
             voiceResult.announceForAccessibility("Robot navigation stopped");
@@ -266,7 +316,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void publishMqttMessage(String topic, String payload) {
-        if (mqttClient != null && mqttClient.isConnected()) {
+        if (mqttClient != null && mqttClient.isConnected() && isConnected) {
             try {
                 MqttMessage message = new MqttMessage(payload.getBytes());
                 message.setQos(1);
@@ -274,17 +324,16 @@ public class MainActivity extends AppCompatActivity {
                 Log.d(TAG, "Published message to topic: " + topic);
             } catch (MqttException e) {
                 Log.e(TAG, "Error publishing MQTT message", e);
-                Toast.makeText(this, "Error sending command to robot: " + e.getMessage(),
-                        Toast.LENGTH_LONG).show();
+                showToast("Error sending command to robot: " + e.getMessage(), Toast.LENGTH_SHORT);
             }
         } else {
-            Toast.makeText(this, "Robot control system not connected! Attempting to reconnect...",
-                    Toast.LENGTH_LONG).show();
+            showToast("Robot control system not connected! Attempting to reconnect...", Toast.LENGTH_SHORT);
             connectionStatus.setText("Connection Status: Reconnecting...");
             if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.JELLY_BEAN) {
                 connectionStatus.announceForAccessibility("Reconnecting to robot control system");
             }
-            // Try to reconnect
+            // Reset reconnect attempts and try to reconnect
+            reconnectAttempts = 0;
             connectToMqttBroker();
         }
     }
@@ -311,13 +360,13 @@ public class MainActivity extends AppCompatActivity {
             String voltage = status.substring(15); // Remove "battery_voltage:" prefix
             connectionStatus.setText("Battery: " + voltage + "V");
         } else if (status.equals("batt_red")) {
-            Toast.makeText(this, "Warning: Low Battery!", Toast.LENGTH_LONG).show();
+            showToast("Warning: Low Battery!", Toast.LENGTH_SHORT);
             connectionStatus.setText("Battery: LOW");
         } else if (status.equals("FALL_DETECTED")) {
-            Toast.makeText(this, "ALERT: Fall Detected!", Toast.LENGTH_LONG).show();
+            showToast("ALERT: Fall Detected!", Toast.LENGTH_LONG);
             voiceResult.setText("Robot Status: Fall Detected - Emergency Stop");
         } else if (status.equals("no_pressure")) {
-            Toast.makeText(this, "Warning: No Pressure Detected!", Toast.LENGTH_LONG).show();
+            showToast("Warning: No Pressure Detected!", Toast.LENGTH_SHORT);
             voiceResult.setText("Robot Status: No Pressure - Navigation Stopped");
         }
     }
@@ -350,8 +399,7 @@ public class MainActivity extends AppCompatActivity {
             startActivityForResult(intent, 1);
         } catch (Exception e) {
             Log.e(TAG, "Error starting voice recognition", e);
-            Toast.makeText(this, "Error starting voice recognition. Using manual selection instead.",
-                    Toast.LENGTH_LONG).show();
+            showToast("Error starting voice recognition. Using manual selection instead.", Toast.LENGTH_SHORT);
             // Fall back to manual dialog
             showManualLocationDialog();
         }
@@ -395,7 +443,7 @@ public class MainActivity extends AppCompatActivity {
                 } else if (voiceInput.contains("living") || voiceInput.contains("living room")) {
                     sendNavigationGoal("living_room");
                 } else {
-                    Toast.makeText(this, "Unrecognized location: " + voiceInput, Toast.LENGTH_LONG).show();
+                    showToast("Unrecognized location: " + voiceInput, Toast.LENGTH_SHORT);
                     voiceResult.setText("Unrecognized location: " + voiceInput);
                     if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.JELLY_BEAN) {
                         voiceResult.announceForAccessibility("Unrecognized location: " + voiceInput + ". Please try again or use the spinner to select a location.");
@@ -421,14 +469,23 @@ public class MainActivity extends AppCompatActivity {
                         Log.e(TAG, "Error disconnecting MQTT client", e);
                     }
                 }
+                // Reset connection state
+                isConnected = false;
+                isConnecting = false;
+                reconnectAttempts = 0;
                 connectToMqttBroker();
-                Toast.makeText(this, "MQTT settings updated and reconnected", Toast.LENGTH_SHORT).show();
+                showToast("MQTT settings updated and reconnected", Toast.LENGTH_SHORT);
             }
         }
     }
 
     @Override
     protected void onDestroy() {
+        // Cancel any existing toast
+        if (currentToast != null) {
+            currentToast.cancel();
+        }
+        
         if (mqttClient != null && mqttClient.isConnected()) {
             try {
                 mqttClient.disconnect();

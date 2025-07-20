@@ -1,0 +1,23 @@
+running develop
+running egg_info
+creating orange_pi_camera.egg-info
+writing orange_pi_camera.egg-info/PKG-INFO
+writing dependency_links to orange_pi_camera.egg-info/dependency_links.txt
+writing entry points to orange_pi_camera.egg-info/entry_points.txt
+writing requirements to orange_pi_camera.egg-info/requires.txt
+writing top-level names to orange_pi_camera.egg-info/top_level.txt
+writing manifest file 'orange_pi_camera.egg-info/SOURCES.txt'
+reading manifest file 'orange_pi_camera.egg-info/SOURCES.txt'
+writing manifest file 'orange_pi_camera.egg-info/SOURCES.txt'
+running build_ext
+Creating /root/fallDetect_ws/install/orange_pi_camera/lib/python3.10/site-packages/orange-pi-camera.egg-link (link to .)
+Installing camera_node script to /root/fallDetect_ws/install/orange_pi_camera/lib/orange_pi_camera
+Installing fall_detection_node script to /root/fallDetect_ws/install/orange_pi_camera/lib/orange_pi_camera
+
+Installed /root/fallDetect_ws/build/orange_pi_camera
+running symlink_data
+creating /root/fallDetect_ws/install/orange_pi_camera/share/ament_index/resource_index/packages
+symbolically linking /root/fallDetect_ws/build/orange_pi_camera/resource/orange_pi_camera -> /root/fallDetect_ws/install/orange_pi_camera/share/ament_index/resource_index/packages
+symbolically linking /root/fallDetect_ws/build/orange_pi_camera/package.xml -> /root/fallDetect_ws/install/orange_pi_camera/share/orange_pi_camera
+creating /root/fallDetect_ws/install/orange_pi_camera/share/orange_pi_camera/models
+symbolically linking /root/fallDetect_ws/build/orange_pi_camera/models/mobilenet_ssd.tflite -> /root/fallDetect_ws/install/orange_pi_camera/share/orange_pi_camera/models

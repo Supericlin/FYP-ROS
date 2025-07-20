@@ -1,0 +1,15 @@
+package.xml
+setup.cfg
+setup.py
+models/mobilenet_ssd.tflite
+orange_pi_camera/__init__.py
+orange_pi_camera/camera_node.py
+orange_pi_camera/fall_detection_node.py
+orange_pi_camera.egg-info/PKG-INFO
+orange_pi_camera.egg-info/SOURCES.txt
+orange_pi_camera.egg-info/dependency_links.txt
+orange_pi_camera.egg-info/entry_points.txt
+orange_pi_camera.egg-info/requires.txt
+orange_pi_camera.egg-info/top_level.txt
+orange_pi_camera.egg-info/zip-safe
+resource/orange_pi_camera
