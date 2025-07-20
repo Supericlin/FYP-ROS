@@ -1,0 +1,27 @@
+[1.197s] Invoking command in '/root/ros2Ultrasonic_ws/src/ultrasonic_sensors': PYTHONPATH=/root/ros2Ultrasonic_ws/build/ultrasonic_sensors/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/root/ros2Ultrasonic_ws/install/ultrasonic_sensors/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/ultrasonic_sensors build --build-base /root/ros2Ultrasonic_ws/build/ultrasonic_sensors/build install --record /root/ros2Ultrasonic_ws/build/ultrasonic_sensors/install.log --single-version-externally-managed install_data
+[1.531s] running egg_info
+[1.547s] writing ../../build/ultrasonic_sensors/ultrasonic_sensors.egg-info/PKG-INFO
+[1.548s] writing dependency_links to ../../build/ultrasonic_sensors/ultrasonic_sensors.egg-info/dependency_links.txt
+[1.564s] writing entry points to ../../build/ultrasonic_sensors/ultrasonic_sensors.egg-info/entry_points.txt
+[1.599s] writing requirements to ../../build/ultrasonic_sensors/ultrasonic_sensors.egg-info/requires.txt
+[1.630s] writing top-level names to ../../build/ultrasonic_sensors/ultrasonic_sensors.egg-info/top_level.txt
+[1.698s] reading manifest file '../../build/ultrasonic_sensors/ultrasonic_sensors.egg-info/SOURCES.txt'
+[1.700s] writing manifest file '../../build/ultrasonic_sensors/ultrasonic_sensors.egg-info/SOURCES.txt'
+[1.700s] running build
+[1.701s] running build_py
+[1.701s] copying ultrasonic_sensors/__init__.py -> /root/ros2Ultrasonic_ws/build/ultrasonic_sensors/build/lib/ultrasonic_sensors
+[1.702s] copying ultrasonic_sensors/ultrasonic_node.py -> /root/ros2Ultrasonic_ws/build/ultrasonic_sensors/build/lib/ultrasonic_sensors
+[1.702s] running install
+[1.708s] running install_lib
+[1.725s] copying /root/ros2Ultrasonic_ws/build/ultrasonic_sensors/build/lib/ultrasonic_sensors/ultrasonic_node.py -> /root/ros2Ultrasonic_ws/install/ultrasonic_sensors/lib/python3.10/site-packages/ultrasonic_sensors
+[1.726s] byte-compiling /root/ros2Ultrasonic_ws/install/ultrasonic_sensors/lib/python3.10/site-packages/ultrasonic_sensors/ultrasonic_node.py to ultrasonic_node.cpython-310.pyc
+[1.728s] running install_data
+[1.728s] copying resource/ultrasonic_sensors -> /root/ros2Ultrasonic_ws/install/ultrasonic_sensors/share/ament_index/resource_index/packages
+[1.729s] copying package.xml -> /root/ros2Ultrasonic_ws/install/ultrasonic_sensors/share/ultrasonic_sensors
+[1.729s] running install_egg_info
+[1.749s] removing '/root/ros2Ultrasonic_ws/install/ultrasonic_sensors/lib/python3.10/site-packages/ultrasonic_sensors-0.0.0-py3.10.egg-info' (and everything under it)
+[1.749s] Copying ../../build/ultrasonic_sensors/ultrasonic_sensors.egg-info to /root/ros2Ultrasonic_ws/install/ultrasonic_sensors/lib/python3.10/site-packages/ultrasonic_sensors-0.0.0-py3.10.egg-info
+[1.750s] running install_scripts
+[1.889s] Installing ultrasonic_node2 script to /root/ros2Ultrasonic_ws/install/ultrasonic_sensors/lib/ultrasonic_sensors
+[1.889s] writing list of installed files to '/root/ros2Ultrasonic_ws/build/ultrasonic_sensors/install.log'
+[2.018s] Invoked command in '/root/ros2Ultrasonic_ws/src/ultrasonic_sensors' returned '0': PYTHONPATH=/root/ros2Ultrasonic_ws/build/ultrasonic_sensors/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/root/ros2Ultrasonic_ws/install/ultrasonic_sensors/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/ultrasonic_sensors build --build-base /root/ros2Ultrasonic_ws/build/ultrasonic_sensors/build install --record /root/ros2Ultrasonic_ws/build/ultrasonic_sensors/install.log --single-version-externally-managed install_data

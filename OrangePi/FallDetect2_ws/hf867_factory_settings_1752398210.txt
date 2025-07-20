@@ -1,0 +1,24 @@
+# HF867 Factory Default Settings
+# Generated: 2025-07-13 17:16:50
+
+# V4L2 Controls
+exposure_time_absolute: 166
+gain: 0
+brightness: 50
+contrast: 50
+saturation: 50
+hue: 0
+white_balance_automatic: 1
+auto_exposure: 3
+focus_automatic_continuous: 0
+
+# ROS2 Launch Parameters
+ros2 launch fall_detection_pkg hf867_optimized_launch.py \
+    auto_exposure:=true \
+    exposure_time:=166 \
+    gain:=0 \
+    brightness:=50 \
+    contrast:=50 \
+    saturation:=50 \
+    enable_color_correction:=false \
+    enable_wide_angle_correction:=false

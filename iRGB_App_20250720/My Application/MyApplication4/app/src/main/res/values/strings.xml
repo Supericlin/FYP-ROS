@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Robot Navigator</string>
+
+    <string-array name="locations">
+        <item>study_room</item>
+        <item>toilet</item>
+        <item>bedroom</item>
+        <item>dining_room</item>
+        <item>living_room</item>
+    </string-array>
+</resources>

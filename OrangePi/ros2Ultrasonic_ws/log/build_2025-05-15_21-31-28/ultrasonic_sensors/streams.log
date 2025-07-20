@@ -1,0 +1,17 @@
+[1.150s] Invoking command in '/root/ros2Ultrasonic_ws/build/ultrasonic_sensors': PYTHONPATH=/root/ros2Ultrasonic_ws/build/ultrasonic_sensors/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/root/ros2Ultrasonic_ws/install/ultrasonic_sensors/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /root/ros2Ultrasonic_ws/build/ultrasonic_sensors/build --no-deps symlink_data
+[1.590s] running develop
+[1.834s] running egg_info
+[1.853s] writing ultrasonic_sensors.egg-info/PKG-INFO
+[1.854s] writing dependency_links to ultrasonic_sensors.egg-info/dependency_links.txt
+[1.857s] writing entry points to ultrasonic_sensors.egg-info/entry_points.txt
+[1.858s] writing requirements to ultrasonic_sensors.egg-info/requires.txt
+[1.859s] writing top-level names to ultrasonic_sensors.egg-info/top_level.txt
+[1.919s] reading manifest file 'ultrasonic_sensors.egg-info/SOURCES.txt'
+[1.921s] writing manifest file 'ultrasonic_sensors.egg-info/SOURCES.txt'
+[1.942s] running build_ext
+[1.942s] Creating /root/ros2Ultrasonic_ws/install/ultrasonic_sensors/lib/python3.10/site-packages/ultrasonic-sensors.egg-link (link to .)
+[1.943s] Installing ultrasonic_node2 script to /root/ros2Ultrasonic_ws/install/ultrasonic_sensors/lib/ultrasonic_sensors
+[1.944s] 
+[1.945s] Installed /root/ros2Ultrasonic_ws/build/ultrasonic_sensors
+[1.945s] running symlink_data
+[2.072s] Invoked command in '/root/ros2Ultrasonic_ws/build/ultrasonic_sensors' returned '0': PYTHONPATH=/root/ros2Ultrasonic_ws/build/ultrasonic_sensors/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/root/ros2Ultrasonic_ws/install/ultrasonic_sensors/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /root/ros2Ultrasonic_ws/build/ultrasonic_sensors/build --no-deps symlink_data

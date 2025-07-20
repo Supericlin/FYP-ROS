@@ -35,10 +35,12 @@ int sensorValue = 0, outputValue = 0, lastMagSen = -1, pvdfValue = 0;
 int minBrightness = 20, clickCount = 0, navColorMode = 0;
 
 unsigned long lastPressTime = 0, pressStartTime = 0, bootTime = 0;
+unsigned long noPressureStartTime = 0;
 
 bool buttonPressed = false, longPressSent = false, isPaused = false;
 bool lightSen = true, lastLedState = true, batteryLow = false;
 bool nav2Available = false, pressureState = false, firstBoot = true;
+bool noPressureDetected = false;
 
 Adafruit_NeoPixel strip = Adafruit_NeoPixel(MAX_LED, RGB_PIN, NEO_RGB + NEO_KHZ800);
 WiFiClient espClient;
@@ -268,14 +270,18 @@ void handlePotentiometer() {
 
 void handleMagneticSensor() {
   int magSen = digitalRead(MAG_SENSOR_PIN);
+
+  bool shouldPublish = nav2Available;
   
   if (magSen != lastMagSen) {
     if (magSen == 0) {
       Serial.println("MagSen is 0, handle attached!");
-      publishMessage(MQTT_TOPIC, "navStop");
+      publishMessage(MQTT_TOPIC, "attached");
+      if (shouldPublish) publishMessage(MQTT_TOPIC, "navStop");
     } else {
       Serial.println("MagSen is 1, handle detached!");
-      publishMessage(MQTT_TOPIC, "navCon");
+      publishMessage(MQTT_TOPIC, "detached");
+      if (shouldPublish) publishMessage(MQTT_TOPIC, "navCon");
     }
     lastMagSen = magSen;
   }
@@ -289,16 +295,38 @@ void handlePVDFPressureSensor() {
   
   bool shouldPublish = nav2Available;
   
+  // Handle no pressure detection with 2-second delay
   if (pvdfValue == 0 && pressureState) {
-    Serial.print("No pressure: ");
-    Serial.println(pvdfValue);
-    if (shouldPublish) publishMessage(MQTT_TOPIC, "navStop");
-    pressureState = false;
+    if (!noPressureDetected) {
+      // Start the no pressure timer
+      noPressureStartTime = millis();
+      noPressureDetected = true;
+      Serial.println("No pressure detected - starting 3-second timer");
+    } else if (millis() - noPressureStartTime >= 3000) {
+      // 2 seconds have passed, send the messages
+      Serial.print("No pressure confirmed after 3 seconds: ");
+      Serial.println(pvdfValue);
+      publishMessage(MQTT_TOPIC, "no_pressure");
+      if (shouldPublish) publishMessage(MQTT_TOPIC, "navStop");
+      pressureState = false;
+      noPressureDetected = false;
+    }
   } else if (pvdfValue > 1000 && !pressureState) {
+    // Pressure detected - reset no pressure timer and send immediate message
+    if (noPressureDetected) {
+      Serial.println("Pressure detected - canceling no pressure timer");
+      noPressureDetected = false;
+    }
     Serial.print("Pressure: ");
     Serial.println(pvdfValue);
+    publishMessage(MQTT_TOPIC, "pressure");
     if (shouldPublish) publishMessage(MQTT_TOPIC, "navCon");
     pressureState = true;
+  } else if (pvdfValue > 0 && pvdfValue <= 1000 && noPressureDetected) {
+    // Some pressure detected but not enough to trigger pressure state
+    // Reset the no pressure timer
+    noPressureStartTime = millis();
+    //Serial.println("Some pressure detected - resetting no pressure timer");
   }
 }
 

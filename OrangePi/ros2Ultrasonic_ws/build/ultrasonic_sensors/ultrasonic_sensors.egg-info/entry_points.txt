@@ -1,0 +1,2 @@
+[console_scripts]
+ultrasonic_node2 = ultrasonic_sensors.ultrasonic_node:main

@@ -1,0 +1,51 @@
+[0.000000] (-) TimerEvent: {}
+[0.000560] (ultrasonic_sensors) JobQueued: {'identifier': 'ultrasonic_sensors', 'dependencies': OrderedDict()}
+[0.001144] (ultrasonic_sensors) JobStarted: {'identifier': 'ultrasonic_sensors'}
+[0.099569] (-) TimerEvent: {}
+[0.200104] (-) TimerEvent: {}
+[0.300449] (-) TimerEvent: {}
+[0.400878] (-) TimerEvent: {}
+[0.501698] (-) TimerEvent: {}
+[0.602714] (-) TimerEvent: {}
+[0.703784] (-) TimerEvent: {}
+[0.804642] (-) TimerEvent: {}
+[0.905248] (-) TimerEvent: {}
+[1.005708] (-) TimerEvent: {}
+[1.106073] (-) TimerEvent: {}
+[1.172663] (ultrasonic_sensors) Command: {'cmd': ['/usr/bin/python3', '-W', 'ignore:setup.py install is deprecated', '-W', 'ignore:easy_install command is deprecated', 'setup.py', 'egg_info', '--egg-base', '../../build/ultrasonic_sensors', 'build', '--build-base', '/root/ros2Ultrasonic_ws/build/ultrasonic_sensors/build', 'install', '--record', '/root/ros2Ultrasonic_ws/build/ultrasonic_sensors/install.log', '--single-version-externally-managed', 'install_data'], 'cwd': '/root/ros2Ultrasonic_ws/src/ultrasonic_sensors', 'env': {'UMS_MOUNTPOINT': '/mnt/ums', 'GST_V4L2_PREFERRED_FOURCC': 'NV12:YU12:NV16:YUY2', 'LANGUAGE': 'en_US.UTF-8', 'USER': 'root', 'SSH_CLIENT': '192.168.0.138 54083 22', 'XDG_SESSION_TYPE': 'tty', 'SHLVL': '1', 'USB_FUNCS': 'adb', 'LD_LIBRARY_PATH': '/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib', 'MOTD_SHOWN': 'pam', 'HOME': '/root', 'OLDPWD': '/root', 'SSH_TTY': '/dev/pts/1', 'GST_INSPECT_NO_COLORS': '1', 'GST_MPP_NO_RGA': '1', 'ROS_PYTHON_VERSION': '3', 'COGL_DRIVER': 'gles2', 'DBUS_SESSION_BUS_ADDRESS': 'unix:path=/run/user/0/bus', 'COLCON_PREFIX_PATH': '/root/ros2Ultrasonic_ws/install', 'GST_V4L2SRC_MAX_RESOLUTION': '3840x2160', 'ROS_DISTRO': 'humble', 'LOGNAME': 'root', '_': '/usr/bin/colcon', 'ROS_VERSION': '2', 'XDG_SESSION_CLASS': 'user', 'TERM': 'xterm', 'GST_GL_API': 'gles2', 'XDG_SESSION_ID': '10', 'GST_VIDEO_CONVERT_PREFERRED_FORMAT': 'NV12:NV16:I420:YUY2', 'GST_V4L2SRC_RK_DEVICES': '_mainpath:_selfpath:_bypass:_scale', 'ROS_LOCALHOST_ONLY': '0', 'PATH': '/opt/ros/humble/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin', 'XDG_RUNTIME_DIR': '/run/user/0', 'GST_GL_PLATFORM': 'egl', 'GST_DEBUG_NO_COLOR': '1', 'GST_V4L2SRC_DEFAULT_DEVICE': '/dev/video-camera0', 'DISPLAY': 'localhost:11.0', 'LANG': 'en_US.UTF-8', 'GST_V4L2_USE_LIBV4L2': '1', 'UMS_SIZE': '256M', 'AMENT_PREFIX_PATH': '/opt/ros/humble:/root/ros2Ultrasonic_ws/install/ultrasonic_sensors', 'LC_MESSAGES': 'en_US.UTF-8', 'SHELL': '/bin/bash', 'UMS_RO': '0', 'UMS_FSTYPE': 'vfat', 'PWD': '/root/ros2Ultrasonic_ws/build/ultrasonic_sensors', 'LC_ALL': 'en_US.UTF-8', 'SSH_CONNECTION': '192.168.0.138 54083 192.168.0.224 22', 'PYTHONPATH': '/root/ros2Ultrasonic_ws/build/ultrasonic_sensors/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/root/ros2Ultrasonic_ws/install/ultrasonic_sensors/lib/python3.10/site-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages:/root/ros2Ultrasonic_ws/install/ultrasonic_sensors/lib/python3.10/site-packages', 'UMS_MOUNT': '0', 'COLCON': '1', 'UMS_FILE': '/userdata/ums_shared.img'}, 'shell': False}
+[1.206278] (-) TimerEvent: {}
+[1.307339] (-) TimerEvent: {}
+[1.408338] (-) TimerEvent: {}
+[1.509168] (-) TimerEvent: {}
+[1.517717] (ultrasonic_sensors) StdoutLine: {'line': b'running egg_info\n'}
+[1.534017] (ultrasonic_sensors) StdoutLine: {'line': b'writing ../../build/ultrasonic_sensors/ultrasonic_sensors.egg-info/PKG-INFO\n'}
+[1.534689] (ultrasonic_sensors) StdoutLine: {'line': b'writing dependency_links to ../../build/ultrasonic_sensors/ultrasonic_sensors.egg-info/dependency_links.txt\n'}
+[1.536988] (ultrasonic_sensors) StdoutLine: {'line': b'writing entry points to ../../build/ultrasonic_sensors/ultrasonic_sensors.egg-info/entry_points.txt\n'}
+[1.540224] (ultrasonic_sensors) StdoutLine: {'line': b'writing requirements to ../../build/ultrasonic_sensors/ultrasonic_sensors.egg-info/requires.txt\n'}
+[1.547337] (ultrasonic_sensors) StdoutLine: {'line': b'writing top-level names to ../../build/ultrasonic_sensors/ultrasonic_sensors.egg-info/top_level.txt\n'}
+[1.599628] (ultrasonic_sensors) StdoutLine: {'line': b"reading manifest file '../../build/ultrasonic_sensors/ultrasonic_sensors.egg-info/SOURCES.txt'\n"}
+[1.601437] (ultrasonic_sensors) StdoutLine: {'line': b"writing manifest file '../../build/ultrasonic_sensors/ultrasonic_sensors.egg-info/SOURCES.txt'\n"}
+[1.601806] (ultrasonic_sensors) StdoutLine: {'line': b'running build\n'}
+[1.601910] (ultrasonic_sensors) StdoutLine: {'line': b'running build_py\n'}
+[1.602065] (ultrasonic_sensors) StdoutLine: {'line': b'copying ultrasonic_sensors/__init__.py -> /root/ros2Ultrasonic_ws/build/ultrasonic_sensors/build/lib/ultrasonic_sensors\n'}
+[1.602200] (ultrasonic_sensors) StdoutLine: {'line': b'copying ultrasonic_sensors/ultrasonic_node.py -> /root/ros2Ultrasonic_ws/build/ultrasonic_sensors/build/lib/ultrasonic_sensors\n'}
+[1.602519] (ultrasonic_sensors) StdoutLine: {'line': b'running install\n'}
+[1.609195] (-) TimerEvent: {}
+[1.609599] (ultrasonic_sensors) StdoutLine: {'line': b'running install_lib\n'}
+[1.627184] (ultrasonic_sensors) StdoutLine: {'line': b'copying /root/ros2Ultrasonic_ws/build/ultrasonic_sensors/build/lib/ultrasonic_sensors/ultrasonic_node.py -> /root/ros2Ultrasonic_ws/install/ultrasonic_sensors/lib/python3.10/site-packages/ultrasonic_sensors\n'}
+[1.628102] (ultrasonic_sensors) StdoutLine: {'line': b'byte-compiling /root/ros2Ultrasonic_ws/install/ultrasonic_sensors/lib/python3.10/site-packages/ultrasonic_sensors/ultrasonic_node.py to ultrasonic_node.cpython-310.pyc\n'}
+[1.629637] (ultrasonic_sensors) StdoutLine: {'line': b'running install_data\n'}
+[1.630117] (ultrasonic_sensors) StdoutLine: {'line': b'copying resource/ultrasonic_sensors -> /root/ros2Ultrasonic_ws/install/ultrasonic_sensors/share/ament_index/resource_index/packages\n'}
+[1.630368] (ultrasonic_sensors) StdoutLine: {'line': b'copying package.xml -> /root/ros2Ultrasonic_ws/install/ultrasonic_sensors/share/ultrasonic_sensors\n'}
+[1.630618] (ultrasonic_sensors) StdoutLine: {'line': b'running install_egg_info\n'}
+[1.649972] (ultrasonic_sensors) StdoutLine: {'line': b"removing '/root/ros2Ultrasonic_ws/install/ultrasonic_sensors/lib/python3.10/site-packages/ultrasonic_sensors-0.0.0-py3.10.egg-info' (and everything under it)\n"}
+[1.650355] (ultrasonic_sensors) StdoutLine: {'line': b'Copying ../../build/ultrasonic_sensors/ultrasonic_sensors.egg-info to /root/ros2Ultrasonic_ws/install/ultrasonic_sensors/lib/python3.10/site-packages/ultrasonic_sensors-0.0.0-py3.10.egg-info\n'}
+[1.651335] (ultrasonic_sensors) StdoutLine: {'line': b'running install_scripts\n'}
+[1.709290] (-) TimerEvent: {}
+[1.790270] (ultrasonic_sensors) StdoutLine: {'line': b'Installing ultrasonic_node script to /root/ros2Ultrasonic_ws/install/ultrasonic_sensors/lib/ultrasonic_sensors\n'}
+[1.791018] (ultrasonic_sensors) StdoutLine: {'line': b"writing list of installed files to '/root/ros2Ultrasonic_ws/build/ultrasonic_sensors/install.log'\n"}
+[1.809489] (-) TimerEvent: {}
+[1.893426] (ultrasonic_sensors) CommandEnded: {'returncode': 0}
+[1.909541] (-) TimerEvent: {}
+[1.940239] (ultrasonic_sensors) JobEnded: {'identifier': 'ultrasonic_sensors', 'rc': 0}
+[1.943517] (-) EventReactorShutdown: {}

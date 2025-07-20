@@ -12,57 +12,146 @@ class UltrasonicSensorNode(Node):
     def __init__(self):
         super().__init__('ultrasonic_sensor_node')
 
+        # Declare parameters for logging control
+        self.declare_parameter('debug_mode', False)
+        self.declare_parameter('log_interval', 10.0)  # Log status every 10 seconds
+        self.declare_parameter('enable_detailed_logging', False)
+        
+        # Get parameters
+        self.debug_mode = self.get_parameter('debug_mode').value
+        self.log_interval = self.get_parameter('log_interval').value
+        self.enable_detailed_logging = self.get_parameter('enable_detailed_logging').value
+
         # Sensor GPIO pins
         self.sensors = [
-            {'trigger': 29, 'echo': 31},  # Sensor 1
-            {'trigger': 37, 'echo': 36},  # Sensor 2
-            {'trigger': 18, 'echo': 22},  # Sensor 3
+            {'trigger': 29, 'echo': 31, 'name': 'Front'},  # Sensor 1
+            {'trigger': 37, 'echo': 36, 'name': 'Left'},   # Sensor 2
+            {'trigger': 18, 'echo': 22, 'name': 'Right'},  # Sensor 3
         ]
 
+        # Performance tracking
+        self.read_count = 0
+        self.error_count = 0
+        self.last_log_time = time.time()
+        self.sensor_stats = {i: {'reads': 0, 'errors': 0, 'last_distance': 0.0} for i in range(len(self.sensors))}
+        
+        # Status tracking
+        self.node_start_time = time.time()
+        self.is_initialized = False
+        self.gpio_initialized = False
+
+        self.get_logger().info("🚀 US100 Ultrasonic Sensor Node starting...")
+        self.get_logger().info(f"📊 Configuration: {len(self.sensors)} sensors, Debug: {self.debug_mode}")
+
         # Initialize GPIO
+        try:
         GPIO.setmode(GPIO.BOARD)
         GPIO.setwarnings(False)
-        for sensor in self.sensors:
+            
+            for i, sensor in enumerate(self.sensors):
             GPIO.setup(sensor['trigger'], GPIO.OUT)
             GPIO.setup(sensor['echo'], GPIO.IN)
             GPIO.output(sensor['trigger'], GPIO.LOW)  # Ensure triggers start LOW
+                self.get_logger().info(f"✅ Sensor {i+1} ({sensor['name']}) initialized - Trigger: {sensor['trigger']}, Echo: {sensor['echo']}")
+            
+            self.gpio_initialized = True
+            self.get_logger().info("✅ GPIO initialization completed successfully")
+            
+        except Exception as e:
+            self.get_logger().error(f"❌ GPIO initialization failed: {str(e)}")
+            raise
 
         # Create publishers for each sensor
         self.sensor_publishers = []
-        for i, _ in enumerate(self.sensors):
+        for i, sensor in enumerate(self.sensors):
             topic_name = f'ultrasonic_sensor_{i + 1}'
             publisher = self.create_publisher(Range, topic_name, 10)
             self.sensor_publishers.append(publisher)
+            self.get_logger().info(f"📡 Publisher created: {topic_name}")
 
         # Use a lock to prevent overlapping sensor readings
         self.sensor_lock = threading.Lock()
         
         # Create a timer to read sensors
         self.timer = self.create_timer(0.1, self.read_sensors)  # 10 Hz
+        
+        # Create a timer for status logging
+        self.status_timer = self.create_timer(self.log_interval, self.log_status)
+        
+        self.is_initialized = True
+        self.get_logger().info("🎯 US100 Sensor Node fully initialized and ready")
+        self.get_logger().info(f"📈 Reading sensors at 10Hz, status logs every {self.log_interval}s")
+
+    def log_status(self):
+        """Log comprehensive status information"""
+        current_time = time.time()
+        uptime = current_time - self.node_start_time
+        
+        # Calculate statistics
+        total_reads = sum(stats['reads'] for stats in self.sensor_stats.values())
+        total_errors = sum(stats['errors'] for stats in self.sensor_stats.values())
+        error_rate = (total_errors / max(total_reads, 1)) * 100
+        
+        # Log status
+        self.get_logger().info("=" * 50)
+        self.get_logger().info("📊 US100 SENSOR STATUS REPORT")
+        self.get_logger().info("=" * 50)
+        self.get_logger().info(f"⏱️  Uptime: {uptime:.1f}s")
+        self.get_logger().info(f"📈 Total reads: {total_reads}")
+        self.get_logger().info(f"❌ Total errors: {total_errors}")
+        self.get_logger().info(f"📊 Error rate: {error_rate:.2f}%")
+        self.get_logger().info(f"🔧 GPIO initialized: {self.gpio_initialized}")
+        self.get_logger().info(f"🎯 Node initialized: {self.is_initialized}")
+        
+        # Log individual sensor status
+        for i, sensor in enumerate(self.sensors):
+            stats = self.sensor_stats[i]
+            sensor_error_rate = (stats['errors'] / max(stats['reads'], 1)) * 100
+            self.get_logger().info(f"📡 Sensor {i+1} ({sensor['name']}): "
+                                 f"Reads={stats['reads']}, Errors={stats['errors']} "
+                                 f"({sensor_error_rate:.1f}%), Last={stats['last_distance']:.3f}m")
+        
+        self.get_logger().info("=" * 50)
 
     def read_sensors(self):
         # Skip if we're already processing
         if not self.sensor_lock.acquire(blocking=False):
-            self.get_logger().debug("Skipping sensor read - previous read still in progress")
+            if self.debug_mode:
+                self.get_logger().debug("⏭️ Skipping sensor read - previous read still in progress")
             return
             
         try:
+            self.read_count += 1
+            
             for i, sensor in enumerate(self.sensors):
                 try:
                     distance = self.get_distance(sensor['trigger'], sensor['echo'])
+                    
+                    # Update statistics
+                    self.sensor_stats[i]['reads'] += 1
+                    self.sensor_stats[i]['last_distance'] = distance / 100.0 if distance != float('inf') else 0.0
+                    
+                    # Log detailed information if enabled
+                    if self.enable_detailed_logging:
                     if distance == float('inf'):
-                        self.get_logger().debug(f"Sensor {i + 1}: No echo received (object out of range)")
+                            self.get_logger().debug(f"📡 Sensor {i+1} ({sensor['name']}): No echo received (object out of range)")
                     elif distance <= 0.02:
-                        self.get_logger().debug(f"Sensor {i + 1}: Object too close, reporting minimum range")
+                            self.get_logger().debug(f"📡 Sensor {i+1} ({sensor['name']}): Object too close, reporting minimum range")
+                        else:
+                            self.get_logger().debug(f"📡 Sensor {i+1} ({sensor['name']}): Distance = {distance/100.0:.3f}m")
                     
                     self.publish_range_msg(i, distance)
+                    
                 except Exception as e:
-                    self.get_logger().error(f"Error reading sensor {i + 1}: {e}")
+                    self.error_count += 1
+                    self.sensor_stats[i]['errors'] += 1
+                    self.get_logger().error(f"❌ Error reading sensor {i+1} ({sensor['name']}): {str(e)}")
                     # Publish an error reading
                     self.publish_range_msg(i, float('inf'))
                 
                 # Small delay between sensors to reduce interference
                 time.sleep(0.01)
+                
         finally:
             self.sensor_lock.release()
 
@@ -82,6 +171,8 @@ class UltrasonicSensorNode(Node):
         while GPIO.input(echo_pin) == 0:
             pulse_start = time.time()
             if pulse_start > timeout:
+                if self.debug_mode:
+                    self.get_logger().debug("⏰ Timeout waiting for echo start")
                 return float('inf')  # Timeout waiting for start
                 
         # Wait for echo to end (go LOW)
@@ -91,11 +182,19 @@ class UltrasonicSensorNode(Node):
         while GPIO.input(echo_pin) == 1:
             pulse_end = time.time()
             if pulse_end > timeout:
+                if self.debug_mode:
+                    self.get_logger().debug("⏰ Timeout waiting for echo end")
                 return float('inf')  # Timeout waiting for end
 
         # Calculate time elapsed and distance
         pulse_duration = pulse_end - pulse_start
         distance = (pulse_duration * 34300) / 2  # Speed of sound = 34300 cm/s
+
+        # Validate distance reading
+        if distance < 0 or distance > 400:  # 4m max range
+            if self.debug_mode:
+                self.get_logger().debug(f"⚠️ Invalid distance reading: {distance:.2f}cm")
+            return float('inf')
 
         return distance
 
@@ -118,23 +217,43 @@ class UltrasonicSensorNode(Node):
         self.sensor_publishers[sensor_index].publish(msg)
 
     def destroy_node(self):
+        """Clean shutdown with status logging"""
+        self.get_logger().info("🛑 US100 Sensor Node shutting down...")
+        
+        # Log final statistics
+        total_reads = sum(stats['reads'] for stats in self.sensor_stats.values())
+        total_errors = sum(stats['errors'] for stats in self.sensor_stats.values())
+        uptime = time.time() - self.node_start_time
+        
+        self.get_logger().info("📊 FINAL STATISTICS:")
+        self.get_logger().info(f"   ⏱️  Total uptime: {uptime:.1f}s")
+        self.get_logger().info(f"   📈 Total sensor reads: {total_reads}")
+        self.get_logger().info(f"   ❌ Total errors: {total_errors}")
+        if total_reads > 0:
+            error_rate = (total_errors / total_reads) * 100
+            self.get_logger().info(f"   📊 Final error rate: {error_rate:.2f}%")
+        
         # Ensure we clean up GPIO on shutdown
         try:
             GPIO.cleanup()
-        except:
-            pass
+            self.get_logger().info("✅ GPIO cleanup completed")
+        except Exception as e:
+            self.get_logger().error(f"❌ GPIO cleanup failed: {str(e)}")
+        
+        self.get_logger().info("👋 US100 Sensor Node shutdown complete")
         super().destroy_node()
 
 
 def main(args=None):
     rclpy.init(args=args)
     node = UltrasonicSensorNode()
+    
     try:
         rclpy.spin(node)
     except KeyboardInterrupt:
-        pass
+        node.get_logger().info("⏹️ Shutdown requested by user (Ctrl+C)")
     except Exception as e:
-        print(f"Error occurred: {e}")
+        node.get_logger().error(f"❌ Unexpected error occurred: {str(e)}")
     finally:
         node.destroy_node()
         rclpy.shutdown()

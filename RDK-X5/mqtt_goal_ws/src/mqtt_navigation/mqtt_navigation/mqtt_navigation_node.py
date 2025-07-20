@@ -90,10 +90,20 @@ class MqttNavigationNode(Node):
         self.declare_parameter('mqtt_topic', 'robot/control')
         self.declare_parameter('mqtt_status_topic', 'robot/status')
         
+        # Navigation control function parameters
+        self.declare_parameter('enable_nav_stop', True)
+        self.declare_parameter('enable_nav_pause', True)
+        self.declare_parameter('enable_nav_resume', True)
+        
         mqtt_broker = self.get_parameter('mqtt_broker_address').value
         mqtt_port = self.get_parameter('mqtt_broker_port').value
         self.mqtt_topic = self.get_parameter('mqtt_topic').value
         self.mqtt_status_topic = self.get_parameter('mqtt_status_topic').value
+        
+        # Get navigation control settings
+        self.enable_nav_stop = self.get_parameter('enable_nav_stop').value
+        self.enable_nav_pause = self.get_parameter('enable_nav_pause').value
+        self.enable_nav_resume = self.get_parameter('enable_nav_resume').value
         
         # Connect to MQTT broker
         try:
@@ -102,6 +112,12 @@ class MqttNavigationNode(Node):
             self.get_logger().info(f"Connected to MQTT broker at {mqtt_broker}:{mqtt_port}")
         except Exception as e:
             self.get_logger().error(f"Failed to connect to MQTT broker: {e}")
+
+        # Log navigation control function status
+        self.get_logger().info("Navigation control functions status:")
+        self.get_logger().info(f"  - navStop: {'ENABLED' if self.enable_nav_stop else 'DISABLED'}")
+        self.get_logger().info(f"  - navPause: {'ENABLED' if self.enable_nav_pause else 'DISABLED'}")
+        self.get_logger().info(f"  - navResume: {'ENABLED' if self.enable_nav_resume else 'DISABLED'}")
 
         # Battery monitoring variables
         self.battery_voltage = 0.0
@@ -259,11 +275,20 @@ class MqttNavigationNode(Node):
                 self.check_tf_transform()  # Check TF before sending goal
                 self.process_location_command(payload)
             elif payload == "navStop":
-                self.cancel_navigation()
+                if self.enable_nav_stop:
+                    self.cancel_navigation()
+                else:
+                    self.get_logger().warning("navStop command received but function is DISABLED")
             elif payload == "navPause":  # Fixed command match
-                self.pause_navigation()
+                if self.enable_nav_pause:
+                    self.pause_navigation()
+                else:
+                    self.get_logger().warning("navPause command received but function is DISABLED")
             elif payload == "navCon":
-                self.resume_navigation()
+                if self.enable_nav_resume:
+                    self.resume_navigation()
+                else:
+                    self.get_logger().warning("navCon command received but function is DISABLED")
             elif payload == "get_battery":
                 # Manual request for battery status
                 self.publish_battery_voltage()

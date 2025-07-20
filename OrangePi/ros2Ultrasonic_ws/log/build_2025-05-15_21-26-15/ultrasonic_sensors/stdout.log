@@ -1,0 +1,15 @@
+running develop
+running egg_info
+writing ultrasonic_sensors.egg-info/PKG-INFO
+writing dependency_links to ultrasonic_sensors.egg-info/dependency_links.txt
+writing entry points to ultrasonic_sensors.egg-info/entry_points.txt
+writing requirements to ultrasonic_sensors.egg-info/requires.txt
+writing top-level names to ultrasonic_sensors.egg-info/top_level.txt
+reading manifest file 'ultrasonic_sensors.egg-info/SOURCES.txt'
+writing manifest file 'ultrasonic_sensors.egg-info/SOURCES.txt'
+running build_ext
+Creating /root/ros2Ultrasonic_ws/install/ultrasonic_sensors/lib/python3.10/site-packages/ultrasonic-sensors.egg-link (link to .)
+Installing ultrasonic_node2 script to /root/ros2Ultrasonic_ws/install/ultrasonic_sensors/lib/ultrasonic_sensors
+
+Installed /root/ros2Ultrasonic_ws/build/ultrasonic_sensors
+running symlink_data
