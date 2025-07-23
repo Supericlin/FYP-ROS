@@ -244,29 +244,34 @@ class iRGBMqtt : public Thing {
     }
     // 启动发布任务
     xTaskCreate(PublisherTask, "MQTT_Publisher", 4096, this, tskIDLE_PRIORITY + 1, NULL);
-    methods_.AddMethod("goto_StudyRoom", "去書房[回覆:開始導航至書房]", ParameterList(),
+    methods_.AddMethod("goto_mcdonald", "去麥當勞[回覆:開始導航至麥當勞]", ParameterList(),
                        [this](const ParameterList& parameters) {
-                         SendMqttMessage("studyroom");
+                         SendMqttMessage("mcdonald");
                        });
 
-    methods_.AddMethod("goto_BedRoom", "去睡房[回覆:開始導航至睡房]", ParameterList(),
+    methods_.AddMethod("goto_entrance", "去入口[回覆:開始導航至入口]", ParameterList(),
                        [this](const ParameterList& parameters) {
-                         SendMqttMessage("bedroom");
+                         SendMqttMessage("entrance");
                        });
 
-    methods_.AddMethod("goto_LivingRoom", "去客廳[回覆:開始導航至客廳]", ParameterList(),
+    methods_.AddMethod("goto_toilet", "去洗手間[回覆:開始導航至洗手間]", ParameterList(),
                        [this](const ParameterList& parameters) {
-                         SendMqttMessage("livingroom");
+                         SendMqttMessage("toilet");
                        });
 
-    methods_.AddMethod("goto_DiningRoom", "去飯廳[回覆:開始導航至飯廳]", ParameterList(),
+    methods_.AddMethod("goto_watsons", "去屈臣氏[回覆:開始導航至屈臣氏]", ParameterList(),
                        [this](const ParameterList& parameters) {
-                         SendMqttMessage("diningroom");
+                         SendMqttMessage("watsons");
                        });
 
-    methods_.AddMethod("goto_WashRoom", "去洗手間[回覆:開始導航至洗手間]", ParameterList(),
+    methods_.AddMethod("goto_information_counter", "去詢問處[回覆:開始導航至詢問處]", ParameterList(),
                        [this](const ParameterList& parameters) {
-                         SendMqttMessage("washroom");
+                         SendMqttMessage("information_counter");
+                       });
+
+    methods_.AddMethod("goto_starbucks", "去星巴克[回覆:開始導航至星巴克]", ParameterList(),
+                       [this](const ParameterList& parameters) {
+                         SendMqttMessage("starbucks");
                        });
 
     methods_.AddMethod("NavigationPause", "導航暫停", ParameterList(),
