@@ -432,16 +432,18 @@ public class MainActivity extends AppCompatActivity {
                 voiceResult.setText("Voice Result: " + voiceInput);
 
                 // Check if voice input contains a recognized location
-                if (voiceInput.contains("study") || voiceInput.contains("study room")) {
-                    sendNavigationGoal("study_room");
+                if (voiceInput.contains("mcdonald") || voiceInput.contains("mcdonald")) {
+                    sendNavigationGoal("mcdonald");
                 } else if (voiceInput.contains("toilet") || voiceInput.contains("bathroom") || voiceInput.contains("washroom")) {
-                    sendNavigationGoal("washroom");
-                } else if (voiceInput.contains("bedroom") || voiceInput.contains("bed room")) {
-                    sendNavigationGoal("bed_room");
-                } else if (voiceInput.contains("dining") || voiceInput.contains("dining room")) {
-                    sendNavigationGoal("dining_room");
-                } else if (voiceInput.contains("living") || voiceInput.contains("living room")) {
-                    sendNavigationGoal("living_room");
+                    sendNavigationGoal("toilet");
+                } else if (voiceInput.contains("entrance")) {
+                    sendNavigationGoal("entrance");
+                } else if (voiceInput.contains("watsons")) {
+                    sendNavigationGoal("watsons");
+                } else if (voiceInput.contains("information_counter") || voiceInput.contains("information center")) {
+                    sendNavigationGoal("information_counter");
+                } else if (voiceInput.contains("starbucks")) {
+                    sendNavigationGoal("starbucks");
                 } else {
                     showToast("Unrecognized location: " + voiceInput, Toast.LENGTH_SHORT);
                     voiceResult.setText("Unrecognized location: " + voiceInput);

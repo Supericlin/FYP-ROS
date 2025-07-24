@@ -2,10 +2,11 @@
     <string name="app_name">Robot Navigator</string>
 
     <string-array name="locations">
-        <item>study_room</item>
-        <item>washroom</item>
-        <item>bed_room</item>
-        <item>dining_room</item>
-        <item>living_room</item>
+        <item>mcdonald</item>
+        <item>entrance</item>
+        <item>toilet</item>
+        <item>watsons</item>
+        <item>information_counter</item>
+        <item>starbucks</item>
     </string-array>
 </resources>
