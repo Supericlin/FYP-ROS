@@ -68,6 +68,11 @@ void mqttCallback(char* topic, byte* payload, unsigned int length) {
   else if (statusMsg == "navStatus_1" || statusMsg == "navStatus_4") navColorMode = 1;
   else if (statusMsg == "navStatus_5") navColorMode = 0;
   else if (statusMsg == "navStatus_6") navColorMode = 2;
+  else if (statusMsg == "espRestart") {
+    Serial.println("Received espRestart command - restarting ESP32-S3...");
+    delay(1000); // Give time for the message to be printed
+    ESP.restart();
+  }
 }
 
 // Function to connect to Wi-Fi

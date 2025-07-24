@@ -74,6 +74,44 @@ class iRGBMqtt : public Thing {
     }
   }
 
+  // 专门用于LED控制的消息发布函数，发布到robot/status主题
+  void PublishLedMessageInternal(const char* message) {
+    // 限制连续发布的频率
+    TickType_t now = xTaskGetTickCount();
+    if (now - last_publish_tick < min_publish_interval) {
+      vTaskDelay(min_publish_interval - (now - last_publish_tick));
+    }
+    last_publish_tick = xTaskGetTickCount();
+
+    if (client == nullptr) {
+      ESP_LOGE(TAG, "MQTT client is not initialized!");
+      return;
+    }
+  
+    if (!mqtt_connected) {
+      ESP_LOGW(TAG, "MQTT not connected, skipping publishing: %s", message);
+      return;
+    }
+  
+    const char* topic = "robot/status";  //LED控制发布到status主题
+    int retries = 4;
+    int msg_id = -1;
+    while (retries-- > 0) {
+      msg_id = esp_mqtt_client_publish(client, topic, message, 0, 1, 0);
+      if (msg_id >= 0) {
+        break;
+      }
+      ESP_LOGW(TAG, "Publish failed (attempt %d) for message: %s", 4 - retries, message);
+      // restart after 60ms
+      vTaskDelay(pdMS_TO_TICKS(60));
+    }
+    if (msg_id >= 0) {
+      ESP_LOGI(TAG, "LED message sent, msg_id: %d, message: %s", msg_id, message);
+    } else {
+      ESP_LOGE(TAG, "Failed to publish LED message: %s after retries", message);
+    }
+  }
+
   // 专门的任务，由消息队列中取出消息进行发送
   static void PublisherTask(void* pvParameters) {
     iRGBMqtt* instance = static_cast<iRGBMqtt*>(pvParameters);
@@ -107,6 +145,22 @@ class iRGBMqtt : public Thing {
   // 外部调用的发送消息接口，内部将消息入队
   void SendMqttMessage(const std::string& message) {
     QueueMqttMessage(message);
+  }
+  
+  // 专门用于LED控制的消息发送接口，发布到robot/status主题
+  void SendLedMqttMessage(const std::string& message) {
+    // 动态分配内存保存消息（记得加1字符空间存放结束符'\0'）
+    size_t len = message.size() + 1;
+    char* msg_copy = (char*)malloc(len);
+    if (msg_copy == nullptr) {
+      ESP_LOGE(TAG, "Memory allocation for LED message failed");
+      return;
+    }
+    strncpy(msg_copy, message.c_str(), len);
+    
+    // 直接调用LED发布函数，不经过队列
+    PublishLedMessageInternal(msg_copy);
+    free(msg_copy);
   }
   
   void ProcessWakeupCommand(const char* command) {
@@ -285,12 +339,12 @@ class iRGBMqtt : public Thing {
 
     methods_.AddMethod("TurnOnLedLight", "開 LED 燈", ParameterList(),
                        [this](const ParameterList& parameters) {
-                         SendMqttMessage("LightSen_on");
+                         SendLedMqttMessage("LightSen_on");
                        });
 
     methods_.AddMethod("TurnOffLedLight", "關 LED 燈", ParameterList(),
                        [this](const ParameterList& parameters) {
-                         SendMqttMessage("LightSen_off");
+                         SendLedMqttMessage("LightSen_off");
                        });
   }
   
