@@ -188,8 +188,8 @@ void handleButton() {
   
   lastButtonState = buttonState;
   
-  // Process long press (only when NAV2 is available)
-  if (nav2Available && buttonPressed && !longPressSent && 
+  // Process long press
+  if (buttonPressed && !longPressSent && 
       (millis() - pressStartTime >= LONG_PRESS_DURATION)) {
     publishMessage(MQTT_TOPIC, "navStop");
     Serial.println("Long press detected - Sent 'stop'");
@@ -197,8 +197,8 @@ void handleButton() {
     clickCount = 0;
   }
   
-  // Process double-click after button releases (only when NAV2 is available)
-  if (nav2Available && !buttonPressed && clickCount == 2 && 
+  // Process double-click after button releases
+  if (!buttonPressed && clickCount == 2 && 
       (millis() - lastPressTime <= DOUBLE_CLICK_TIMEOUT)) {
     if (isPaused) {
       publishMessage(MQTT_TOPIC, "navCon");
@@ -275,18 +275,16 @@ void handlePotentiometer() {
 
 void handleMagneticSensor() {
   int magSen = digitalRead(MAG_SENSOR_PIN);
-
-  bool shouldPublish = nav2Available;
   
   if (magSen != lastMagSen) {
     if (magSen == 0) {
       Serial.println("MagSen is 0, handle attached!");
       publishMessage(MQTT_TOPIC, "attached");
-      if (shouldPublish) publishMessage(MQTT_TOPIC, "navStop");
+      publishMessage(MQTT_TOPIC, "navPause");
     } else {
       Serial.println("MagSen is 1, handle detached!");
       publishMessage(MQTT_TOPIC, "detached");
-      if (shouldPublish) publishMessage(MQTT_TOPIC, "navCon");
+      publishMessage(MQTT_TOPIC, "navCon");
     }
     lastMagSen = magSen;
   }
@@ -298,9 +296,7 @@ void handlePVDFPressureSensor() {
   // Reduce noise by setting small values to 0
   if (pvdfValue < 250) pvdfValue = 0;
   
-  bool shouldPublish = nav2Available;
-  
-  // Handle no pressure detection with 2-second delay
+  // Handle no pressure detection with 3-second delay
   if (pvdfValue == 0 && pressureState) {
     if (!noPressureDetected) {
       // Start the no pressure timer
@@ -308,11 +304,11 @@ void handlePVDFPressureSensor() {
       noPressureDetected = true;
       Serial.println("No pressure detected - starting 3-second timer");
     } else if (millis() - noPressureStartTime >= 3000) {
-      // 2 seconds have passed, send the messages
+      // 3 seconds have passed, send the messages
       Serial.print("No pressure confirmed after 3 seconds: ");
       Serial.println(pvdfValue);
       publishMessage(MQTT_TOPIC, "no_pressure");
-      if (shouldPublish) publishMessage(MQTT_TOPIC, "navStop");
+      publishMessage(MQTT_TOPIC, "navStop");
       pressureState = false;
       noPressureDetected = false;
     }
@@ -325,7 +321,7 @@ void handlePVDFPressureSensor() {
     Serial.print("Pressure: ");
     Serial.println(pvdfValue);
     publishMessage(MQTT_TOPIC, "pressure");
-    if (shouldPublish) publishMessage(MQTT_TOPIC, "navCon");
+    publishMessage(MQTT_TOPIC, "navCon");
     pressureState = true;
   } else if (pvdfValue > 0 && pvdfValue <= 1000 && noPressureDetected) {
     // Some pressure detected but not enough to trigger pressure state

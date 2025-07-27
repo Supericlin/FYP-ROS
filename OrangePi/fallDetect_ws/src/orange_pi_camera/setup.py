@@ -13,6 +13,10 @@ setup(
         (os.path.join('share', package_name), ['package.xml']),
         (os.path.join('share', package_name, 'models'), 
             ['models/mobilenet_ssd.tflite']),
+        (os.path.join('share', package_name, 'launch'), 
+            ['launch/camera_launch.py',
+             'launch/fall_detection_launch.py',
+             'launch/complete_system_launch.py']),
     ],
     install_requires=[
         'setuptools',

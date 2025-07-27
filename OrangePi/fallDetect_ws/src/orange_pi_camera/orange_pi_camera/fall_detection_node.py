@@ -52,7 +52,6 @@ class FallDetector(Node):
         self.mqtt_client.on_connect = self._on_mqtt_connect
         self.mqtt_client.on_disconnect = self._on_mqtt_disconnect
         self.mqtt_connected = False
-        self._connect_to_mqtt()
         
         self.input_details = self.interpreter.get_input_details()
         self.output_details = self.interpreter.get_output_details()
@@ -64,7 +63,7 @@ class FallDetector(Node):
         self.input_height = self.input_details[0]['shape'][1]
         self.input_width = self.input_details[0]['shape'][2]
         
-        # Connect to MQTT
+        # Connect to MQTT (only once)
         self._connect_to_mqtt()
         
         # Subscription
@@ -112,30 +111,61 @@ class FallDetector(Node):
                     bbox_width = xmax - xmin
                     if bbox_width > 0 and (bbox_height / bbox_width) < 0.5:
                         self.get_logger().info("FALL_DETECTED")
-                        self.mqtt_client.publish("userBodyStatus", "FALL_DETECTED")
+                        
+                        # Check MQTT connection status before publishing
+                        if not self._check_mqtt_connection():
+                            self.get_logger().error("MQTT not connected, attempting to reconnect...")
+                            self._connect_to_mqtt()
+                            # Give some time for connection to establish
+                            time.sleep(0.5)
+                        
+                        # Publish to userBodyStatus topic
+                        try:
+                            result = self.mqtt_client.publish("userBodyStatus", "FALL_DETECTED")
+                            if result.rc == mqtt.MQTT_ERR_SUCCESS:
+                                self.get_logger().info("Successfully published FALL_DETECTED to userBodyStatus")
+                            else:
+                                self.get_logger().error(f"Failed to publish to userBodyStatus, rc: {result.rc}")
+                        except Exception as e:
+                            self.get_logger().error(f"Error publishing to userBodyStatus: {str(e)}")
+                        
+                        # Publish to robot/control topic to trigger navigation stop
+                        try:
+                            result = self.mqtt_client.publish("robot/control", "navStop")
+                            if result.rc == mqtt.MQTT_ERR_SUCCESS:
+                                self.get_logger().info("Successfully published navStop to robot/control")
+                            else:
+                                self.get_logger().error(f"Failed to publish to robot/control, rc: {result.rc}")
+                        except Exception as e:
+                            self.get_logger().error(f"Error publishing to robot/control: {str(e)}")
     
         except Exception as e:
             self.get_logger().error(f"Processing error: {str(e)}")
 
     def _connect_to_mqtt(self):
-        for _ in range(3):  # Retry 3 times
+        for attempt in range(3):  # Retry 3 times
             try:
+                self.get_logger().info(f"Attempting MQTT connection (attempt {attempt + 1}/3)...")
                 self.mqtt_client.connect(
                     self.get_parameter('mqtt_broker').value, 
                     1883, 
                     60
                 )
                 self.mqtt_client.loop_start()
+                self.get_logger().info("MQTT connection attempt completed")
                 return
             except Exception as e:
-                self.get_logger().error(f"MQTT connection failed: {str(e)}")
-                time.sleep(1)
+                self.get_logger().error(f"MQTT connection failed (attempt {attempt + 1}/3): {str(e)}")
+                if attempt < 2:  # Don't sleep after the last attempt
+                    time.sleep(1)
+        
+        self.get_logger().error("Failed to connect to MQTT broker after 3 attempts")
 
     def _on_mqtt_connect(self, client, userdata, flags, rc):
         if rc == 0:
             self.mqtt_connected = True
             self.get_logger().info("Connected to MQTT broker")
-            self.mqtt_client.publish("robot/status", "fallDetect_thumbUp online")
+            self.mqtt_client.publish("robot/status", "fallDetect online")
         else:
             self.mqtt_connected = False
             self.get_logger().error(f"MQTT connection failed with code {rc}")
@@ -143,6 +173,15 @@ class FallDetector(Node):
     def _on_mqtt_disconnect(self, client, userdata, rc):
         self.mqtt_connected = False
         self.get_logger().warn("Disconnected from MQTT broker")
+    
+    def _check_mqtt_connection(self):
+        """Check if MQTT client is properly connected"""
+        if not self.mqtt_connected:
+            self.get_logger().warning("MQTT connection status: DISCONNECTED")
+            return False
+        else:
+            self.get_logger().debug("MQTT connection status: CONNECTED")
+            return True
 
     def destroy_node(self):  # Fixed indentation, moved into class
         try:
