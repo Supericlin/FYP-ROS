@@ -166,13 +166,10 @@ class MqttNavigationNode(Node):
             elif hasattr(msg, 'battery_level'):
                 self.battery_voltage = msg.battery_level
             else:
-                # If none of the expected fields exist, show all available fields
                 self.get_logger().warning("No battery voltage field found")
                 self.get_logger().info(f"All available fields: {[attr for attr in dir(msg) if not attr.startswith('_')]}")
                 return
-            
-            # Don't publish immediately - only publish via timer every minute
-            # self.publish_battery_voltage()  # Commented out to only publish every minute
+
             
         except Exception as e:
             self.get_logger().error(f"Error processing battery status: {e}")
@@ -181,7 +178,7 @@ class MqttNavigationNode(Node):
 
     def publish_battery_voltage(self):
         """Publish current battery voltage to MQTT topic."""
-        if self.battery_voltage > 0:  # Only publish if we have valid battery data
+        if self.battery_voltage > 0:
             battery_status_msg = f"battery_voltage:{self.battery_voltage}"
             self.mqtt_client.publish(self.mqtt_status_topic, battery_status_msg)
             self.get_logger().info(f"Published battery voltage: {self.battery_voltage}V to {self.mqtt_status_topic}")
@@ -272,14 +269,14 @@ class MqttNavigationNode(Node):
             
             # Handle navigation commands
             if payload in self.locations:
-                self.check_tf_transform()  # Check TF before sending goal
+                self.check_tf_transform()
                 self.process_location_command(payload)
             elif payload == "navStop":
                 if self.enable_nav_stop:
                 self.cancel_navigation()
                 else:
                     self.get_logger().warning("navStop command received but function is DISABLED")
-            elif payload == "navPause":  # Fixed command match
+            elif payload == "navPause":
                 if self.enable_nav_pause:
                 self.pause_navigation()
                 else:
@@ -430,7 +427,7 @@ class MqttNavigationNode(Node):
 
             if attempt < retries - 1:
                 time.sleep(1.0)
-                time.sleep(1.0)  # Add a delay before retrying
+                time.sleep(1.0)
         return False
 
     def pause_navigation(self):
@@ -439,7 +436,7 @@ class MqttNavigationNode(Node):
         # Cancel the current goal
         self.cancel_navigation()
 
-        # Deactivate components, but only if they are active
+        # Deactivate components
         controller_state = self.get_lifecycle_state(
             self.controller_lifecycle_client)
         planner_state = self.get_lifecycle_state(
@@ -460,7 +457,7 @@ class MqttNavigationNode(Node):
     def resume_navigation(self):
         self.get_logger().info("Attempting to resume navigation...")
 
-        # Activate components, but only if they are inactive
+        # Activate components
         controller_state = self.get_lifecycle_state(
             self.controller_lifecycle_client)
         planner_state = self.get_lifecycle_state(

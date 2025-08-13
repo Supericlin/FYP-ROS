@@ -2,10 +2,10 @@
 <?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
 <package format="3">
   <name>combined_launch</name>
-  <version>0.0.0</version>
+  <version>1.0.0</version>
   <description>Combined launch package for home label and US100 sensor nodes</description>
-  <maintainer email="user@todo.todo">user</maintainer>
-  <license>TODO: License declaration</license>
+  <maintainer email="supoeric@yahoo.com">Eric Lin</maintainer>
+  <license>Apache License 2.0</license>
 
   <depend>rclpy</depend>
   <depend>home_label_package</depend>

@@ -14,10 +14,10 @@ setup(
     ],
     install_requires=['setuptools'],
     zip_safe=True,
-    maintainer='root',
-    maintainer_email='root@todo.todo',
-    description='TODO: Package description',
-    license='TODO: License declaration',
+    maintainer='Eric Lin',
+    maintainer_email='supoeric@yahoo.com',
+    description='Ultrasonic sensors node',
+    license='Apache License 2.0',
     #tests_require=['pytest'],
     entry_points={
         'console_scripts': [

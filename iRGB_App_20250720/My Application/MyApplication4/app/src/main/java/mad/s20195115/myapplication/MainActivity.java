@@ -41,13 +41,12 @@ public class MainActivity extends AppCompatActivity {
     private static final String TOPIC_GOAL = "robot/control";
     private static final String TOPIC_STATUS = "robot/status";
     
-    // MQTT settings (will be loaded from SharedPreferences)
+    // MQTT settings
     private String brokerAddress = "192.168.0.224";
     private String brokerPort = "1883";
     private String username = "mouser";
     private String password = "m0user";
 
-    // Connection state management
     private boolean isConnecting = false;
     private boolean isConnected = false;
     private int reconnectAttempts = 0;
@@ -144,7 +143,6 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-                // Do nothing
             }
         });
     }
@@ -208,7 +206,7 @@ public class MainActivity extends AppCompatActivity {
             options.setUserName(username);
             options.setPassword(password.toCharArray());
 
-            options.setConnectionTimeout(30); // Reduced timeout
+            options.setConnectionTimeout(30);
             options.setKeepAliveInterval(60);
 
             mqttClient.setCallback(new MqttCallback() {
@@ -253,7 +251,6 @@ public class MainActivity extends AppCompatActivity {
 
                 @Override
                 public void deliveryComplete(IMqttDeliveryToken token) {
-                    // Message delivery completed
                     Log.d(TAG, "Message delivered");
                 }
             });
@@ -296,7 +293,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void sendNavigationGoal(String location) {
-        // Send simple text command (compatible with your MQTT navigation system)
         publishMqttMessage(TOPIC_GOAL, location);
         showToast("Navigating to " + location, Toast.LENGTH_SHORT);
         voiceResult.setText("Robot is going to: " + location);
@@ -306,7 +302,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void stopNavigation() {
-        // Send simple stop command (compatible with your MQTT navigation system)
         publishMqttMessage(TOPIC_GOAL, "navStop");
         showToast("Navigation canceled", Toast.LENGTH_SHORT);
         voiceResult.setText("Robot navigation stopped");
@@ -400,7 +395,6 @@ public class MainActivity extends AppCompatActivity {
         } catch (Exception e) {
             Log.e(TAG, "Error starting voice recognition", e);
             showToast("Error starting voice recognition. Using manual selection instead.", Toast.LENGTH_SHORT);
-            // Fall back to manual dialog
             showManualLocationDialog();
         }
     }
@@ -450,8 +444,6 @@ public class MainActivity extends AppCompatActivity {
                     if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.JELLY_BEAN) {
                         voiceResult.announceForAccessibility("Unrecognized location: " + voiceInput + ". Please try again or use the spinner to select a location.");
                     }
-
-                    // Show manual selection dialog as fallback
                     showManualLocationDialog();
                 }
             } else {

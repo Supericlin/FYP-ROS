@@ -47,7 +47,6 @@ class FallDetector(Node):
         self.interpreter = tflite.Interpreter(model_path=model_path)
         self.interpreter.allocate_tensors()
 
-        # MQTT setup must come before connection callbacks
         self.mqtt_client = mqtt.Client()  # Moved up
         self.mqtt_client.on_connect = self._on_mqtt_connect
         self.mqtt_client.on_disconnect = self._on_mqtt_disconnect
@@ -76,7 +75,6 @@ class FallDetector(Node):
         self.br = CvBridge()
         
 
-
     def image_callback(self, msg):
         try:
             frame = self.br.imgmsg_to_cv2(msg, desired_encoding='bgr8')
@@ -92,7 +90,7 @@ class FallDetector(Node):
             self.interpreter.set_tensor(self.input_details[0]['index'], input_data)
             self.interpreter.invoke()
             
-            # Get outputs (corrected indices and indexing)
+            # Get outputs
             boxes = self.interpreter.get_tensor(self.output_details[0]['index'])[0]    # Shape: [1, N, 4]
             classes = self.interpreter.get_tensor(self.output_details[1]['index'])[0]  # Shape: [1, N]
             scores = self.interpreter.get_tensor(self.output_details[2]['index'])[0]   # Shape: [1, N]
@@ -116,7 +114,6 @@ class FallDetector(Node):
                         if not self._check_mqtt_connection():
                             self.get_logger().error("MQTT not connected, attempting to reconnect...")
                             self._connect_to_mqtt()
-                            # Give some time for connection to establish
                             time.sleep(0.5)
                         
                         # Publish to userBodyStatus topic
@@ -143,7 +140,7 @@ class FallDetector(Node):
             self.get_logger().error(f"Processing error: {str(e)}")
 
     def _connect_to_mqtt(self):
-        for attempt in range(3):  # Retry 3 times
+        for attempt in range(3):
             try:
                 self.get_logger().info(f"Attempting MQTT connection (attempt {attempt + 1}/3)...")
                 self.mqtt_client.connect(
@@ -156,7 +153,7 @@ class FallDetector(Node):
                 return
             except Exception as e:
                 self.get_logger().error(f"MQTT connection failed (attempt {attempt + 1}/3): {str(e)}")
-                if attempt < 2:  # Don't sleep after the last attempt
+                if attempt < 2:
                     time.sleep(1)
         
         self.get_logger().error("Failed to connect to MQTT broker after 3 attempts")
@@ -183,7 +180,7 @@ class FallDetector(Node):
             self.get_logger().debug("MQTT connection status: CONNECTED")
             return True
 
-    def destroy_node(self):  # Fixed indentation, moved into class
+    def destroy_node(self):
         try:
             self.mqtt_client.loop_stop()
             self.mqtt_client.disconnect()

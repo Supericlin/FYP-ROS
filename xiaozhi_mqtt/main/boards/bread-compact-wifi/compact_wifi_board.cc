@@ -168,7 +168,6 @@ public:
         //InitializeIot();
     }
 
-    // 物联网初始化，添加对 AI 可见设备
     virtual void InitializeIot() override {
         auto& thing_manager = iot::ThingManager::GetInstance();
         thing_manager.AddThing(iot::CreateThing("Speaker"));

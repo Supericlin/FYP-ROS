@@ -14,7 +14,7 @@ def close_opencv_windows():
     try:
         print("Closing all OpenCV windows...")
         cv2.destroyAllWindows()
-        cv2.waitKey(1)  # Ensure windows are closed
+        cv2.waitKey(1)
         print("OpenCV windows closed successfully")
     except Exception as e:
         print(f"Error closing OpenCV windows: {e}")

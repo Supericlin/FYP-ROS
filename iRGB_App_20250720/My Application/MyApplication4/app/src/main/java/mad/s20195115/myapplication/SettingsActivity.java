@@ -106,9 +106,6 @@ public class SettingsActivity extends AppCompatActivity {
 
         // Show testing message
         Toast.makeText(this, "Testing connection...", Toast.LENGTH_SHORT).show();
-
-        // In a real implementation, you would test the MQTT connection here
-        // For now, we'll just show a success message
         Toast.makeText(this, "Connection test completed (simulated)", Toast.LENGTH_SHORT).show();
     }
 

@@ -98,7 +98,6 @@ class CameraPublisher(Node):
                         try:
                             self.cap.set(cv2.CAP_PROP_FOURCC, codec)
                             
-                            # Test if we can read a frame
                             ret, test_frame = self.cap.read()
                             if ret and test_frame is not None:
                                 self.get_logger().info(f"Camera initialized successfully with backend {backend} and codec {codec}")
@@ -112,7 +111,6 @@ class CameraPublisher(Node):
                                 self.get_logger().warn(f"Codec {codec} failed: {str(e)}")
                             continue
                     
-                    # If we get here, no codec worked
                     self.cap.release()
                     self.cap = None
                     

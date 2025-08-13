@@ -16,7 +16,6 @@ extern "C" void TriggerWakeWordFromMQTT();
 extern "C" void PlayDestinationReachedSound();
 extern "C" void ShowDestinationReachedMessage();
 
-// Forward declaration of helper function (C++ linkage)
 namespace iot {
   void ShowNavigationCompletedMessage();
 }
@@ -27,18 +26,14 @@ class iRGBMqtt : public Thing {
  private:
   esp_mqtt_client_handle_t client;
   bool mqtt_connected = false;
-  // 消息队列，用来缓冲待发布的 MQTT 消息
   QueueHandle_t mqtt_msg_queue;
-  const size_t QUEUE_LENGTH = 10; // 队列最大消息数
-  // 限制连续发布消息之间的最小间隔，避免过快调用
+  const size_t QUEUE_LENGTH = 10;
+
   const TickType_t min_publish_interval = pdMS_TO_TICKS(100);
   TickType_t last_publish_tick;
-  // 互斥锁，用于保护 MQTT 客户端（如有需要）
   SemaphoreHandle_t mqtt_mutex;
 
-  // 内部发布消息函数，执行真正的发布与重试逻辑
   void PublishMessageInternal(const char* message) {
-    // 限制连续发布的频率
     TickType_t now = xTaskGetTickCount();
     if (now - last_publish_tick < min_publish_interval) {
       vTaskDelay(min_publish_interval - (now - last_publish_tick));
@@ -74,9 +69,7 @@ class iRGBMqtt : public Thing {
     }
   }
 
-  // 专门用于LED控制的消息发布函数，发布到robot/status主题
   void PublishLedMessageInternal(const char* message) {
-    // 限制连续发布的频率
     TickType_t now = xTaskGetTickCount();
     if (now - last_publish_tick < min_publish_interval) {
       vTaskDelay(min_publish_interval - (now - last_publish_tick));
@@ -93,7 +86,7 @@ class iRGBMqtt : public Thing {
       return;
     }
   
-    const char* topic = "robot/status";  //LED控制发布到status主题
+    const char* topic = "robot/status";
     int retries = 4;
     int msg_id = -1;
     while (retries-- > 0) {
@@ -112,22 +105,18 @@ class iRGBMqtt : public Thing {
     }
   }
 
-  // 专门的任务，由消息队列中取出消息进行发送
   static void PublisherTask(void* pvParameters) {
     iRGBMqtt* instance = static_cast<iRGBMqtt*>(pvParameters);
     char* message = nullptr;
     while (1) {
-      // 阻塞等待消息，下次无限等待直到有消息到达
       if (xQueueReceive(instance->mqtt_msg_queue, &message, portMAX_DELAY) == pdTRUE) {
         instance->PublishMessageInternal(message);
-        free(message); // 发布完成后释放内存
+        free(message);
       }
     }
   }
 
-  // 通过消息队列发送消息，避免直接在业务线程中做耗时操作
   void QueueMqttMessage(const std::string& message) {
-    // 动态分配内存保存消息（记得加1字符空间存放结束符'\0'）
     size_t len = message.size() + 1;
     char* msg_copy = (char*)malloc(len);
       if (msg_copy == nullptr) {
@@ -135,21 +124,17 @@ class iRGBMqtt : public Thing {
     return;
     }
     strncpy(msg_copy, message.c_str(), len);
-    // 若队列满了，则阻塞一定时间
     if (xQueueSend(mqtt_msg_queue, &msg_copy, pdMS_TO_TICKS(50)) != pdTRUE) {
       ESP_LOGE(TAG, "Message queue is full; dropping message: %s", msg_copy);
     free(msg_copy);
     }
   }
   
-  // 外部调用的发送消息接口，内部将消息入队
   void SendMqttMessage(const std::string& message) {
     QueueMqttMessage(message);
   }
   
-  // 专门用于LED控制的消息发送接口，发布到robot/status主题
   void SendLedMqttMessage(const std::string& message) {
-    // 动态分配内存保存消息（记得加1字符空间存放结束符'\0'）
     size_t len = message.size() + 1;
     char* msg_copy = (char*)malloc(len);
     if (msg_copy == nullptr) {
@@ -158,7 +143,6 @@ class iRGBMqtt : public Thing {
     }
     strncpy(msg_copy, message.c_str(), len);
     
-    // 直接调用LED发布函数，不经过队列
     PublishLedMessageInternal(msg_copy);
     free(msg_copy);
   }
@@ -176,7 +160,6 @@ class iRGBMqtt : public Thing {
         // Now wake up the device and connect to websocket
         WakeupDeviceAndConnectWebsocket();
     }
-    // Add other wakeup types as needed
   }
   
 	// Add a method to wake up the device and connect to websocket
@@ -224,7 +207,6 @@ class iRGBMqtt : public Thing {
       case MQTT_EVENT_DATA:
 		// Process incoming messages
 		if (event->topic && event->data) {
-			// Null-terminate the strings for safe handling
 			char* topic = strndup(event->topic, event->topic_len);
 			char* data = strndup(event->data, event->data_len);
 			
@@ -242,8 +224,7 @@ class iRGBMqtt : public Thing {
 				// Process command messages, subscribe robot/command topic
 				if (strcmp(topic, "robot/command") == 0 && strstr(data, "wakeup:")) {
 					ESP_LOGI(TAG, "Wakeup command received!");
-					
-					// Fix this line to use the instance
+
 					instance->ProcessWakeupCommand(data);
 				}
 				
@@ -286,17 +267,17 @@ class iRGBMqtt : public Thing {
     : Thing("iRGBMqtt", "導航机器人：兩輪差速可以移动"), 
     last_publish_tick(0) {
     mqtt_app_start();
-    // 创建消息队列
+
     mqtt_msg_queue = xQueueCreate(QUEUE_LENGTH, sizeof(char*));
     if (mqtt_msg_queue == nullptr) {
       ESP_LOGE(TAG, "Failed to create MQTT message queue");
     }
-    // 创建互斥锁（如有需要保护共享资源）
+
     mqtt_mutex = xSemaphoreCreateMutex();
     if (mqtt_mutex == nullptr) {
       ESP_LOGE(TAG, "Failed to create MQTT mutex");
     }
-    // 启动发布任务
+
     xTaskCreate(PublisherTask, "MQTT_Publisher", 4096, this, tskIDLE_PRIORITY + 1, NULL);
     methods_.AddMethod("goto_StudyRoom", "去書房[回覆:開始導航至書房]", ParameterList(),
                        [this](const ParameterList& parameters) {
@@ -392,11 +373,10 @@ class iRGBMqtt : public Thing {
 
 // Implementation of the helper function
 void ShowNavigationCompletedMessage() {
-  // This could be implemented to show a message on the device display
   ESP_LOGI(TAG, "Navigation completed - destination reached");
 }
 
-} // namespace iot
+}
 
 extern "C" void TriggerWakeWordFromMQTT() {
 	ESP_LOGI("MQTT_WakeWord", "Destination reached notification received");
@@ -412,18 +392,10 @@ extern "C" void TriggerWakeWordFromMQTT() {
 // Helper functions for notification
 extern "C" void PlayDestinationReachedSound() {
 	ESP_LOGI("MQTT_WakeWord", "Playing destination reached sound");
-	
-	// Add code to play a sound notification
-	// For example, if you have a way to beep or play tones:
-	// audio_output_->PlayTone(1000, 500); // 1000 Hz for 500 ms
 }
 
 extern "C" void ShowDestinationReachedMessage() {
 	ESP_LOGI("MQTT_WakeWord", "Showing destination reached message");
-	
-	// Add code to display a message if you have a display
-	// For example:
-	// display_->ShowMessage("Destination reached");
 }
 
 DECLARE_THING(iRGBMqtt);

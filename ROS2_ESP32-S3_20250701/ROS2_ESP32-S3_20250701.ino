@@ -27,7 +27,6 @@
 #define DOUBLE_CLICK_TIMEOUT 300
 #define BOOT_DELAY 5000
 
-// Global variables
 char ssid[32] = "";
 char password[64] = "";
 
@@ -70,7 +69,7 @@ void mqttCallback(char* topic, byte* payload, unsigned int length) {
   else if (statusMsg == "navStatus_6") navColorMode = 2;
   else if (statusMsg == "espRestart") {
     Serial.println("Received espRestart command - restarting ESP32-S3...");
-    delay(1000); // Give time for the message to be printed
+    delay(1000);
     ESP.restart();
   }
 }
@@ -324,10 +323,7 @@ void handlePVDFPressureSensor() {
     publishMessage(MQTT_TOPIC, "navCon");
     pressureState = true;
   } else if (pvdfValue > 0 && pvdfValue <= 1000 && noPressureDetected) {
-    // Some pressure detected but not enough to trigger pressure state
-    // Reset the no pressure timer
     noPressureStartTime = millis();
-    //Serial.println("Some pressure detected - resetting no pressure timer");
   }
 }
 

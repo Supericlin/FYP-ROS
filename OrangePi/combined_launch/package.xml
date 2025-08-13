@@ -2,10 +2,10 @@
 <?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
 <package format="3">
   <name>orangepi_combined_launch</name>
-  <version>0.0.0</version>
+  <version>1.0.0</version>
   <description>Combined launch package for OrangePi fall detection and ultrasonic sensors</description>
-  <maintainer email="user@todo.todo">user</maintainer>
-  <license>TODO: License declaration</license>
+  <maintainer email="supoeric@yahoo.com">Eric Lin</maintainer>
+  <license>Apache License 2.0</license>
 
   <depend>rclpy</depend>
   <depend>fall_detection_pkg</depend>

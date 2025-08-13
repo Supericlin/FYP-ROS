@@ -103,7 +103,6 @@ class UltrasonicSensorNode(Node):
                 self.get_logger().info(f"Sensor {i+1} ({sensor['name']}): Reads={stats['reads']}, Errors={stats['errors']} ({sensor_error_rate:.1f}%), Last={stats['last_distance']:.3f}m")
 
     def read_sensors(self):
-        # Skip if we're already processing
         if not self.sensor_lock.acquire(blocking=False):
             return
             
@@ -114,7 +113,7 @@ class UltrasonicSensorNode(Node):
                 try:
                     distance = self.get_distance(sensor['trigger'], sensor['echo'])
                     
-                    # Update statistics (simplified)
+                    # Update statistics
                     self.sensor_stats[i]['reads'] += 1
                     self.sensor_stats[i]['last_distance'] = distance / 100.0 if distance != float('inf') else 0.0
                     
@@ -201,14 +200,14 @@ class UltrasonicSensorNode(Node):
         """Simplified shutdown"""
         self.get_logger().info("US100 Sensor Node shutting down...")
         
-        # Log final statistics (simplified)
+        # Log final statistics
         total_reads = sum(stats['reads'] for stats in self.sensor_stats.values())
         total_errors = sum(stats['errors'] for stats in self.sensor_stats.values())
         uptime = time.time() - self.node_start_time
         
         self.get_logger().info(f"Final stats: Uptime={uptime:.0f}s, Reads={total_reads}, Errors={total_errors}")
         
-        # Ensure we clean up GPIO on shutdown
+        # Clean up GPIO on shutdown
         try:
             GPIO.cleanup()
             self.get_logger().info("GPIO cleanup completed")

@@ -12,12 +12,10 @@ class UltrasonicNode(Node):
     def __init__(self):
         super().__init__('ultrasonic_node')
 
-        # Declare parameters for logging control (matching RDK-X5 style)
         self.declare_parameter('debug_mode', False)
         self.declare_parameter('log_interval', 30.0)  # Log status every 30 seconds
         self.declare_parameter('enable_detailed_logging', False)
         
-        # Get parameters
         self.debug_mode = self.get_parameter('debug_mode').value
         self.log_interval = self.get_parameter('log_interval').value
         self.enable_detailed_logging = self.get_parameter('enable_detailed_logging').value
@@ -29,7 +27,6 @@ class UltrasonicNode(Node):
             {"trig": 10, "echo": 13, "name": "Sensor 5"},   # Sensor 5
         ]
 
-        # Performance tracking (matching RDK-X5 style)
         self.read_count = 0
         self.error_count = 0
         self.sensor_stats = {i: {'reads': 0, 'errors': 0, 'last_distance': 0.0} for i in range(len(self.sensors))}
@@ -51,7 +48,6 @@ class UltrasonicNode(Node):
                 self.setup_gpio(sensor["trig"], sensor["echo"])
                 self.get_logger().info(f"Sensor {i + 4} ({sensor['name']}) initialized - Trigger: {sensor['trig']}, Echo: {sensor['echo']}")
                 
-                # Test the sensor with a quick reading
                 try:
                     test_distance = self.measure_distance(sensor["trig"], sensor["echo"])
                     if test_distance == float('inf'):
@@ -76,7 +72,6 @@ class UltrasonicNode(Node):
             self.sensor_publishers.append(publisher)
             self.get_logger().info(f"Publisher created: {topic_name}")
 
-        # Add a lock to prevent overlapping sensor readings
         self.sensor_lock = threading.Lock()
         
         # Last readings to detect stuck sensors (enhanced)
@@ -106,7 +101,6 @@ class UltrasonicNode(Node):
         total_errors = sum(stats['errors'] for stats in self.sensor_stats.values())
         error_rate = (total_errors / max(total_reads, 1)) * 100
         
-        # Simplified status log
         self.get_logger().info(f"Status: Uptime={uptime:.0f}s, Reads={total_reads}, Errors={total_errors} ({error_rate:.1f}%)")
         
         # Only log individual sensors if debug mode is enabled
@@ -139,7 +133,6 @@ class UltrasonicNode(Node):
             self.get_logger().error(f"Error resetting sensor: {str(e)}")
 
     def read_sensors(self):
-        # Skip if already processing to prevent overlap
         if not self.sensor_lock.acquire(blocking=False):
             return
         
@@ -160,12 +153,11 @@ class UltrasonicNode(Node):
                     self.sensor_stats[i]['last_distance'] = distance / 100.0 if distance != float('inf') else 0.0
                     
                     # Check for stuck readings (same value multiple times)
-                    if self.last_readings[i] >= 0:  # Only check if we have a previous reading
-                        if abs(distance - self.last_readings[i]) < 1.0:  # Increased threshold to 1.0 cm
+                    if self.last_readings[i] >= 0:
+                        if abs(distance - self.last_readings[i]) < 1.0:
                             self.same_reading_count[i] += 1
                             current_time = time.time()
                             
-                            # Only warn if we have many consecutive readings AND haven't warned recently
                             if (self.same_reading_count[i] > 200 and  # 20 seconds of same reading
                                 current_time - self.last_warning_time[i] > 60.0):  # Only warn every 60 seconds
                                 
@@ -175,14 +167,12 @@ class UltrasonicNode(Node):
                                 # Try to reset the sensor
                                 self.reset_sensor(sensor["trig"], sensor["echo"])
                                 self.same_reading_count[i] = 0
-                                self.last_readings[i] = -1.0  # Reset last reading to force a fresh start
+                                self.last_readings[i] = -1.0
                         else:
-                            # Reading changed, reset stuck detection
                             self.same_reading_count[i] = 0
                     
                     self.last_readings[i] = distance
                     
-                    # Log detailed information only if explicitly enabled
                     if self.enable_detailed_logging:
                         if distance == float('inf'):
                             self.get_logger().debug(f"Sensor {i + 4}: No echo received (object out of range)")
@@ -197,7 +187,6 @@ class UltrasonicNode(Node):
                     self.error_count += 1
                     self.sensor_stats[i]['errors'] += 1
                     self.get_logger().error(f"Error reading sensor {i + 4}: {str(e)}")
-                    # Always publish something, even on error
                     self.publish_range_msg(i, float('inf'))
                 
                 # Small delay between sensors to reduce interference
@@ -240,10 +229,8 @@ class UltrasonicNode(Node):
         if distance > 400:  # More than 4m
             return float('inf')
         
-        # Check if the reading is reasonable (not exactly 63cm repeatedly)
         if 62.5 < distance < 63.5:
-            # This might be a stuck sensor reading, log it
-            return distance  # Still return the value but it will be flagged as stuck
+            return distance
         
         return distance
 
@@ -279,7 +266,6 @@ class UltrasonicNode(Node):
         """Simplified shutdown (matching RDK-X5 style)"""
         self.get_logger().info("OrangePi Ultrasonic Sensor Node shutting down...")
         
-        # Log final statistics (simplified)
         total_reads = sum(stats['reads'] for stats in self.sensor_stats.values())
         total_errors = sum(stats['errors'] for stats in self.sensor_stats.values())
         uptime = time.time() - self.node_start_time

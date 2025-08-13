@@ -5,7 +5,7 @@ package_name = 'orange_pi_camera'
 
 setup(
     name=package_name,
-    version='0.0.0',
+    version='1.0.0',
     packages=[package_name],
     data_files=[
         ('share/ament_index/resource_index/packages',
@@ -27,8 +27,8 @@ setup(
         'opencv-python-headless'  # New: OpenCV without GUI
     ],
     zip_safe=True,
-    maintainer='your_name',
-    maintainer_email='your_email@domain.com',
+    maintainer='Eric Lin',
+    maintainer_email='supoeric@yahoo.com',
     description='Camera package for Orange Pi',
     license='Apache License 2.0',
     entry_points={

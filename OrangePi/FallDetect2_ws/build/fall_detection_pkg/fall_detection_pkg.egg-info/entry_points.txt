@@ -1,5 +1,0 @@
-[console_scripts]
-camera_node = fall_detection_pkg.camera_node:main
-fall_detection_node = fall_detection_pkg.fall_detection_node:main
-image_preview_node = fall_detection_pkg.image_preview_node:main
-test_node = fall_detection_pkg.test_node:main

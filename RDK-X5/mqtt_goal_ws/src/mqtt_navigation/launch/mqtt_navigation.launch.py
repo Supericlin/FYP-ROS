@@ -9,7 +9,7 @@ def generate_launch_description():
             name='mqtt_navigation_node',
             output='screen',
             parameters=[
-                {'mqtt_broker_address': '192.168.0.224'},  # Replace with your MQTT broker IP
+                {'mqtt_broker_address': '192.168.0.224'},
                 {'mqtt_broker_port': 1883},
                 {'mqtt_topic': 'robot/control'}
             ]
